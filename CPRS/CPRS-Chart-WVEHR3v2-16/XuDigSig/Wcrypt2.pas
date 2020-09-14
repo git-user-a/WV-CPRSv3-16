@@ -8160,7 +8160,7 @@ function CertDuplicateCertificateChain (
 // CRL Revocation OID
 //
 
-const REVOCATION_OID_CRL_REVOCATION = LPCSTR('1');
+const REVOCATION_OID_CRL_REVOCATION: LPCSTR = LPCSTR('1');
 
 //
 // For the CRL revocation OID the pvRevocationPara is NULL
@@ -8355,13 +8355,13 @@ const CRYPT_OID_VERIFY_CERTIFICATE_CHAIN_POLICY_FUNC  =
 //  Predefined verify chain policies
 //--------------------------------------------------------------------------
 const
-     CERT_CHAIN_POLICY_BASE              =LPCSTR('1');
-     CERT_CHAIN_POLICY_AUTHENTICODE      =LPCSTR('2');
-     CERT_CHAIN_POLICY_AUTHENTICODE_TS   =LPCSTR('3');
-     CERT_CHAIN_POLICY_SSL               =LPCSTR('4');
-     CERT_CHAIN_POLICY_BASIC_CONSTRAINTS =LPCSTR('5');
-     CERT_CHAIN_POLICY_NT_AUTH           =LPCSTR('6');
-     CERT_CHAIN_POLICY_MICROSOFT_ROOT    =LPCSTR('7');
+     CERT_CHAIN_POLICY_BASE: LPCSTR              =LPCSTR('1');
+     CERT_CHAIN_POLICY_AUTHENTICODE: LPCSTR      =LPCSTR('2');
+     CERT_CHAIN_POLICY_AUTHENTICODE_TS: LPCSTR   =LPCSTR('3');
+     CERT_CHAIN_POLICY_SSL: LPCSTR               =LPCSTR('4');
+     CERT_CHAIN_POLICY_BASIC_CONSTRAINTS: LPCSTR =LPCSTR('5');
+     CERT_CHAIN_POLICY_NT_AUTH: LPCSTR           =LPCSTR('6');
+     CERT_CHAIN_POLICY_MICROSOFT_ROOT: LPCSTR    =LPCSTR('7');
 
 //+-------------------------------------------------------------------------
 //  CERT_CHAIN_POLICY_BASE
