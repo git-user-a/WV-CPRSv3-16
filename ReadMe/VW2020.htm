@@ -23,13 +23,13 @@
     <tr>
       <td valign="top" align="right"><em><strong></strong></em></td>
       <td>
-				The <a href="https://en.wikipedia.org/wiki/VistA">VistA</a>
+				<a href="https://en.wikipedia.org/wiki/VistA">VistA</a>
 				 is a health information system deployed across all veteran care sites in the United States.
 				 VistA is the Client/Server system. The most known VistA client application is <i>CPRSChart.exe</i>.
-				The source code of the VistA is available by <a href="https://www.foia.gov/">FOIA</a> request.
+				The source code of VistA is available by <a href="https://www.foia.gov/">FOIA</a> request.
 				<p>
 
-				WorldVistA EHR 3.1 Ver 3-16 is version of VistA created
+				WorldVistA EHR 3.1 Ver 3-16 is a version of VistA created
 	      by the <a href="https://worldvista.org/">WorldVistA</a> open source community.<br>
 
 
@@ -58,18 +58,18 @@
     <tr>
       <td align="right" valign="top"><em><strong></strong></em> </td>
       <td >
-				<i>CPRSChart</i> is Windows program developed in <a href="https://en.wikipedia.org/wiki/Delphi_(software)">Delphi</a>.
+				<i>CPRSChart</i> was developed with Microsoft Windows 10 and Embarcadero's
+				<a href="https://en.wikipedia.org/wiki/Delphi_(software)">Delphi</a>.
         In preparation of this document the source code of WV-CPRSv3-16 was successfully compiled with 2 versions of Delphi:
         <br>
         <ul>
           <li>Delphi 10.3.3 (RIO) Professional. (Community Edition) </li>
           <li>Delphi 10.4 (SYDNEY) Professional</li>
         </ul>
-				<p>The user of this document assumed to be familiar with basic Delphi usage:
-					compilation of applications and packages,
-					instalattion of the custom components, setting up Delphi parameters.
+				<p>The user should be familiar with basic Delphi:
+					compilation of applications, packages,
+					instalattion of the custom components, and setting up Delphi parameters.
         <p>
-						<p>Development was done in MS Windows 10.
       </td>
     </tr>
 		<tr>
@@ -85,16 +85,17 @@
 		  <td></td>
       <td >
 				<i>CPRChart</i> source code consists of two parts - <i>CPRS Packages</i> and <i>CPRS GUI</i>.<br>
-				<i>CPRS Packages</i> provides general development components while <i>CPRS GUI</i> utilizes this component and implements application logic.
+				<i>CPRS Packages</i> are components developed in Delphi specifically for <i>CPRS</i>
+				graphical user interface.
 				<p>
 
         <em><strong>GUI</strong></em></p>
 				The source code of <i>WV-CPRSv3-16 GUI</i> is the result of merging VA CPRS GUI v30c (VistA patch OR*3.0*404) into WVEHR3v2-16.
-				The source code of the WVEHR3v2-16 was updated with several enhancements and bugs fixes.<br>
+				The source code of the WVEHR3v2-16 was updated with several enhancements and bug fixes.<br>
 
         <p><em><strong>CPRS Packages</strong></em></p>
         While the source code of <i>CPRSChart GUI</i> is changing significantly with every version of the application the
-        <i>Packages</i> code is less fluid. New versions of <i>Packages</i> are usually backward compatible.
+        <i>Packages</i> code is typically backward compatible.
         In preparation of <i>VW-CPRSv3-16</i> we used source code of <i>CPRS Packages v31b</i>.
         You may replace the packages source with the version of </i>30c</i> if prefer to use code 100% compatible withVA CPRS GUI v30c.
 		    (Usage of <i>CPRS Packages 30c</i> with <i> WV-CPRSv3-16 GUI</i> is not included in this document)
@@ -123,7 +124,7 @@
     <td align="right" valign="top"><em><strong></strong></em> </td>
     <td >
       <em><strong>Before you begin:</strong></em></p>
-      If you want to separate you work on <i>CPRSChart</i> from other Delphi projects or plan to work with
+      If you want to separate your work on <i>CPRSChart</i> from other Delphi projects or plan to work with
 			several versions of <i>CPRS packages</i> you might create a separate IDE setup for this.
 			<p>Create an icon for launching IDE specifically for work on related projects and use <i>-r</i>
 			parameter to specify version of the IDE setup.
@@ -148,7 +149,7 @@
 	</table>
 	<p>
 			<em><strong>2. Setting environment variables to specify location of the compiled packages</strong></em></p>
-      By default Delphi saves results of packages compilations in the direcory defined by the environment variable <i>BDSCOMMONDIR</i>.
+      By default Delphi saves results of package compilations in the direcory defined by the environment variable <i>BDSCOMMONDIR</i>.
 			Changing the default value allows you to control where the compiled packages and other files required for your project compilation will be placed.<p>
 	    <img src="DelphiEnvironment.PNG"/></a></p>
 
@@ -163,7 +164,7 @@
 						<td>NOTE:</td>
 						<td>
     	 CPRS Packages v31b are configured to use <i>pre-</i> and <i>post-</i> build events:
- 	    <i>pre-</i> build event creates <i>Resource</i> directory.
+ 	    <i>pre-</i> build event creates a <i>Resource</i> directory.
 		  <i>post-</i> build event copies <i>.dec, .dfm</i> files to the <i>Resource</i> directory. <p>
       </td></tr></table>
 
@@ -309,7 +310,7 @@
 			<p><img src="CPRSPackages31bLight.png"/></a><br><p>
 
       <em><strong>2. Rebuild packages starting from the top of the list.</strong></em><br>
-	    <em><strong>3. Install Design packages after the build.</strong></em>
+	    <em><strong>3. Install Design-time packages after the build.</strong></em>
 			<p>
 				To verify if the components are now available  restart Delphi and review the component palette.
     </td>
@@ -335,8 +336,8 @@
 			describes differences made to the application.
 			<p>
 
-		  The <i>WV-CPRSv3-16</i> project was built as the enhancement of the WVEHR3v2-16 and utilizes most of its code.<br>
-    	Source code of the WVEHR3v2-16 kept in the folder <i>CPRS-Chart-WVEHR3v2-16</i>.
+		  The <i>WV-CPRSv3-16</i> project was built as an enhancement of the WVEHR3v2-16 and utilizes most of its code.<br>
+    	Source code of the WVEHR3v2-16 is kept in the folder <i>CPRS-Chart-WVEHR3v2-16</i>.
 	    Files in this folder were updated to match compiler requirements as definitions of some Delphi 10.3 constants were changed.
 			Even if the files were not used in the WV-CPRSv3-16 they were retained in the folder.
 			For example, the original project file <i>CPRSChart.dpr</i> still resides in <i>CPRS-Chart-WVEHR3v2-16</i> folder.
@@ -364,7 +365,7 @@
 			<p>
 			<strong>Changes to the project file <i>CPRSChart.dpr</i>:</strong><p>
 			<ul>
-		    <li>Location of the WorldVistA files was changed - files placed in <i>WVEHR</i> directory</li>
+		    <li>Location of the WorldVistA files was changed - files are placed in <i>WVEHR</i> directory</li>
 		    <li>Code updated: connection Verificaton if the application is being updated while GUI is starting was disabled</li>
         <li>Connection and application context creation moved from the <i>fFrame</i> unit to the project file
         <li>List of the files included in the project was changed
