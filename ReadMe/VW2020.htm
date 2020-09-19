@@ -124,40 +124,81 @@
     <td align="right" valign="top"><em><strong></strong></em> </td>
     <td >
       <em><strong>Before you begin:</strong></em></p>
-      If you want to separate your work on <i>CPRSChart</i> from other Delphi projects or plan to work with
-			several versions of <i>CPRS packages</i> you might create a separate IDE setup for this.
-			<p>Create an icon for launching IDE specifically for work on related projects and use <i>-r</i>
-			parameter to specify version of the IDE setup.
-			In the next example of the icon target line the name of the setup is <i>WorldVistA</i>:</p>
-      <i>"C:\Program Files (x86)\Embarcadero\Studio\20.0\bin\bds.exe" -pDelphi -rWorldVistA</i>.
+      It is common to use Delphi for development of several applications using
+			the same set of component libraries.
+			<p>
+			In case you need to work with different versions of the same library
+			you will need to control what version of packages Delphi IDE should use.
+
+		  Delphi resolve this issue by use of IDE command line <i>-r</i> switch.
+			The switch value identifies Windows registry key that contains parameters of the IDE at startup.
+			<p>
+			The next image illustrates the use of <i>-r</i> switch to start IDE. The sitch value is set to <i>WorldVistA</i>:</p>
+		  <p>
+      <img src="IDEShortcut.PNG"/>
+			<p>
+				<table>
+					<tr valign="top">
+						<td>NOTE:</td>
+						<td>The icon image was also changed - as the reminder of the special IDE settings.</td>
+			</tr>
+		</table>
 			<p>
 
       <a href="http://docwiki.embarcadero.com/RADStudio/Sydney/en/IDE_Command_Line_Switches_and_Options">
-				More about Delphi Command Line switches and options</a><p>
+				More about Delphi Command Line switches and options</a>
+				<p>
 
+
+
+
+      <p>
 			<em><strong>1. Removing previous versions of packages</strong></em></p>
-      Open <i>"Components|Install Packages..."</i> dialog and verify there are no previous versions of CPRS packages installed</p>
 
+			<p>
+				To review packages installed in IDE:
+				<p>
+					<ul>
+						<li> Close project opened in IDE with <i>"File|Close All"</i> command of Delphi main menu
+						<li> Open packages dialog with <i>"Components|Install Packages..."</i> command of main menu.
+						<li> Verify if there are previous versions of CPRS packages installed.
+					  <li> Use "Remove..." button to remove a package
+					</ul>
+
+      <p>
 			<img src="installedPackages.PNG"/></a></p>
 
       <table>
 				<tr valign="top">
 					<td>NOTE:</td>
-					<td> If you compiled packages before and have previous versions of the <i>*.bpl</i> files
-			on your system you might need to remove them manually.</td>
+					<td> If you compiled packages before and have previous versions of the <i>*.bpl</i> files not listed in the
+			"Install Packages" dialog you might need to find and remove them manually.</td>
 		</tr>
 	</table>
 	<p>
 			<em><strong>2. Setting environment variables to specify location of the compiled packages</strong></em></p>
       By default Delphi saves results of package compilations in the direcory defined by the environment variable <i>BDSCOMMONDIR</i>.
-			Changing the default value allows you to control where the compiled packages and other files required for your project compilation will be placed.<p>
-	    <img src="DelphiEnvironment.PNG"/></a></p>
+			Changing the default value allows you to control where the compiled packages and other files required for your project compilation will be placed.
 
+			<p><img src="DelphiEnvironment.PNG"/></a>
+	<p>
+			To add or modify environment variables:
+			<p>
+        <ul>
+					<li> Opent IDE options dialog with <i>"Tools|Options..."</i> command of Delphi main menu.
+					<li> Use "New..."or "Edit..." buttons to open variable editor
+				</ul>
+
+				 <p><img src="EditVariable.PNG"/></a>
+
+      <p>
       <em><strong>3. Updating Delphi Options</strong></em></p>
-      Use the environment variable in fields <i>Package output directory</i>, <i>DCP output directory</i>:<p>
+      Use the environment variable created in step 2 in fields <i>Package output directory</i>, <i>DCP output directory</i>:<p>
 	    <img src="DelphiOptionsLibrary.PNG"/></a></p>
+
+
+
       Don't forget to select the correct Compilation Platform <i>Windows 32-bit</i>!<p>
-      Add references to the location to <i>Library Path</i> and <i>Browsing Path</i><p>
 
 				<table>
 					<tr valign="top">
@@ -166,11 +207,33 @@
     	 CPRS Packages v31b are configured to use <i>pre-</i> and <i>post-</i> build events:
  	    <i>pre-</i> build event creates a <i>Resource</i> directory.
 		  <i>post-</i> build event copies <i>.dec, .dfm</i> files to the <i>Resource</i> directory. <p>
-      </td></tr></table>
+      </td></tr>
+          <tr>
+						<td/>
+						<td>Fields <i>Package output directory</i>, <i>DCP output directory</i> set in <i>Options</i>
+							dialog are used by IDE for compilation of ALL packages.
+							Keep it in mind when compiling libraries other then <i>CPRS_Packages</I>
+
+		   </table>
+      <p>
+				Add variabels to <i>Library Path</i> and <i>Browsing Path</i><p>
+
+      <p>
 
  		  <img src="DelphiOptionsLibraryDirectories.PNG"/></a></p>
-	    <em><strong>SAVE OPTIONS AND RESTART DELPHI IDE</strong></em></p>
-      After restart Delphi will offer to add new environment to existing set - confirm this change.<p>
+
+			<table>
+				<tr valign="top">
+					<td>NOTE:</td>
+					<td>You need to add reference on <i>Resource</i> location to both <i>Library Path</i> and <i>Browsing Path</i> lists
+				</td>
+			</tr>
+		</table>
+<p>
+
+	    <em><strong>4. Save options and restart Delphi IDE</strong></em></p>
+<p>
+	    After restart Delphi will offer to add new environment to existing set - confirm this change.<p>
       Now it's time to open Package Group containing source code of the CPRS packages.<p>
     </td>
   </tr>
@@ -312,7 +375,10 @@
       <em><strong>2. Rebuild packages starting from the top of the list.</strong></em><br>
 	    <em><strong>3. Install Design-time packages after the build.</strong></em>
 			<p>
-				To verify if the components are now available  restart Delphi and review the component palette.
+				To verify if the components are now available restart Delphi, open CPRS GUI project, and review the component palette.
+	      	
+			<p>
+
     </td>
   </tr>
 	<tr>
