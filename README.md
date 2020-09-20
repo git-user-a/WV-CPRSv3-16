@@ -5,7 +5,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	</head>
 <body>
-  <table width="600px">
+  <table width="50%">
     <tr>
       <td>
         <a href="https://WorldVista.org"> <img align="right" width=80% src="ReadMe\Globe.png" border="0" /><br></a>
@@ -515,7 +515,7 @@
   <tr>
     <td></td>
     <td align="right">
-      <table width="100%" border="0">
+      <table>
         <tr>
           <td >Send you questions regaring <i>WorldVistA CPRSChart</i> to </td>
 					<td align="right"><a href="mailto:info@worldvista.org?Subject=CPRS3.1-16" target="_top">info@worldvista.org</a></td>
