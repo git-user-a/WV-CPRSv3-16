@@ -335,7 +335,7 @@
 			<p>Compilation steps are straightforward:
 			<p>
 			<em><strong>1. Open package group <i>CPRS_Packages_XE8</i></strong></em><br>
-			<p><img src="ReadMe\CPRSPackages31bLight.png"/></a><br>
+			<p><img src="ReadMe\\CPRSPackages31bLight.png"/></a><br>
 			<p>
       <em><strong>2. Rebuild packages starting from the top of the list.</strong></em><br>
 	    <em><strong>3. Install Design-time packages after the build.</strong></em>
