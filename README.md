@@ -144,7 +144,7 @@
 					  <li> Use "Remove..." button to remove a package
 					</ul>
 				<p>
-			<img src="ReadMe\installedPackages.PNG"/>
+			<img src="ReadMe\InstalledPackages.PNG"/>
 			<p>
       <table>
 				<tr valign="top">
