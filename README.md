@@ -6,10 +6,10 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	</head>
 <body>
-  <table width="760" border="0" align="center" cellpadding="0" cellspacing="10">
+  <table border="0" align="center" cellpadding="0" cellspacing="10">
     <tr>
       <td>
-        <a href="https://WorldVista.org"> <img align="right" width=80% src="Globe.png" border="0" /><br></a>
+        <a href="https://WorldVista.org"> <img align="right" width=80% src="ReadMe\Globe.png" border="0" /><br></a>
       </td>
       <td align="right" valign="top"><h2><i>WorldVistA CPRSChart Ver 3-16</i></h2></td>
     </tr>
@@ -124,7 +124,7 @@
 			<br><br>
 			The next image illustrates the use of <i>-r</i> switch to start IDE.
 			The switch value is set to <i>WorldVistA</i>:<br><br>
-      <img src="IDEShortcut.PNG"/>
+      <img src="ReadMe\IDEShortcut.PNG"/>
 			<br><br>
 				<table>
 					<tr valign="top">
@@ -144,7 +144,7 @@
 					  <li> Use "Remove..." button to remove a package
 					</ul>
 				<p>
-			<img src="installedPackages.PNG"/></a>
+			<img src="ReadMe\installedPackages.PNG"/></a>
 			<p>
       <table>
 				<tr valign="top">
@@ -157,7 +157,7 @@
 	<em><strong>2. Setting environment variables to specify location of the compiled packages</strong></em></p>
       By default Delphi saves results of package compilations in the direcory defined by the environment variable <i>BDSCOMMONDIR</i>.
 			Changing the default value allows you to control where the compiled packages and other files required for your project compilation will be placed.<br><br>
-			<img src="DelphiEnvironment.PNG"/></a>
+			<img src="ReadMe\DelphiEnvironment.PNG"/></a>
 	<p>
 			To add or modify environment variables:
 			<p>
@@ -165,13 +165,13 @@
 					<li> Opent IDE options dialog with <i>"Tools|Options..."</i> command of Delphi main menu.
 					<li> Use "New..."or "Edit..." buttons to open variable editor
 				</ul>
- 		 <p><img src="EditVariable.PNG"/></a>
+ 		 <p><img src="ReadMe\EditVariable.PNG"/></a>
       <p>
       <em><strong>3. Updating Delphi Options</strong></em></p>
       Use the environment variable created in step 2 in fields <i>Package output directory</i>, <i>DCP output directory</i>:
 			<p>
 			<p>
-			<img src="DelphiOptionsLibrary.PNG"/></a>
+			<img src="ReadMe\DelphiOptionsLibrary.PNG"/></a>
 			<p>
       Don't forget to select the correct Compilation Platform <i>Windows 32-bit</i>!
 			<p>
@@ -192,7 +192,7 @@
       <p>
 				Add variabels to <i>Library Path</i> and <i>Browsing Path</i><p>
       <p>
- 		  <img src="DelphiOptionsLibraryDirectories.PNG"/></a></p>
+ 		  <img src="ReadMe\DelphiOptionsLibraryDirectories.PNG"/></a></p>
 			<table>
 				<tr valign="top">
 					<td>NOTE:</td>
@@ -335,7 +335,7 @@
 			<p>Compilation steps are straightforward:
 			<p>
 			<em><strong>1. Open package group <i>CPRS_Packages_XE8</i></strong></em><br>
-			<p><img src="CPRSPackages31bLight.png"/></a><br>
+			<p><img src="ReadMe\CPRSPackages31bLight.png"/></a><br>
 			<p>
       <em><strong>2. Rebuild packages starting from the top of the list.</strong></em><br>
 	    <em><strong>3. Install Design-time packages after the build.</strong></em>
@@ -359,7 +359,7 @@
 			<p>Compiled untits will be placed in "CPRS\DCU" directory while executable file will be kept in "CPRS" directory.
 			<p>
 			This is the <i>WV-CPRSv3-16</i> project tree: <p>
-      <img src="GUIProjectLight.png"/></a><br><p>
+      <img src="ReadMe\GUIProjectLight.png"/></a><br><p>
 	    Project file compiles as any other Delphi application. The rest of this section
 			describes differences made to the application.
 			<p>
