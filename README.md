@@ -26,21 +26,25 @@
 				 is a health information system deployed across all veteran care sites in the United States.
 				 VistA is the Client/Server system. The most known VistA client application is <i>CPRSChart.exe</i>.
 				The source code of VistA is available by <a href="https://www.foia.gov/">FOIA</a> request.
-				WorldVistA EHR 3.1 Ver 3-16 is a version of VistA created<br><br>
-	      by the <a href="https://worldvista.org/">WorldVistA</a> open source community.<br><br>
+				WorldVistA EHR 3.1 Ver 3-16 is a version of VistA created
+	      by the <a href="https://worldvista.org/">WorldVistA</a> open source community.
+				<p>
+				<p>
         This document describes process of creation <i>WorldVistA CPRSChart</i>  -
 				client application that provides access to a patient data in WorldVistA EHR system.<br><br>
-        It does not discuss installation or usage of the EHR Server software.<br><br>
+        It does not discuss installation or usage of the EHR Server software.
+				<p>
 			  The version of <i>CPRSChart</i> for WorldVistA EHR 3.1 Ver 3-16
-				will be referred as <i>WV-CPRSv3-16</i> in this text.<br><br>
-				Document map:<br><br>
+				will be referred as <i>WV-CPRSv3-16</i> in this text.
+				<p>
+				Document map:
+				<p>
 - <a HREF="#DT">Development Tools</a><br>
 - <a HREF="#SC">Source Code</a><br>
 - <a HREF="#IDE">Delphi IDE Setup</a><br>
 - <a HREF="#PC">Package Compilation</a><br>
 - <a HREF="#PD">GUI Project Details</a><br>
 - <a HREF="#INFO">Additional Information</a>
-<br><br>
       </td>
     </tr>
 		<tr>
@@ -223,7 +227,6 @@
 			<p>
 			The source code of <i>CPRS Packages</i> is kept in the <i>CPRS_Packages_31b</i> directory.	Location and short description of the individual packages:
 				<table width="100%" border="0">
-					<tr><td colspan=2><strong></strong><p></td></tr>
 					<tr>
 						<td width="20%"><b>Package</b></td>
 						<td><b>Directory</b></td>
