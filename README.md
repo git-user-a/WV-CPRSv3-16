@@ -334,7 +334,7 @@
 				</ul>
 			<p>Compilation steps are straightforward:
 			<p>
-			<em><strong>1. Open package group <i>CPRS_Packages_XE8</i></strong></em><br>
+			<em><strong>1. Open package group <i>CPRS_Packages_XE8</i></strong></em>
 			<p><img src="ReadMe\_CPRSPackages31bLight.png"/>
 			<p>
       <em><strong>2. Rebuild packages starting from the top of the list.</strong></em><br>
@@ -358,7 +358,8 @@
       <i>CPRS GUI</i> project file <i>CPRSChart.dpr</i> is located in CPRS directory.
 			<p>Compiled untits will be placed in "CPRS\DCU" directory while executable file will be kept in "CPRS" directory.
 			<p>
-			This is the <i>WV-CPRSv3-16</i> project tree: <p>
+			This is the <i>WV-CPRSv3-16</i> project tree:
+			<p>
       <img src="ReadMe\_GUIProjectLight.png"/>
 			<p>
 	    Project file compiles as any other Delphi application. The rest of this section
