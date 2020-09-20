@@ -5,7 +5,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	</head>
 <body>
-  <table width="100%">
+  <table width="600px">
     <tr>
       <td>
         <a href="https://WorldVista.org"> <img align="right" width=80% src="ReadMe\Globe.png" border="0" /><br></a>
