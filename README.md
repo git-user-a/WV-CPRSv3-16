@@ -359,8 +359,7 @@
 			<p>
 			This is the <i>WV-CPRSv3-16</i> project tree:
 			<p>
-			<img src="ReadMe\IDEShortcut.PNG"/>
-      <img src="ReadMe\_GUIProjectLight.PNG"/>
+      <img src="ReadMe\GUIProjectLight.PNG"/>
 			<p>
 	    Project file compiles as any other Delphi application. The rest of this section
 			describes differences made to the application.
