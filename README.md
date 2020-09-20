@@ -2,11 +2,10 @@
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<title>WorldVistA CPRSChart Ver 3-16</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	</head>
 <body>
-  <table border="0" align="center" cellpadding="0" cellspacing="10">
+  <table width="100%">
     <tr>
       <td>
         <a href="https://WorldVista.org"> <img align="right" width=80% src="ReadMe\Globe.png" border="0" /><br></a>
@@ -360,7 +359,8 @@
 			<p>
 			This is the <i>WV-CPRSv3-16</i> project tree:
 			<p>
-      <img src="ReadMe\_GUIProjectLight.png"/>
+			<img src="ReadMe\IDEShortcut.PNG"/>
+      <img src="ReadMe\_GUIProjectLight.PNG"/>
 			<p>
 	    Project file compiles as any other Delphi application. The rest of this section
 			describes differences made to the application.
