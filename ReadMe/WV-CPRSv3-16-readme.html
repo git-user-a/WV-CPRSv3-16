@@ -43,6 +43,7 @@
         <a HREF="#IDE">Delphi IDE Setup</a><br>
         <a HREF="#PC">Package Compilation</a><br>
         <a HREF="#PD">GUI Project Details</a><br>
+        <a HREF="#VITALS">Vitals DLL</a><br>
         <a HREF="#INFO">Additional Information</a>
         <br></p>
       </td>
@@ -515,6 +516,77 @@
    	    <tr><td>Tools\fGN_RPCLog.pas</td><td>WorldVista enhancements.</td></tr>
       </table>
     </td>
+  </tr>
+  <tr>
+  	<td valign="top" align="right"></td>
+  	<td align="right"><a HREF="#OVERVIEW">Overview</a><br></td>
+  </tr>
+  <tr>
+  	<td valign="top" align="right">
+      <a name="VITALS"><strong>Vitals DLL</strong></a></td>
+  	<td style="background-color:#dddddd;"></td>
+  </tr>
+  <tr>
+    <td align="right" valign="top"><em><strong></strong></em> </td>
+    <td>
+      The most resent values of patient vitals are shown on the CPRS cover sheet.
+      To enter vitals CPRS uses <i>GMV_VitalsViewEnter</i> DLL. If you plan to add
+      vitals data to the patient record you will need version of DLL that
+      can work with the Broker used by the CPRS GUI.<br>
+      <p>Source code of the Vitals GUI (patch GMRV*5.0*38) can be found in directory
+      <i>GMRV-5-0-38</i>.
+      <p>Compilation of the Vitals GUI and DLL requires installation of 2 packages:
+      <table>
+  	    <tr>
+  		    <td>Orpheus</td>
+  		    <td>Available free under MPL 1.1</td>
+        </tr>
+        <tr valign=top>
+  		    <td>ROR_Components</td>
+  		    <td>Package originally developed for <i>Clinical Case Registry</i> Project.
+            Source code included in patch GMRV*5.0*38.
+            </td>
+        </tr>
+      </table>
+      <p>To recompile <i>GMV_VitalsViewEnter</i>:
+      <ul>
+        <li>Install Orpheus package
+        <li>Install ROR_Components packages
+        <li>Recompile DLL
+      </ul>
+      <em><strong>1. Installing Orpheus package</strong></em><br><br>
+      You can install the latest version of the <i>Orpheus</i> using <i>Delphi</i>
+      GetIt Package Manager
+      <p>
+        <img src="OrpheusInstalled.PNG"/>
+  	  <p>
+        <table>
+    		  <tr>
+    		  	<td>NOTE:</td>
+    		  	<td>You can also recompile the source code of the <i>Orpheus</i> or
+              <i>OrpheusLite</i> packages. See <i>.zip</i> files in the <i>GMRV-5-0-38</i>
+              folder.
+    		    </td>
+    		  </tr>
+        </table>
+        <p>
+        <em><strong>2. Installing ROR_Components package</strong></em><br><br>
+        Package source code is in the <i>GMRV-5-0-38\CCR-COMPONENTS</i> folder.
+        Use project <i>ROR_Components_D10_3_3</i> for compilation with Delphi 10.
+        <p>
+        <table>
+    		  <tr>
+    		  	<td>NOTE:</td>
+    		  	<td>Project was updated to put files required for compilation of DLL in
+              directories defined by <i>CPRS_Packages</i> environment variable.
+    		    </td>
+    		  </tr>
+        </table>
+        <p>
+        <em><strong>3. Recompiling DLL</strong></em><br><br>
+        Use <i>Vitals</i> project group (directory <i>GMRV-5-0-38</i>) to compile
+        <i>GMV_VitalsViewEnter</i> or othe GUI of the Vitals suite.
+      </td>
   </tr>
   <tr>
   	<td valign="top" align="right"></td>

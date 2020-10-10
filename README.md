@@ -1,6 +1,8 @@
 <a href="https://en.wikipedia.org/wiki/VistA">VistA</a>
 is a health information system deployed across all veteran care sites in the United States.
-VistA is the Client/Server system. The most known VistA client application is <i>CPRSChart.exe</i>.
+VistA is the Client/Server system. The most known VistA client application is
+<i>CPRSChart.exe</i> - Windows application written in Delphi.
+<p>
 The source code of VistA is available by <a href="https://www.foia.gov/">FOIA</a> request.
 WorldVistA EHR 3.1 Ver 3-16 is a version of VistA created
 by the <a href="https://worldvista.org/">WorldVistA</a> open source community.
