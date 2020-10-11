@@ -40,7 +40,11 @@ requires
   vclactnband,
   designide,
   vclimg,
+{$IFDEF VER340}
+  XWB_D340, // SYDNEY -  D10.4
+{$ELSE}
   XWB_DXE8,
+{$ENDIF}
   OrpheusDR;
 
 contains

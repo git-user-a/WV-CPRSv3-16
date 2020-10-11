@@ -1,0 +1,108 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{4B5EF8DE-93DC-49F2-9719-BB61D1E1495B}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="VA\VAShared_330.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="PKI\PKI_330.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ExceptionLogger\ExceptionLogger_330.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Borland\Borland_330.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="508\VA508Access_330.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="OR\ORCtrls_330.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="CopyPaste\CopyPaste_330.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="VAShared_330">
+        <MSBuild Projects="VA\VAShared_330.dproj"/>
+    </Target>
+    <Target Name="VAShared_330:Clean">
+        <MSBuild Projects="VA\VAShared_330.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VAShared_330:Make">
+        <MSBuild Projects="VA\VAShared_330.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PKI_330">
+        <MSBuild Projects="PKI\PKI_330.dproj"/>
+    </Target>
+    <Target Name="PKI_330:Clean">
+        <MSBuild Projects="PKI\PKI_330.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PKI_330:Make">
+        <MSBuild Projects="PKI\PKI_330.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ExceptionLogger_330">
+        <MSBuild Projects="ExceptionLogger\ExceptionLogger_330.dproj"/>
+    </Target>
+    <Target Name="ExceptionLogger_330:Clean">
+        <MSBuild Projects="ExceptionLogger\ExceptionLogger_330.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ExceptionLogger_330:Make">
+        <MSBuild Projects="ExceptionLogger\ExceptionLogger_330.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Borland_330">
+        <MSBuild Projects="Borland\Borland_330.dproj"/>
+    </Target>
+    <Target Name="Borland_330:Clean">
+        <MSBuild Projects="Borland\Borland_330.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Borland_330:Make">
+        <MSBuild Projects="Borland\Borland_330.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="VA508Access_330">
+        <MSBuild Projects="508\VA508Access_330.dproj"/>
+    </Target>
+    <Target Name="VA508Access_330:Clean">
+        <MSBuild Projects="508\VA508Access_330.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VA508Access_330:Make">
+        <MSBuild Projects="508\VA508Access_330.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ORCtrls_330">
+        <MSBuild Projects="OR\ORCtrls_330.dproj"/>
+    </Target>
+    <Target Name="ORCtrls_330:Clean">
+        <MSBuild Projects="OR\ORCtrls_330.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ORCtrls_330:Make">
+        <MSBuild Projects="OR\ORCtrls_330.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="CopyPaste_330">
+        <MSBuild Projects="CopyPaste\CopyPaste_330.dproj"/>
+    </Target>
+    <Target Name="CopyPaste_330:Clean">
+        <MSBuild Projects="CopyPaste\CopyPaste_330.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CopyPaste_330:Make">
+        <MSBuild Projects="CopyPaste\CopyPaste_330.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="VAShared_330;PKI_330;ExceptionLogger_330;Borland_330;VA508Access_330;ORCtrls_330;CopyPaste_330"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="VAShared_330:Clean;PKI_330:Clean;ExceptionLogger_330:Clean;Borland_330:Clean;VA508Access_330:Clean;ORCtrls_330:Clean;CopyPaste_330:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="VAShared_330:Make;PKI_330:Make;ExceptionLogger_330:Make;Borland_330:Make;VA508Access_330:Make;ORCtrls_330:Make;CopyPaste_330:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

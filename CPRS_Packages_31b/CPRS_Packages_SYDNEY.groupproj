@@ -1,0 +1,132 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{4B5EF8DE-93DC-49F2-9719-BB61D1E1495B}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="VA\VAShared_340.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Broker\XWB_R340.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="PKI\PKI_340.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ExceptionLogger\ExceptionLogger_340.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Broker\XWB_D340.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Borland\Borland_340.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="508\VA508Access_340.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="OR\ORCtrls_340.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="CopyPaste\CopyPaste_340.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="VAShared_340">
+        <MSBuild Projects="VA\VAShared_340.dproj"/>
+    </Target>
+    <Target Name="VAShared_340:Clean">
+        <MSBuild Projects="VA\VAShared_340.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VAShared_340:Make">
+        <MSBuild Projects="VA\VAShared_340.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="XWB_R340">
+        <MSBuild Projects="Broker\XWB_R340.dproj"/>
+    </Target>
+    <Target Name="XWB_R340:Clean">
+        <MSBuild Projects="Broker\XWB_R340.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="XWB_R340:Make">
+        <MSBuild Projects="Broker\XWB_R340.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PKI_340">
+        <MSBuild Projects="PKI\PKI_340.dproj"/>
+    </Target>
+    <Target Name="PKI_340:Clean">
+        <MSBuild Projects="PKI\PKI_340.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PKI_340:Make">
+        <MSBuild Projects="PKI\PKI_340.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ExceptionLogger_340">
+        <MSBuild Projects="ExceptionLogger\ExceptionLogger_340.dproj"/>
+    </Target>
+    <Target Name="ExceptionLogger_340:Clean">
+        <MSBuild Projects="ExceptionLogger\ExceptionLogger_340.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ExceptionLogger_340:Make">
+        <MSBuild Projects="ExceptionLogger\ExceptionLogger_340.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="XWB_D340">
+        <MSBuild Projects="Broker\XWB_D340.dproj"/>
+    </Target>
+    <Target Name="XWB_D340:Clean">
+        <MSBuild Projects="Broker\XWB_D340.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="XWB_D340:Make">
+        <MSBuild Projects="Broker\XWB_D340.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Borland_340">
+        <MSBuild Projects="Borland\Borland_340.dproj"/>
+    </Target>
+    <Target Name="Borland_340:Clean">
+        <MSBuild Projects="Borland\Borland_340.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Borland_340:Make">
+        <MSBuild Projects="Borland\Borland_340.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="VA508Access_340">
+        <MSBuild Projects="508\VA508Access_340.dproj"/>
+    </Target>
+    <Target Name="VA508Access_340:Clean">
+        <MSBuild Projects="508\VA508Access_340.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VA508Access_340:Make">
+        <MSBuild Projects="508\VA508Access_340.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ORCtrls_340">
+        <MSBuild Projects="OR\ORCtrls_340.dproj"/>
+    </Target>
+    <Target Name="ORCtrls_340:Clean">
+        <MSBuild Projects="OR\ORCtrls_340.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ORCtrls_340:Make">
+        <MSBuild Projects="OR\ORCtrls_340.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="CopyPaste_340">
+        <MSBuild Projects="CopyPaste\CopyPaste_340.dproj"/>
+    </Target>
+    <Target Name="CopyPaste_340:Clean">
+        <MSBuild Projects="CopyPaste\CopyPaste_340.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CopyPaste_340:Make">
+        <MSBuild Projects="CopyPaste\CopyPaste_340.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="VAShared_340;XWB_R340;PKI_340;ExceptionLogger_340;XWB_D340;Borland_340;VA508Access_340;ORCtrls_340;CopyPaste_340"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="VAShared_340:Clean;XWB_R340:Clean;PKI_340:Clean;ExceptionLogger_340:Clean;XWB_D340:Clean;Borland_340:Clean;VA508Access_340:Clean;ORCtrls_340:Clean;CopyPaste_340:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="VAShared_340:Make;XWB_R340:Make;PKI_340:Make;ExceptionLogger_340:Make;XWB_D340:Make;Borland_340:Make;VA508Access_340:Make;ORCtrls_340:Make;CopyPaste_340:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
