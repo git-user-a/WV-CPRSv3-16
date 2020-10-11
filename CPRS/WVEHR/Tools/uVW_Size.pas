@@ -59,7 +59,7 @@ begin
   if aPanel = nil then
     Exit;
 
-  i := getMainFormTextHeight + 4;
+  i := getMainFormTextHeight + 6;
   if aTop = 0 then
     i := i + MarginTop + MarginBottom
   else
@@ -125,7 +125,7 @@ begin
 
   aToolBar.Font.Size := Application.MainForm.Font.Size;
 
-  aToolBar.Height := i + 2;
+  aToolBar.Height := i + 4;
   aToolBar.AutoSize := True;
   aToolBar.ButtonHeight := i;
   aToolBar.ButtonWidth := i;
@@ -165,15 +165,26 @@ procedure adjustCheckBox(aCB: TCheckBox);
 begin
   aCB.Font.Size := Application.MainForm.Font.Size;
   aCB.Width := getMainFormTextWidth(aCB.Caption + 'W') + 2 * MarginLeft;
+  case aCB.Align of
+    alNone: ;
+    alTop: ;
+    alBottom: ;
+    alLeft: aCB.Left := aCB.Left + 1;
+    alRight:  aCB.Left := aCB.Left - 1 ;
+    alClient: ;
+    alCustom: ;
+  end;
   aCB.Invalidate;
 end;
 
 procedure adjustToolBarPanel(aPanel: TPanel; iStart: Integer = 0);
 var
+  iHeight, ii,
   iWidth, i: Integer;
 begin
   adjustToolsPanel(aPanel);
 
+  iHeight := aPanel.Height;
   iWidth := iStart;
   for i := 0 to aPanel.ControlCount - 1 do
   begin
@@ -184,7 +195,17 @@ begin
     else if aPanel.Controls[i] is TBitBtn then
       adjustBitButton(TBitBtn(aPanel.Controls[i]))
     else if aPanel.Controls[i] is TButton then
-      adjustButton(TButton(aPanel.Controls[i]));
+      adjustButton(TButton(aPanel.Controls[i]))
+    else if aPanel.Controls[i] is TLabel then
+      begin
+        ii := TButton(aPanel.Controls[i]).Height;
+        if TButton(aPanel.Controls[i]).AlignWithMargins then
+          ii := ii + TButton(aPanel.Controls[i]).Margins.Top +
+            TButton(aPanel.Controls[i]).Margins.Bottom;
+        if aPanel.Height < ii then
+          aPanel.Height := ii;
+      end
+      ;
 
     iWidth := iWidth + TControl(aPanel.Controls[i]).Width;
 

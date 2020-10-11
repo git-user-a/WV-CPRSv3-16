@@ -3,7 +3,7 @@
         <ProjectGuid>{E2965859-1B8B-4555-9EA9-5A0647CB1569}</ProjectGuid>
         <MainSource>GMV_VitalsViewEnter.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Library</AppType>
         <FrameworkType>VCL</FrameworkType>
@@ -48,7 +48,7 @@
         <DCC_E>false</DCC_E>
         <VerInfo_Release>34</VerInfo_Release>
         <DCC_S>false</DCC_S>
-        <DCC_Define>DLL;CQ6942;L-INES;xAANTEST;NO3D;NOVTREE;NOTSMPACK;T-20;R144925;CASMED;USEVSMONITOR;xSHOWLOG;PATCH_5_0_23;xPATCH_5_0_22;USEVSMONITOR;$(DCC_Define)</DCC_Define>
+        <DCC_Define>WORLDVISTA;xSHOWLOG;xPATCH_5_0_23;xAANTEST;xLINES;DLL;CQ6942;NO3D;NOVTREE;NOTSMPACK;R144925;CASMED;USEVSMONITOR;$(DCC_Define)</DCC_Define>
         <DCC_ImageBase>00400000</DCC_ImageBase>
         <DCC_F>false</DCC_F>
         <DCC_K>false</DCC_K>
@@ -87,7 +87,7 @@
         <DCC_LocalDebugSymbols>true</DCC_LocalDebugSymbols>
         <DCC_SymbolReferenceInfo>2</DCC_SymbolReferenceInfo>
         <Debugger_RunParams>S=ehr1.opensourcevista.net  P=9309 ccow=disable SHOWRPCS CCOW=DISABLE AV=vistais#1;@#1isvista</Debugger_RunParams>
-        <Debugger_HostApplication>D:\WorldVistA\CPRS-WVEHR3.0_2020\Vitals\P38\Main\bin\CPRSChart.exe</Debugger_HostApplication>
+        <Debugger_HostApplication>..\..\bin\CPRSChart.exe</Debugger_HostApplication>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_ExeOutput>C:\Dev\CPRS\CPRS 31A (434)\CPRS_src_OR_3_423\CPRS-chart</DCC_ExeOutput>
@@ -105,7 +105,7 @@
         <VerInfo_Release>38</VerInfo_Release>
         <DCC_AssertionsAtRuntime>true</DCC_AssertionsAtRuntime>
         <DCC_DebugDCUs>true</DCC_DebugDCUs>
-        <DCC_ExeOutput>..\bin</DCC_ExeOutput>
+        <DCC_ExeOutput>..\..\..\CPRS</DCC_ExeOutput>
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <ItemGroup>
@@ -260,10 +260,7 @@
                     <VersionInfoKeys Name="VANamespace">GMRV</VersionInfoKeys>
                     <VersionInfoKeys Name="VAReleaseDate">October 2002</VersionInfoKeys>
                 </VersionInfoKeys>
-                <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k250.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp250.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
-                </Excluded_Packages>
+                <Excluded_Packages/>
             </Delphi.Personality>
             <Platforms>
                 <Platform value="Win32">True</Platform>

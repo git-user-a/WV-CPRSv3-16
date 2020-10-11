@@ -80,7 +80,7 @@ begin
   Application.Terminate;
   // if Assigned(frmVitals) then
   // try
-  // frmVitals.ModalResult := mrCancel;
+  //   frmVitals.ModalResult := mrCancel;
   // except
   // end;
 end;
@@ -100,8 +100,10 @@ begin
     finally
       free;
     end;
-  // sName := CurrentDllNameAndVersion;
-  // sPrevName := PrevDllNameAndVersion;
+{$IFDEF WORLDVISTA}
+  sName := CurrentDllNameAndVersion;
+  sPrevName := PrevDllNameAndVersion;
+{$ENDIF}
   if (getDLLInfo(sName) <> 'YES') and (getDLLInfo(sPrevName) <> 'YES') then
     begin
       ShowMessage(
@@ -112,11 +114,12 @@ begin
     end;
   CheckBrokerFlag := getSystemParameterByName('CHECKBROKERSTATUS') = 'TRUE';
 end;
-
+{
 procedure setTimeOut(aSeconds: Integer); export; stdcall;
 begin
   // UpdateTimeOutInterval(aSeconds); // requires fGMV_TimeOutManager;
 end;
+}
 
 /// /////////////////////////////////////////////////////////////////////////////
 // This will be used by CPRS
@@ -148,9 +151,11 @@ begin
     'Context Out:'+aContextOut+ ' ' +#13#10+
     //    'Name:       '+aName+ ' ' +#13#10+
     //    'Info:       '+anInfo+ ' ' +#13#10+
-    'Hospital:  '+aHospitalName); }// ZZZZZZBELLC  REMED OUT AFTER CALL WITH ANDREY. THIS WAS USED FOR TESTNG
-    // zzzzzzandria 2008-02-06 =============================================== begin
-    anItem := getRPCEventItem(Now, Now,
+    'Hospital:  '+aHospitalName);
+  } // ZZZZZZBELLC  REMED OUT AFTER CALL WITH ANDREY. THIS WAS USED FOR TESTNG
+
+  // zzzzzzandria 2008-02-06 =============================================== begin
+  anItem := getRPCEventItem(Now, Now,
     'VtalsViewDLG',
     ['DFN:        '+aDFN,
     'Location:   '+aLocation,
@@ -166,10 +171,12 @@ begin
     [],
     nil
     );
+
   RPCLog.InsertObject(0, FormatDateTime('hh:mm:ss.zzz', Now) + '   ' + 'VitalsViewDLG', anItem);
   // zzzzzzandria 2008-02-06 ================================================= end
 
   // called from Coversheet of the CPRS
+
   // no need to tweak the timeout since Application.Terminate is working
   // InitTimeOut(nil);
 
@@ -182,23 +189,28 @@ begin
     Exit;
 
   if (aContextIn <> '') and not CreateContext(aContextIn) then
-    begin
-      MessageDLG('You do not have the <' + aContextIn + '> options' + #13 +
-        'Please contact IRMS', mtError, [mbOK], 0);
-      Result := -1;
-      Exit;
-    end
+  begin
+    MessageDLG('You do not have the <' + aContextIn + '> options' + #13 +
+      'Please contact IRMS', mtError, [mbOK], 0);
+    Result := -1;
+    Exit;
+  end
   else
+  begin
+    Result := ProcessInPatientVitals(aDFN, aLocation, DateStart, DateStop,
+      aSignature, aName, anInfo, aHospitalName);
+
+    if (aContextOut <> '') and not aBroker.CreateContext(aContextOut) then
     begin
-      Result := ProcessInPatientVitals(aDFN, aLocation, DateStart, DateStop, aSignature, aName, anInfo, aHospitalName);
-      if (aContextOut <> '') and not aBroker.CreateContext(aContextOut) then
-        begin
-          MessageDLG('You do not have the <' + aContextOut +
-            'options' + #13 + 'Please contact IRMS', mtError, [mbOK], 0);
-          Result := -2;
-        end;
+      MessageDLG('You do not have the <' + aContextOut + 'options' + #13 +
+        'Please contact IRMS', mtError, [mbOK], 0);
+      Result := -2;
     end;
+  end;
+
+  // no need to tweak the timeout since Application.Terminate is working
   // ShutDownTimeOut;
+
   WindowsLogLine('VtalsViewDLG: OK');
 end;
 
@@ -216,7 +228,7 @@ function VitalsEnterDLG(
 var
   anItem: TRPCEventItem;
 begin
-  // zzzzzzandria 2008-02-06 =============================================== begin
+  // zzzzzzandria 2008-02-06 ============================================= begin
   anItem := getRPCEventItem(Now, Now,
     'VtalsEnterDLG',
     ['DFN:       ' + aPatient,
@@ -234,7 +246,7 @@ begin
   RPCLog.InsertObject(0, FormatDateTime('hh:mm:ss.zzz', Now) + '   ' +
     'VitalsEnterDLG',
     anItem);
-  // zzzzzzandria 2008-02-06 ================================================= end
+  // zzzzzzandria 2008-02-06 =============================================== end
   Result := -1;
   if CheckVersion < 0 then
     Exit;
@@ -337,8 +349,9 @@ exports
 
 begin
 
-  (*
-    There library GMV_VitalsViewEnter includes 6 functions:
+(*******************************************************************************
+
+    Library GMV_VitalsViewEnter includes 6 functions:
 
     'GMV_VitalsExit'       - procedure
     'GMV_VitalsEnterDLG'   - function
@@ -348,103 +361,102 @@ begin
     'GMV_LatestVitalsList' - function
 
     procedure GMV_VitalsExit;export;stdcall;
-    - no parameters.
-    Does not used in CPRS
+      - no parameters. Not used by CPRS
 
     function GMV_VitalsViewDLG(
-    const aBroker:TRPCBroker;
-    aDFN,
-    aLocation,
-    DateStart,
-    DateStop,
-    aSignature,
-    aContextIn,
-    aContextOut,
-    aName,
-    anInfo,
-    aHospitalName: String):Integer;export;stdcall;
+      const aBroker:TRPCBroker;
+      aDFN,
+      aLocation,
+      DateStart,
+      DateStop,
+      aSignature,
+      aContextIn,
+      aContextOut,
+      aName,
+      anInfo,
+      aHospitalName: String):Integer;export;stdcall;
 
     Created the Vitals View window and shows it as the modal dialog.
     Returns the result of the modal dialog.
     Parameters:
-    aBroker: TRPCBroker - an nstance of the TRPCBroker to be used for RPC execution
-    aDFN: String - the patient DFN
-    aLocation: String - the location ID
-    DateStart: String - date "From" Windows format
-    DateStop: String - date "To" - Windows format
-    aSignature: String - string identifying the calling application
-    aContextIn: String - the application context to be set up at startup of the function
-    aContextOut: String - the application context to be set up on exit of the function
-    aName: String - patient Name
-    anInfo: String - Patient info
-    aHospitalName: String - contains 2 parts delimited by '^'.
-    First part contains the hospital name, second - the abbreviation of
-    the Vitals sign to be selected at the start up
+      aBroker: TRPCBroker - an nstance of the TRPCBroker to be used for RPC execution
+      aDFN: String - the patient DFN
+      aLocation: String - the location ID
+      DateStart: String - date "From" Windows format
+      DateStop: String - date "To" - Windows format
+      aSignature: String - string identifying the calling application
+      aContextIn: String - the application context to be set up at startup of the function
+      aContextOut: String - the application context to be set up on exit of the function
+      aName: String - patient Name
+      anInfo: String - Patient info
+      aHospitalName: String - contains 2 parts delimited by '^'.
+        First part contains the hospital name, second - the abbreviation of
+        the Vitals sign to be selected at the start up
     Result Type: Integer;
 
 
     function GMV_VitalsEnterForm(
-    const aBroker:TRPCBroker;
-    aDFN,
-    aLocation,
-    aTemplate,
-    aSignature: String;
-    aDateTime:TDateTime):TfrmGMV_InputLite;export;stdcall;
+      const aBroker:TRPCBroker;
+      aDFN,
+      aLocation,
+      aTemplate,
+      aSignature: String;
+      aDateTime:TDateTime):TfrmGMV_InputLite;export;stdcall;
 
     Creates the Vitals Input form and returns it to the calling application
     Parameters:
-    aBroker: TRPCBroker - an nstance of the TRPCBroker to be used for RPC execution
-    aDFN: String - the patient DFN
-    aLocation: String - the location ID
-    aTemplate: String - the template ID to be used
-    aSignature: String - string identifying the calling application
-    aDateTime: TDateTime - date to be used for the input
+      aBroker: TRPCBroker - an nstance of the TRPCBroker to be used for RPC execution
+      aDFN: String - the patient DFN
+      aLocation: String - the location ID
+      aTemplate: String - the template ID to be used
+      aSignature: String - string identifying the calling application
+      aDateTime: TDateTime - date to be used for the input
     Result type TfrmGMV_InputLite
 
     function GMV_VitalsViewForm(
-    const aBroker:TRPCBroker;
-    aDFN,
-    aLocation,
-    DateStart,
-    DateStop,
-    aSignature,
-    aContextIn,
-    aContextOut,
-    aName,
-    anInfo,
-    aHospitalName: String):TfrmVitals;export;stdcall;
+      const aBroker:TRPCBroker;
+      aDFN,
+      aLocation,
+      DateStart,
+      DateStop,
+      aSignature,
+      aContextIn,
+      aContextOut,
+      aName,
+      anInfo,
+      aHospitalName: String):TfrmVitals;export;stdcall;
 
     Created the Vitals View window and returns it to the calling application
     Parameters:
-    aBroker: TRPCBroker - an nstance of the TRPCBroker to be used for RPC execution
-    aDFN: String - the patient DFN
-    aLocation: String - the location ID
-    DateStart: String - date "From" Windows format
-    DateStop: String - date "To" - Windows format
-    aSignature: String - string identifying the calling application
-    aContextIn: String - the application context to be set up at startup of the function
-    aContextOut: String - the application context to be set up on exit of the function
-    aName: String - patient Name
-    anInfo: String - Patient info
-    aHospitalName: String - contains 2 parts delimited by '^'.
-    First part contains the hospital name, second - the abbreviation of
-    the Vitals sign to be selected at the start up
+      aBroker: TRPCBroker - an nstance of the TRPCBroker to be used for RPC execution
+      aDFN: String - the patient DFN
+      aLocation: String - the location ID
+      DateStart: String - date "From" Windows format
+      DateStop: String - date "To" - Windows format
+      aSignature: String - string identifying the calling application
+      aContextIn: String - the application context to be set up at startup of the function
+      aContextOut: String - the application context to be set up on exit of the function
+      aName: String - patient Name
+      anInfo: String - Patient info
+      aHospitalName: String - contains 2 parts delimited by '^'.
+        First part contains the hospital name, second - the abbreviation of
+        the Vitals sign to be selected at the start up
     Result: TfrmVitals;
 
     function  GMV_LatestVitalsList(
-    const aBroker:TRPCBroker;
-    aPatient,
-    aDelim:String;
-    bSilent:Boolean):TStringList;export;stdcall;
+      const aBroker:TRPCBroker;
+      aPatient,
+      aDelim:String;
+      bSilent:Boolean):TStringList;export;stdcall;
 
     Returns the list of strings with the set of latest Vitals signs for the patient;
     Parameters:
-    aBroker: TRPCBroker - an nstance of the TRPCBroker to be used for RPC execution
-    aPatient: String - the patient DFN
-    aDelim: String - reserved
-    bSilent: Boolean - if True no error messages will be generated
+      aBroker: TRPCBroker - an nstance of the TRPCBroker to be used for RPC execution
+      aPatient: String - the patient DFN
+      aDelim: String - reserved
+      bSilent: Boolean - if True no error messages will be generated
     Result Type: TStringList
 
-  *)
+*******************************************************************************)
 
 end.

@@ -4,19 +4,19 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, DateUtils, ORNet, ORFn, System.UITypes
+  StdCtrls, DateUtils, ORNet, ORFn, System.UITypes, midaslib, Data.DB,
+  Datasnap.DBClient, Vcl.Menus, Vcl.StdActns, System.Actions, Vcl.ActnList,
+  System.ImageList, Vcl.ImgList, Vcl.DBCtrls, Vcl.ComCtrls, Vcl.Grids,
+  Vcl.DBGrids, Vcl.ToolWin, Vcl.ExtCtrls, WinAPI.RichEdit,
 {$IFDEF STANDALONE}
 {$ELSE}
-    , rMisc, fBase508Form
+    rMisc, fBase508Form
 {$ENDIF}
-    , ComCtrls, Buttons, ExtCtrls,
+    , Buttons,
   ORCtrls, ORSystem,
-  VA508AccessibilityManager, VAUtils,
-  Winapi.RichEdit, Vcl.Menus, Vcl.ImgList, Vcl.ToolWin, System.ImageList,
-  System.Actions, Vcl.ActnList,
-  Vcl.StdActns,
-  Vcl.Tabs, Vcl.DockTabSet, Data.DB, Datasnap.DBClient, Vcl.Grids, Vcl.DBGrids,
-  Vcl.DBCtrls;
+  VA508AccessibilityManager,
+  VAUtils,
+  Vcl.Tabs, Vcl.DockTabSet;
 
 const
   UM_REFRESH_RPC = WM_APP + 1;
@@ -484,8 +484,8 @@ begin
   adjustToolBarPanel(pnlList);
   adjustToolBarPanel(pnlDetails);
   adjustStatusBar(sb);
-  Self.Invalidate;
-  Application.ProcessMessages;
+  dsDataChange(nil,nil);
+  Refresh;
 end;
 
 procedure TfrmRPCLog.FormCreate(Sender: TObject);
@@ -867,7 +867,6 @@ begin
   except
     on E: Exception do
       ShowMessage(E.Message);
-
   end;
   PositionReport;
 end;

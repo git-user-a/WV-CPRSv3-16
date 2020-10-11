@@ -174,6 +174,7 @@ begin
   ASeq := 0;
   if (view = 0) and (RPCBrokerV.Results.Count > 0) then
     view := StrToIntDef(Piece(RPCBrokerV.Results.Strings[0], U, 1), 0);
+  if (RPCBrokerV.Results.Count > 0) then  // AA 20200927
   DateRange := Piece(RPCBrokerV.Results.Strings[0], U, 2);
   with RPCBrokerV do while Results.Count > 0 do
   begin
