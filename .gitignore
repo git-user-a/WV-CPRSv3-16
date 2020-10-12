@@ -25,6 +25,8 @@
 # Uncomment this if you are not using external objects (zlib library for example).
 #*.obj
 #
+# Total Commander backup files
+*.bak
 
 # Delphi compiler-generated binaries (safe to delete)
 *.exe
