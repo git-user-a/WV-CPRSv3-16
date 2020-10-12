@@ -534,7 +534,22 @@
       vitals data to the patient record you will need version of DLL that
       can work with the Broker used by the CPRS GUI.<br>
       <p>Source code of the Vitals GUI (patch GMRV*5.0*38) can be found in directory
-      <i>GMRV-5-0-38</i>.
+      <i>GMRV-5-0-38</i>. The following changes were made to the original code:
+      <table border="0" >
+        <tr>
+          <td width="20%"><b>File</b></td>
+          <td><b>Comment</b></td>
+        </tr>
+        <TR><td>Vitals.dpr</td><td>Creation of the frmRoomSelector removed from the project source</td></TR>
+        <TR valign="top"><td>GMV_VitalsViewEnter.dpr</td>
+            <td>function <i>CheckVersion</i> updated. See conditional <i>WORLDVISTA</i>.<br>
+                Unused code commented out.<br> Comments added and formatted.</td></TR>
+        <TR>
+          <td>fGMV_UserMain.pas</td><td>Reference on <i>VCLTee.TeEngine</i> added to the uses clause to avoind compiler warning</td></TR>
+        <TR><td>fGMV_HospitalSelector.pas</td><td>Commented code responsible for error message</td></TR>
+        <TR><td>fGMV_InputLite.pas</td><td>Code updated to process cases no default input template available</td></TR>
+        <TR><td>mGMV_Lookup.pas</td><td>Unused code commented out</td></TR>
+      </table>
       <p>Compilation of the Vitals GUI and DLL requires installation of 2 packages:
       <table>
   	    <tr>
