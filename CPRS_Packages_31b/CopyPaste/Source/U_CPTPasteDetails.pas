@@ -403,7 +403,7 @@ end;
 procedure TCopyPasteDetails.pnlMessageExit(Sender: TObject);
 VAr
   Format: CHARFORMAT2;
-  ResetMask: Integer;
+//  ResetMask: Integer;
   LastCurPos, LastCurSel, LastLineNum: Integer;
 begin
   if Assigned(EditMonitor.CopyMonitor) then

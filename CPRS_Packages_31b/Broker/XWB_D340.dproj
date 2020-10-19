@@ -1,20 +1,26 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{F78532FC-F7FD-45D6-822D-8F778FE4BBCC}</ProjectGuid>
-        <MainSource>VitalsManager.dpr</MainSource>
-        <Base>True</Base>
+        <ProjectGuid>{B429C4E1-5937-4474-95F0-CF59EB2EB80F}</ProjectGuid>
+        <MainSource>XWB_D340.dpk</MainSource>
         <Config Condition="'$(Config)'==''">Release</Config>
-        <TargetedPlatforms>1</TargetedPlatforms>
-        <AppType>Application</AppType>
-        <FrameworkType>VCL</FrameworkType>
+        <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
         <ProjectVersion>19.0</ProjectVersion>
+        <FrameworkType>VCL</FrameworkType>
+        <Base>True</Base>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
+        <TargetedPlatforms>1</TargetedPlatforms>
+        <AppType>Package</AppType>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Base)'=='true') or '$(Base_Win32)'!=''">
         <Base_Win32>true</Base_Win32>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Base)'=='true') or '$(Base_Win64)'!=''">
+        <Base_Win64>true</Base_Win64>
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
@@ -34,152 +40,80 @@
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
-    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
-        <Cfg_2_Win32>true</Cfg_2_Win32>
-        <CfgParent>Cfg_2</CfgParent>
-        <Cfg_2>true</Cfg_2>
-        <Base>true</Base>
-    </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <SanitizedProjectName>VitalsManager</SanitizedProjectName>
-        <Icon_MainIcon>VitalsManager_Icon.ico</Icon_MainIcon>
-        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+        <PreBuildEvent><![CDATA[XWB_PreBuild_D.bat
+$(PreBuildEvent)]]></PreBuildEvent>
+        <DCC_DcuOutput>dcu</DCC_DcuOutput>
+        <PostBuildEvent><![CDATA[XWB_PostBuild_D.bat "$(OUTPUTDIR)"
+$(PostBuildEvent)]]></PostBuildEvent>
+        <SanitizedProjectName>XWB_D340</SanitizedProjectName>
+        <VerInfo_Build>5</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=Dept of Veterans Affairs, VHA, OI, SD&amp;D;FileDescription=RPC Broker Development Kit Design Time;FileVersion=1.1.65.5;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=TRPCBroker;ProductVersion=1.1.65.5;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <DCC_K>false</DCC_K>
-        <DCC_S>false</DCC_S>
-        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <DCC_ImageBase>00400000</DCC_ImageBase>
-        <DCC_F>false</DCC_F>
         <DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;Winapi;$(DCC_Namespace)</DCC_Namespace>
-        <DCC_Define>DISABLEQUALIFIERS;$(DCC_Define)</DCC_Define>
-        <VerInfo_Release>36</VerInfo_Release>
-        <DCC_DcuOutput>..\..\bin\dcu_APP_VITALSMANAGER</DCC_DcuOutput>
-        <DCC_ExeOutput>..\..\bin</DCC_ExeOutput>
-        <DCC_UsePackage>vcl;rtl;vclx;vclie;xmlrtl;inetdbbde;inet;inetdbxpress;VclSmp;dbrtl;dbexpress;vcldb;dsnap;adortl;visualclx;visualdbclx;vclactnband;bdertl;sabd5;indy;soaprtl;dbxcds;inetdb;vcldbx;teeui;teedb;tee;ibxpress;vclshlctrls;IntrawebDB_50_70;Intraweb_50_70;Rave50CLX;Rave50VCL;dclOffice2k;XWB_R70;$(DCC_UsePackage)</DCC_UsePackage>
-        <VerInfo_Build>1</VerInfo_Build>
-        <VerInfo_MajorVer>5</VerInfo_MajorVer>
-        <DCC_SymbolReferenceInfo>1</DCC_SymbolReferenceInfo>
+        <VerInfo_MinorVer>1</VerInfo_MinorVer>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Release>65</VerInfo_Release>
+        <DesignOnlyPackage>true</DesignOnlyPackage>
+        <DCC_ImageBase>00400000</DCC_ImageBase>
+        <DCC_WriteableConstants>true</DCC_WriteableConstants>
+        <DCC_DependencyCheckOutputName>C:\Documents and Settings\All Users\Documents\RAD Studio\7.0\Bpl\XWB_D2010.bpl</DCC_DependencyCheckOutputName>
+        <DCC_Platform>x86</DCC_Platform>
+        <DCC_Description>VistA RPC Broker - XE8</DCC_Description>
+        <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+        <DCC_N>false</DCC_N>
+        <DCC_K>false</DCC_K>
+        <GenDll>true</GenDll>
+        <DCC_S>false</DCC_S>
+        <DCC_F>false</DCC_F>
+        <GenPackage>true</GenPackage>
+        <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
         <DCC_E>false</DCC_E>
-        <VerInfo_Keys>CompanyName=Department of Veterans Affairs;FileDescription=5.0 Patch GMRV*5*36;FileVersion=5.0.36.1;InternalName=Vitals Manager 5.0;LegalCopyright=© Department of Veterans Affairs 2005-2008;LegalTrademarks=;OriginalFilename=;ProductName=Vitals Manager;ProductVersion=5.0.36.1;Comments=v. 11/14/13 12:00;VAReleaseDate=October 2002;VANamespace=GMRV;VASourceInformation=Developed by the Department of Veterans Affairs</VerInfo_Keys>
-        <DCC_N>true</DCC_N>
+        <DCC_AssertionsAtRuntime>false</DCC_AssertionsAtRuntime>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
+        <DCC_UsePackage>vcl;XWB_RXE2;XWB_RXE3;XWB_RXE4;XWB_RXE5;XWB_RXE6;XWB_RXE7;XWB_RXE8;XWB_RunTime;rtl;vcldb;VclSmp;VAShared_RXE8;vclx;dbrtl;Tee;CopyPaste_DXE8;FMDC_DXE8;XWB_R10_2;XWB_R340;$(DCC_UsePackage)</DCC_UsePackage>
+        <Icon_MainIcon>XWB_Icon.ico</Icon_MainIcon>
         <DCC_Namespace>System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
-        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
-        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_Win64)'!=''">
+        <DCC_UsePackage>vcl;rtl;vcldb;VclSmp;vclx;dbrtl;Tee;$(DCC_UsePackage)</DCC_UsePackage>
+        <Icon_MainIcon>XWB_Icon.ico</Icon_MainIcon>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
-        <DCC_DebugInformation>0</DCC_DebugInformation>
-        <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+        <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <Debugger_RunParams>S=ehr1.opensourcevista.net  P=9309 ccow=disable SHOWRPCS CCOW=DISABLE AV=vistais#1;@#1isvista</Debugger_RunParams>
-        <BT_BuildType>Debug</BT_BuildType>
-        <VerInfo_Release>38</VerInfo_Release>
-        <VerInfo_Keys>CompanyName=Department of Veterans Affairs;FileDescription=5.0 Patch GMRV*5*38;FileVersion=5.0.38.3;InternalName=Vitals Manager 5.0;LegalCopyright=© Department of Veterans Affairs 2005-2008;LegalTrademarks=;OriginalFilename=;ProductName=Vitals Manager;ProductVersion=5.0.38.3;Comments=Windows 10 update;VAReleaseDate=October 2002;VANamespace=GMRV;VASourceInformation=Developed by the Department of Veterans Affairs</VerInfo_Keys>
-        <VerInfo_Build>3</VerInfo_Build>
-        <DCC_MapFile>3</DCC_MapFile>
-        <DCC_DebugInformation>2</DCC_DebugInformation>
-        <DCC_LocalDebugSymbols>true</DCC_LocalDebugSymbols>
-        <DCC_SymbolReferenceInfo>2</DCC_SymbolReferenceInfo>
+        <BRCC_IncludePath>$(BDSCOMMONDIR)\Bpl;$(BRCC_IncludePath)</BRCC_IncludePath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
-        <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
-        <DCC_Optimize>false</DCC_Optimize>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <Debugger_RunParams>S=ehr1.opensourcevista.net  P=9309 ccow=disable SHOWRPCS CCOW=DISABLE AV=vistais#1;@#1isvista</Debugger_RunParams>
-        <DCC_DebugInfoInExe>true</DCC_DebugInfoInExe>
-        <DCC_MapFile>3</DCC_MapFile>
-        <BT_BuildType>Debug</BT_BuildType>
-        <VerInfo_Release>38</VerInfo_Release>
-        <VerInfo_Keys>CompanyName=Department of Veterans Affairs;FileDescription=5.0 Patch GMRV*5*38;FileVersion=5.0.38.3;InternalName=Vitals Manager 5.0;LegalCopyright=© Department of Veterans Affairs 2005-2008;LegalTrademarks=;OriginalFilename=;ProductName=Vitals Manager;ProductVersion=5.0.38.3;Comments=v. 11/14/13 12:00;VAReleaseDate=October 2002;VANamespace=GMRV;VASourceInformation=Developed by the Department of Veterans Affairs</VerInfo_Keys>
-        <VerInfo_Build>3</VerInfo_Build>
-        <DCC_Define>IGNOREVERSION;$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="..\VitalsCommon\fGMV_TimeOutManager.pas">
-            <Form>frmGMV_TimeOutManager</Form>
-        </DCCReference>
-        <DCCReference Include="..\VitalsCommon\fGMV_AboutDlg.pas">
-            <Form>frmGMV_AboutDlg</Form>
-        </DCCReference>
-        <DCCReference Include="..\VitalsCommon\fGMV_AddVCQ.pas">
-            <Form>frmGMV_AddVCQ</Form>
-        </DCCReference>
-        <DCCReference Include="..\VitalsCommon\fGMV_Splash.pas">
-            <Form>frmGMV_Splash</Form>
-        </DCCReference>
-        <DCCReference Include="..\VitalsCommon\mGMV_EditTemplate.pas">
-            <Form>fraGMV_EditTemplate</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="..\VitalsUtils\uGMV_Common.pas"/>
-        <DCCReference Include="..\VitalsUtils\uGMV_Const.pas"/>
-        <DCCReference Include="..\VitalsCommon\uGMV_FileEntry.pas"/>
-        <DCCReference Include="..\VitalsUtils\uGMV_GlobalVars.pas"/>
-        <DCCReference Include="..\VitalsCommon\uGMV_VitalTypes.pas"/>
-        <DCCReference Include="..\VitalsUtils\uGMV_Utils.pas"/>
-        <DCCReference Include="..\VitalsDataEntry\mGMV_Lookup.pas">
-            <Form>fraGMV_Lookup</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="..\VitalsUtils\uGMV_CRC32.pas"/>
-        <DCCReference Include="..\VitalsUtils\uGMV_VersionInfo.pas"/>
-        <DCCReference Include="..\VitalsCommon\uGMV_User.pas"/>
-        <DCCReference Include="..\VitalsDataEntry\fGMV_Qualifiers.pas">
-            <Form>frmGMV_Qualifiers</Form>
-        </DCCReference>
-        <DCCReference Include="..\VitalsDataEntry\uGMV_QualifyBox.pas"/>
-        <DCCReference Include="..\VitalsDataEntry\uGMV_Template.pas"/>
-        <DCCReference Include="..\VitalsUtils\uGMV_Engine.pas"/>
-        <DCCReference Include="..\ROR\uROR_RPCBroker.pas"/>
-        <DCCReference Include="..\VitalsCommon\uGMV_Setup.pas"/>
-        <DCCReference Include="mGMV_SystemParameters.pas">
-            <Form>fraSystemParameters</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="mGMV_VitalHiLo.pas">
-            <Form>fraVitalHiLo</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="fGMV_AddEditQualifier.pas">
-            <Form>frmGMV_AddEditQualifier</Form>
-        </DCCReference>
-        <DCCReference Include="fGMV_DeviceSelector.pas">
-            <Form>frmGMV_DeviceSelector</Form>
-        </DCCReference>
-        <DCCReference Include="fGMV_Manager.pas">
-            <Form>frmGMV_Manager</Form>
-        </DCCReference>
-        <DCCReference Include="fGMV_NewTemplate.pas">
-            <Form>frmGMV_NewTemplate</Form>
-        </DCCReference>
-        <DCCReference Include="..\VitalsCommon\fGMV_RPCLog.pas">
-            <Form>frmGMV_RPCLog</Form>
-        </DCCReference>
-        <DCCReference Include="..\VitalsUtils\uGMV_EXEVersion.pas"/>
-        <DCCReference Include="..\VitalsCommon\mGMV_PrinterSelector.pas">
-            <Form>frGMV_PrinterSelector</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="..\VITALSCOMMON\mGMV_DefaultSelector.pas">
-            <Form>frDefaultSelector</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="..\VITALSCOMMON\uGMV_RPC_Names.pas"/>
-        <DCCReference Include="..\VITALSCOMMON\uGMV_Log.pas"/>
-        <DCCReference Include="..\VITALSCOMMON\U_HelpMGR.pas"/>
-        <DCCReference Include="..\ROR\fROR_PCall.pas">
-            <Form>RPCErrorForm</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
+        <DCCReference Include="XWB_R340.dcp"/>
+        <DCCReference Include="vcl.dcp"/>
+        <DCCReference Include="designide.dcp"/>
+        <DCCReference Include="Source\RpcbEdtr.pas"/>
+        <DCCReference Include="Source\XWBReg.pas"/>
+        <RcItem Include="Images\TCCOWRPCBroker.bmp">
+            <ResourceType>BITMAP</ResourceType>
+            <ResourceId>TCCOWRPCBroker</ResourceId>
+        </RcItem>
+        <RcItem Include="Images\TRPCBroker.bmp">
+            <ResourceType>BITMAP</ResourceType>
+            <ResourceId>TRPCBroker</ResourceId>
+        </RcItem>
+        <RcItem Include="Images\TXWBRichEdit.bmp">
+            <ResourceType>BITMAP</ResourceType>
+            <ResourceId>TXWBRichEdit</ResourceId>
+        </RcItem>
+        <None Include="XWB_PostBuild_D.bat"/>
+        <None Include="XWB_PreBuild_D.bat"/>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -192,21 +126,27 @@
             <CfgParent>Base</CfgParent>
         </BuildConfiguration>
     </ItemGroup>
+    <Import Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')" Project="$(BDS)\Bin\CodeGear.Delphi.Targets"/>
     <ProjectExtensions>
         <Borland.Personality>Delphi.Personality.12</Borland.Personality>
-        <Borland.ProjectType/>
+        <Borland.ProjectType>Package</Borland.ProjectType>
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
-                    <Source Name="MainSource">VitalsManager.dpr</Source>
+                    <Source Name="MainSource">XWB_D340.dpk</Source>
                 </Source>
+                <Parameters>
+                    <Parameters Name="UseLauncher">False</Parameters>
+                    <Parameters Name="LoadAllSymbols">True</Parameters>
+                    <Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
+                </Parameters>
                 <VersionInfo>
                     <VersionInfo Name="IncludeVerInfo">True</VersionInfo>
                     <VersionInfo Name="AutoIncBuild">False</VersionInfo>
-                    <VersionInfo Name="MajorVer">5</VersionInfo>
-                    <VersionInfo Name="MinorVer">0</VersionInfo>
-                    <VersionInfo Name="Release">23</VersionInfo>
-                    <VersionInfo Name="Build">8</VersionInfo>
+                    <VersionInfo Name="MajorVer">1</VersionInfo>
+                    <VersionInfo Name="MinorVer">1</VersionInfo>
+                    <VersionInfo Name="Release">40</VersionInfo>
+                    <VersionInfo Name="Build">11</VersionInfo>
                     <VersionInfo Name="Debug">False</VersionInfo>
                     <VersionInfo Name="PreRelease">False</VersionInfo>
                     <VersionInfo Name="Special">False</VersionInfo>
@@ -216,19 +156,16 @@
                     <VersionInfo Name="CodePage">1252</VersionInfo>
                 </VersionInfo>
                 <VersionInfoKeys>
-                    <VersionInfoKeys Name="CompanyName">Department of Veterans Affairs</VersionInfoKeys>
-                    <VersionInfoKeys Name="FileDescription">5.0 Patch GMRV*5*23</VersionInfoKeys>
-                    <VersionInfoKeys Name="FileVersion">5.0.23.8</VersionInfoKeys>
-                    <VersionInfoKeys Name="InternalName">Vitals Manager 5.0</VersionInfoKeys>
-                    <VersionInfoKeys Name="LegalCopyright">© Department of Veterans Affairs 2005-2008</VersionInfoKeys>
+                    <VersionInfoKeys Name="CompanyName">Dept of Veterans Affairs, VHA, OI, SD&amp;D</VersionInfoKeys>
+                    <VersionInfoKeys Name="FileDescription">TRPCBroker Component</VersionInfoKeys>
+                    <VersionInfoKeys Name="FileVersion">1.1.40.11</VersionInfoKeys>
+                    <VersionInfoKeys Name="InternalName"/>
+                    <VersionInfoKeys Name="LegalCopyright"/>
                     <VersionInfoKeys Name="LegalTrademarks"/>
                     <VersionInfoKeys Name="OriginalFilename"/>
-                    <VersionInfoKeys Name="ProductName">Vitals Manager</VersionInfoKeys>
-                    <VersionInfoKeys Name="ProductVersion">5.0.23.8</VersionInfoKeys>
-                    <VersionInfoKeys Name="Comments">v. 08/11/09 15:00</VersionInfoKeys>
-                    <VersionInfoKeys Name="VAReleaseDate">October 2002</VersionInfoKeys>
-                    <VersionInfoKeys Name="VANamespace">GMRV</VersionInfoKeys>
-                    <VersionInfoKeys Name="VASourceInformation">Developed by the Department of Veterans Affairs</VersionInfoKeys>
+                    <VersionInfoKeys Name="ProductName">TRPCBroker</VersionInfoKeys>
+                    <VersionInfoKeys Name="ProductVersion">1.1.40.0</VersionInfoKeys>
+                    <VersionInfoKeys Name="Comments"/>
                 </VersionInfoKeys>
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k270.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
@@ -237,21 +174,18 @@
             </Delphi.Personality>
             <Platforms>
                 <Platform value="Win32">True</Platform>
+                <Platform value="Win64">False</Platform>
             </Platforms>
             <Deployment Version="3">
-                <DeployFile LocalName="..\..\bin\VitalsManager.exe" Configuration="Release" Class="ProjectOutput"/>
-                <DeployFile LocalName="..\..\bin\VitalsManager.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="..\..\..\..\..\CPRS\Packages\XE8\XWB_D10_2.bpl" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="..\XWB_D340.bpl" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win32">
-                        <RemoteName>VitalsManager.exe</RemoteName>
+                        <RemoteName>XWB_D340.bpl</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
                 <DeployClass Name="AdditionalDebugSymbols">
-                    <Platform Name="iOSSimulator">
-                        <Operation>1</Operation>
-                    </Platform>
                     <Platform Name="OSX32">
-                        <RemoteDir>Contents\MacOS</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
                     <Platform Name="Win32">
@@ -531,7 +465,6 @@
                         <Operation>1</Operation>
                     </Platform>
                     <Platform Name="OSX32">
-                        <RemoteDir>Contents\MacOS</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
                     <Platform Name="Win32">
@@ -540,12 +473,10 @@
                 </DeployClass>
                 <DeployClass Name="DependencyFramework">
                     <Platform Name="OSX32">
-                        <RemoteDir>Contents\MacOS</RemoteDir>
                         <Operation>1</Operation>
                         <Extensions>.framework</Extensions>
                     </Platform>
                     <Platform Name="OSX64">
-                        <RemoteDir>Contents\MacOS</RemoteDir>
                         <Operation>1</Operation>
                         <Extensions>.framework</Extensions>
                     </Platform>
@@ -554,25 +485,11 @@
                     </Platform>
                 </DeployClass>
                 <DeployClass Name="DependencyModule">
-                    <Platform Name="iOSDevice32">
-                        <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
-                    </Platform>
-                    <Platform Name="iOSDevice64">
-                        <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
-                    </Platform>
-                    <Platform Name="iOSSimulator">
-                        <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
-                    </Platform>
                     <Platform Name="OSX32">
-                        <RemoteDir>Contents\MacOS</RemoteDir>
                         <Operation>1</Operation>
                         <Extensions>.dylib</Extensions>
                     </Platform>
                     <Platform Name="OSX64">
-                        <RemoteDir>Contents\MacOS</RemoteDir>
                         <Operation>1</Operation>
                         <Extensions>.dylib</Extensions>
                     </Platform>
@@ -595,12 +512,10 @@
                         <Extensions>.dylib</Extensions>
                     </Platform>
                     <Platform Name="OSX32">
-                        <RemoteDir>Contents\MacOS</RemoteDir>
                         <Operation>1</Operation>
                         <Extensions>.dylib</Extensions>
                     </Platform>
                     <Platform Name="OSX64">
-                        <RemoteDir>Contents\MacOS</RemoteDir>
                         <Operation>1</Operation>
                         <Extensions>.dylib</Extensions>
                     </Platform>
@@ -626,11 +541,9 @@
                         <Operation>0</Operation>
                     </Platform>
                     <Platform Name="OSX32">
-                        <RemoteDir>Contents\Resources\StartUp\</RemoteDir>
                         <Operation>0</Operation>
                     </Platform>
                     <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources\StartUp\</RemoteDir>
                         <Operation>0</Operation>
                     </Platform>
                     <Platform Name="Win32">
@@ -1023,45 +936,10 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <DeployClass Name="ProjectiOSDeviceResourceRules">
-                    <Platform Name="iOSDevice32">
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="iOSDevice64">
-                        <Operation>1</Operation>
-                    </Platform>
-                </DeployClass>
-                <DeployClass Name="ProjectiOSEntitlements">
-                    <Platform Name="iOSDevice32">
-                        <RemoteDir>..\</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="iOSDevice64">
-                        <RemoteDir>..\</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                </DeployClass>
-                <DeployClass Name="ProjectiOSInfoPList">
-                    <Platform Name="iOSDevice32">
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="iOSDevice64">
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="iOSSimulator">
-                        <Operation>1</Operation>
-                    </Platform>
-                </DeployClass>
-                <DeployClass Name="ProjectiOSLaunchScreen">
-                    <Platform Name="iOSDevice64">
-                        <RemoteDir>..\$(PROJECTNAME).launchscreen</RemoteDir>
-                        <Operation>64</Operation>
-                    </Platform>
-                    <Platform Name="iOSSimulator">
-                        <RemoteDir>..\$(PROJECTNAME).launchscreen</RemoteDir>
-                        <Operation>64</Operation>
-                    </Platform>
-                </DeployClass>
+                <DeployClass Name="ProjectiOSDeviceResourceRules"/>
+                <DeployClass Name="ProjectiOSEntitlements"/>
+                <DeployClass Name="ProjectiOSInfoPList"/>
+                <DeployClass Name="ProjectiOSLaunchScreen"/>
                 <DeployClass Name="ProjectiOSResource">
                     <Platform Name="iOSDevice32">
                         <Operation>1</Operation>
@@ -1073,32 +951,9 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <DeployClass Name="ProjectOSXDebug">
-                    <Platform Name="OSX64">
-                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                </DeployClass>
-                <DeployClass Name="ProjectOSXEntitlements">
-                    <Platform Name="OSX32">
-                        <RemoteDir>..\</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="OSX64">
-                        <RemoteDir>..\</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                </DeployClass>
-                <DeployClass Name="ProjectOSXInfoPList">
-                    <Platform Name="OSX32">
-                        <RemoteDir>Contents</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="OSX64">
-                        <RemoteDir>Contents</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                </DeployClass>
+                <DeployClass Name="ProjectOSXDebug"/>
+                <DeployClass Name="ProjectOSXEntitlements"/>
+                <DeployClass Name="ProjectOSXInfoPList"/>
                 <DeployClass Name="ProjectOSXResource">
                     <Platform Name="OSX32">
                         <RemoteDir>Contents\Resources</RemoteDir>
@@ -1131,11 +986,9 @@
                         <Operation>1</Operation>
                     </Platform>
                     <Platform Name="OSX32">
-                        <RemoteDir>Contents\MacOS</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
                     <Platform Name="OSX64">
-                        <RemoteDir>Contents\MacOS</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
                     <Platform Name="Win32">
@@ -1179,18 +1032,50 @@
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="iOSDevice" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Linux64" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="OSX64" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="OSX64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Android64" Name="$(PROJECTNAME)"/>
             </Deployment>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>
-    <Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
-    <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
-    <Import Project="$(MSBuildProjectName).deployproj" Condition="Exists('$(MSBuildProjectName).deployproj')"/>
+    <Import Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')" Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj"/>
+    <Import Condition="Exists('$(MSBuildProjectName).deployproj')" Project="$(MSBuildProjectName).deployproj"/>
+    <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win32'">
+        <PreBuildEvent>XWB_PreBuild_D.bat</PreBuildEvent>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent>XWB_PostBuild_D.bat &quot;$(OUTPUTDIR)&quot;</PostBuildEvent>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win64'">
+        <PreBuildEvent>XWB_PreBuild_D.bat</PreBuildEvent>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent>XWB_PostBuild_D.bat &quot;$(OUTPUTDIR)&quot;</PostBuildEvent>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win32'">
+        <PreBuildEvent>XWB_PreBuild_D.bat</PreBuildEvent>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent>XWB_PostBuild_D.bat &quot;$(OUTPUTDIR)&quot;</PostBuildEvent>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win64'">
+        <PreBuildEvent>XWB_PreBuild_D.bat</PreBuildEvent>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent>XWB_PostBuild_D.bat &quot;$(OUTPUTDIR)&quot;</PostBuildEvent>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
 </Project>

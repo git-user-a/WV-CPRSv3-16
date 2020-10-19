@@ -3,11 +3,11 @@
         <ProjectGuid>{E2965859-1B8B-4555-9EA9-5A0647CB1569}</ProjectGuid>
         <MainSource>GMV_VitalsViewEnter.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Library</AppType>
         <FrameworkType>VCL</FrameworkType>
-        <ProjectVersion>18.8</ProjectVersion>
+        <ProjectVersion>19.0</ProjectVersion>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
@@ -48,7 +48,7 @@
         <DCC_E>false</DCC_E>
         <VerInfo_Release>34</VerInfo_Release>
         <DCC_S>false</DCC_S>
-        <DCC_Define>WORLDVISTA;xSHOWLOG;xPATCH_5_0_23;xAANTEST;xLINES;DLL;CQ6942;NO3D;NOVTREE;NOTSMPACK;R144925;CASMED;USEVSMONITOR;$(DCC_Define)</DCC_Define>
+        <DCC_Define>WORLDVISTA;SHOWLOG;xPATCH_5_0_23;xAANTEST;xLINES;DLL;CQ6942;NO3D;NOVTREE;NOTSMPACK;R144925;CASMED;USEVSMONITOR;$(DCC_Define)</DCC_Define>
         <DCC_ImageBase>00400000</DCC_ImageBase>
         <DCC_F>false</DCC_F>
         <DCC_K>false</DCC_K>
@@ -95,8 +95,8 @@
         <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <Debugger_RunParams>s=vaausappvmt802.domain.ext p=9302</Debugger_RunParams>
-        <Debugger_HostApplication>C:\test\CPRSChart.exe</Debugger_HostApplication>
+        <Debugger_RunParams>S=ehr1.opensourcevista.net  P=9309 ccow=disable SHOWRPCS CCOW=DISABLE AV=vistais#1;@#1isvista DFN=64</Debugger_RunParams>
+        <Debugger_HostApplication>..\..\..\CPRS\CPRSChart.exe</Debugger_HostApplication>
         <VerInfo_Build>3</VerInfo_Build>
         <VerInfo_Keys>CompanyName=Department of Veterans Affairs;FileDescription=5.0 Patch GMRV*5*34;FileVersion=5.0.38.3;InternalName=Vitals View/Enter;LegalCopyright=© Department of Veterans Affairs 2006-2008;LegalTrademarks=;OriginalFilename=;ProductName=Vitals Lite;ProductVersion=5.0.38.3;Comments=v. 11/05/13 10:00;VASourceInformation=Developed by the Department of Veterans Affairs;VANamespace=GMRV;VAReleaseDate=October 2002;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <BRCC_Defines>SHOWLOG;AANTEST;$(BRCC_Defines)</BRCC_Defines>
@@ -260,7 +260,10 @@
                     <VersionInfoKeys Name="VANamespace">GMRV</VersionInfoKeys>
                     <VersionInfoKeys Name="VAReleaseDate">October 2002</VersionInfoKeys>
                 </VersionInfoKeys>
-                <Excluded_Packages/>
+                <Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k270.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp270.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>
                 <Platform value="Win32">True</Platform>

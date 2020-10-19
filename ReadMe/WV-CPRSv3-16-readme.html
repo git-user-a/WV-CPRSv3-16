@@ -235,84 +235,77 @@
 	  	<em><strong>CPRS Packages v31b Project Source</strong></em>
         <p>
 	  	<i>GUI</i> and <i>Packages</i> must be compiled with the same version of Delphi.
-	  	Original CPRS GUI v31b was compiled with Dephi XE8. That is why the package names include a reference compiler version.
-	  	<p>
+	  	Original CPRS GUI v31b was compiled with Dephi XE8.
+      <p>
+      Two package groups are prepared for compilation with Delphi version 10.3.3 and 10.4:
+      <ul>
+        <li><i>CPRS_Packages_SYDNEY</i> - Delphi 10.4
+        <li><i>CPRS_Packages_RIO</i> - Delphi 10.3.3
+      </ul>
+      <p>
+      Package names include references on the compiler versions (340 for SYDNEY, 330 - RIO).
+      <p>
 	  	The source code of <i>CPRS Packages</i> is kept in the <i>CPRS_Packages_31b</i> directory.	Location and short description of the individual packages:
         </p>
+      <table>
+        <tr>
+          <td><img src="PackagesLocation.PNG"/></dt>
+          <td>
 	  	<table width="100%" border="0">
 	      <tr>
-		  	<td width="20%"><b>Package</b></td>
-		  	<td><b>Directory</b></td>
-		  	<td><b>Type</b></td>
-		  	<td><b>Comment</b></td>
-		  </tr>
-		  <tr valign="top">
-		  <td>VAShared_RXE8</td>
-		  	<td>VA</td>
-		  	<TD>Run Time</td>
-		  	<td>General utilities. Required for compilation of packages VA508Access_DXE8, ORCtrls_DXE8, PKI_RXE8</TD>
-    	  </tr>
+		  	  <td><b>Directory</b></td>
+		  	  <td><b>Comment</b></td>
+		    </tr>
+        <tr valign="top">
+          <td>508</td>
+          <td>VA508Access package. JAWS support. Required for CPRS GUI compilation</TD>
+        </tr>
+        <tr valign="top">
+          <td>Borland</td>
+          <td>Borland package. Required for CPRS GUI compilation</TD>
+        </tr>
           <tr valign="top">
-            <td>XWB_RXE8</td>
             <td>Broker</td>
-            <TD>Run Time</td>
-            <td>RPC Broker run time package. Provides access to Server. Required for compilation of packages XWB_DXE8, PKI_RXE8</TD>
+            <td>RPC Broker run time and design time packages.
+              Provides access to Server. Required for compilation of package PKI and CPRS GUI</TD>
           </tr>
           <tr valign="top">
-            <td>PKI_RXE8</td>
-            <td>PKI</td>
-            <TD>Run Time</td>
-            <td>Encription related code</TD>
-          </tr>
-          <tr valign="top">
-            <td>ExceptionLogger_RXE8</td>
-            <td>PKI</td>
-            <TD>Run Time</td>
-            <td>Application Exception logger - used to log details of the exceptions.</TD>
-          </tr>
-          <tr valign="top">
-            <td>Borland_DXE8</td>
-            <td>Borland</td>
-            <TD>Design Time</td>
-            <td>Component package. Required for CPRS GUI compilation</TD>
-          </tr>
-          <tr valign="top">
-            <td>CopyPaste_DXE8</td>
             <td>CopyPaste</td>
-            <TD>Design Time</td>
             <td>CopyPaste tracking components.</TD>
           </tr>
           <tr valign="top">
-            <td>XWB_DXE8</td>
-            <td>Broker</td>
-            <TD>Design Time</td>
-            <td>RPC Broker design time components. Provides access to Server. Required for CPRS GUI compilation</TD>
+            <td>ExceptionLogger</td>
+            <td>CPRS exception logger components. Required for CPRS GUI compilation.
+            </TD>
           </tr>
           <tr valign="top">
-            <td>VA508Access_DXE8</td>
-            <td>508</td>
-            <TD>Design Time</td>
-            <td>JAWS support. Required for CPRS GUI compilation</TD>
+            <td>FilemanComponents</td>
+            <td>FileMan Delphi Components. Provides access to VistA FileMan files.
+              Not Required for CPRS GUI compilation.</TD>
           </tr>
           <tr valign="top">
-            <td>ORCtrls_DXE8</td>
             <td>OR</td>
-            <TD>Design Time</td>
             <td>GUI Components. Required for CPRS GUI compilation</TD>
           </tr>
           <tr valign="top">
-            <td>FMDC_DXE8</td>
-            <td>FilemanComponents</td>
-            <TD>Design Time</td>
-            <td>FileMan Delphi Components. Provides access to VistA FileMan files. Not Required for CPRS GUI compilation</TD>
+            <td>PKI</td>
+            <td>Application Exception logger - used to log details of the exceptions.
+              Required for CPRS GUI compilation.</TD>
           </tr>
+          <tr valign="top">
+  		  	  <td>VA</td>
+  		  	  <td>General utilities. Required for compilation of packages VA508Access, ORCtrls, PKI</TD>
+      	  </tr>
 		</table>
+        </td>
+      </tr>
+</table>
         <br><br>
 	  	<table>
 	  	  <tr valign="top">
             <td>NOTE:</td>
             <td>
-	          Packages <i>CopyPaste_DXE8, FMDC_DXE8</i> are not required for compilation of EHR 3.1 Ver 3-16.
+	          Packages <i>CopyPaste, FMDC</i> are not required for compilation of EHR 3.1 Ver 3-16.
 	        </td>
 	      </tr>
 	      <tr>
@@ -348,14 +341,19 @@
 	  </ul>
 	  <p>Compilation steps are straightforward:
 	  <p>
-	  <em><strong>1. Open package group <i>CPRS_Packages_XE8</i></strong></em>
-	  <p><img src="CPRSPackages31bLight.PNG"/>
+	  <em><strong>1. Open package group matching compiler version</strong></em>
+	  <p><i>CPRS_Packages_SYDNEY</i> - Delphi 10.4<br>
+      <i>CPRS_Packages_RIO</i> - Delphi 10.3.3
+
 	  <p>
       <em><strong>2. Rebuild packages starting from the top of the list.</strong></em><br>
 	  <em><strong>3. Install Design-time packages after the build.</strong></em>
 	  <p>
 	  To verify if the components are now available restart Delphi,
-      open CPRS GUI project, and review the component palette.
+      open CPRS GUI project, and review the component palette. <br>
+
+      If all packages are compiled and installed correctly components palette should include
+      sections <i>"Kernel", "VA 508", "CPRS"</i> all GUI forms should open without errors.
 	  <p>
     </td>
   </tr>

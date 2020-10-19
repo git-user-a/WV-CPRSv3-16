@@ -110,7 +110,7 @@ object frmGMV_HospitalSelector2: TfrmGMV_HospitalSelector2
     Top = 41
     Width = 578
     Height = 302
-    ActivePage = tsByName
+    ActivePage = tsByApointment
     Align = alClient
     TabOrder = 1
     OnChange = pcMainChange

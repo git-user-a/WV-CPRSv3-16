@@ -1,6 +1,6 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{15E280DE-AA4C-402B-AFFA-352868F7908B}</ProjectGuid>
+        <ProjectGuid>{A54F0D31-0739-4140-B366-B1067EDCA98B}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
         <Projects Include="Source\APP-VITALS\Vitals.dproj">

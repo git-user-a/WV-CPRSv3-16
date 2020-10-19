@@ -269,8 +269,7 @@ end;
 procedure TfrmGMV_HospitalSelector2.FormActivate(Sender: TObject);
 begin
   try
-    if cmbTarget.CanFocus then
-      cmbTarget.SetFocus;
+    cmbTarget.SetFocus;
   except
   end;
 end;
@@ -286,8 +285,7 @@ begin
         if (cmbTarget.Text <>'')
           and ( pos(cmbTarget.Text+#13#10,cmbTarget.Items.Text) = 0)
           and ( (lvH.Items.Count > 1) or
-               ((lvH.Items.Count = 1) and (pos('No entries',lvH.Items[0].Caption) <> 1)))
-               // WorldVista - first item in the lvH list has index ís 0 not 1
+               ((lvH.Items.Count = 1) and (pos('No entries',lvH.Items[1].Caption) <> 1)))
         then
           cmbTarget.Items.Insert(0,cmbTarget.Text);
       except
