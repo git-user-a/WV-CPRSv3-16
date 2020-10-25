@@ -1,4 +1,4 @@
-package XWB_DXE8;
+package XWB_D330;
 
 {$R *.res}
 {$R *.dres}
@@ -31,7 +31,7 @@ package XWB_DXE8;
 {$IMPLICITBUILD ON}
 
 requires
-  XWB_RXE8,
+  XWB_R330,
   vcl,
   designide;
 

@@ -34,7 +34,7 @@ requires
   IndyCore,
   IndySystem,
   VAShared_330,
-  XWB_R_RIO;
+  XWB_R330;
 
 contains
   fPKIPINPrompt in 'Source\fPKIPINPrompt.pas' {frmPKIPINPrompt},

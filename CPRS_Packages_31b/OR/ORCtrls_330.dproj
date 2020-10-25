@@ -66,7 +66,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
 $(PreBuildEvent)]]></PreBuildEvent>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <DCC_UsePackage>rtl;vcl;vclx;Tee;XWB_RXE3;dbrtl;VclSmp;vcldb;VAShared_RXE3;XWB_RXE8;VAShared_RXE8;XWB_R10_2;VAShared_R10_2;XWB_R_SEATTLE;XWB_R_RIO;VAShared_330;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>rtl;vcl;vclx;Tee;XWB_RXE3;dbrtl;VclSmp;vcldb;VAShared_RXE3;XWB_RXE8;VAShared_RXE8;XWB_R10_2;VAShared_R10_2;XWB_R_SEATTLE;XWB_R_RIO;VAShared_330;XWB_R330;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_Namespace>System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <Icon_MainIcon>Source\ORCtrls2006.ico</Icon_MainIcon>
     </PropertyGroup>
@@ -102,7 +102,7 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <DCCReference Include="vcldb.dcp"/>
         <DCCReference Include="VA508Access_330.dcp"/>
         <DCCReference Include="VAShared_330.dcp"/>
-        <DCCReference Include="XWB_R_RIO.dcp"/>
+        <DCCReference Include="XWB_R330.dcp"/>
         <DCCReference Include="Source\ORCtrls.pas"/>
         <DCCReference Include="Source\ORCtrlsDsgn.pas"/>
         <DCCReference Include="Source\ORStaticText.pas"/>

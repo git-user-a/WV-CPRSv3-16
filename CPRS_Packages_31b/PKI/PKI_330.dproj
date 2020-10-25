@@ -100,7 +100,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <DCCReference Include="IndyCore.dcp"/>
         <DCCReference Include="IndySystem.dcp"/>
         <DCCReference Include="VAShared_330.dcp"/>
-        <DCCReference Include="XWB_R_RIO.dcp"/>
+        <DCCReference Include="XWB_R330.dcp"/>
         <DCCReference Include="Source\fPKIPINPrompt.pas">
             <Form>frmPKIPINPrompt</Form>
         </DCCReference>

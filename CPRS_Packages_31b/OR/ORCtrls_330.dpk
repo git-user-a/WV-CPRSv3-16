@@ -41,7 +41,7 @@ requires
   vcldb,
   VA508Access_330,
   VAShared_330,
-  XWB_R_RIO;
+  XWB_R330;
 
 contains
   ORCtrls in 'Source\ORCtrls.pas',

@@ -136,9 +136,10 @@
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <VerInfo_Release>350</VerInfo_Release>
-        <VerInfo_Keys>CompanyName=Department of Veteran Affairs;FileDescription=OR*3.0*350;FileVersion=1.31.350.0;InternalName=;LegalCopyright=Unauthorized access or misuse of this system and/or its data  is a federal crime. Use of all data shall be in accordance with VA policy on security and privacy.;LegalTrademarks=;OriginalFilename=WorldVistA Edition;ProductName=$(MSBuildProjectName);ProductVersion=1.31.0.0;Comments=D 10.4 (340);ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Department of Veteran Affairs;FileDescription=OR*3.0*350;FileVersion=1.31.350.3;InternalName=;LegalCopyright=Unauthorized access or misuse of this system and/or its data  is a federal crime. Use of all data shall be in accordance with VA policy on security and privacy.;LegalTrademarks=;OriginalFilename=WorldVistA Edition;ProductName=$(MSBuildProjectName);ProductVersion=1.31.0.0;Comments=D 10.4 (340);ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_MinorVer>31</VerInfo_MinorVer>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
+        <VerInfo_Build>3</VerInfo_Build>
     </PropertyGroup>
     <ProjectExtensions>
         <Borland.Personality>Delphi.Personality.12</Borland.Personality>
