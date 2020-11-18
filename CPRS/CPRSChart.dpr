@@ -301,8 +301,14 @@ uses
   rVWEHR in 'WVEHR\VW\rVWEHR.pas',
   uVersionCompare in 'WVEHR\Tools\uVersionCompare.pas',
   frmEPrescribe in 'WVEHR\VW\frmEPrescribe.pas' {EPrescribeForm},
-  fEventLog in 'WVEHR\EventLog\fEventLog.pas' {frmRPCLog},
-  uGN_RPCLog in 'WVEHR\EventLog\uGN_RPCLog.pas',
+
+//  fEventLog in 'WVEHR\EventLog\fEventLog.pas' {frmRPCLog},
+//  uGN_RPCLog in 'WVEHR\EventLog\uGN_RPCLog.pas',
+
+  fGN_RPCLog in 'WVEHR\Tools\fGN_RPCLog.pas' {frmRPCLog},
+  uGN_RPCLog in 'WVEHR\Tools\uGN_RPCLog.pas',
+
+
   fVW_Alerts in 'WVEHR\PatientSelector\fVW_Alerts.pas' {frmVW_Alerts},
   fVW_DupPts in 'WVEHR\PatientSelector\fVW_DupPts.pas' {frmVW_DupPts},
   uVW_Utils in 'WVEHR\PatientSelector\uVW_Utils.pas',
