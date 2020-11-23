@@ -12,4 +12,4 @@ client application that provides access to a patient data in WorldVistA EHR syst
 <p>
 It does not discuss installation or usage of the EHR Server software.
   
-<a href=https://git-user-a.github.io/WV-CPRSv3-16/>Installation details</a>
+<i>WorldVistA CPRSChart</i> <a href=https://git-user-a.github.io/WV-CPRSv3-16/>Installation details</a>
