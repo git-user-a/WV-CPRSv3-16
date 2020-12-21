@@ -2,7 +2,7 @@ unit rCore;
 
 interface
 
-uses SysUtils, Classes, Forms, ORNet, ORFn, ORClasses;
+uses SysUtils, Classes, Forms, ORNet, ORFn, ORClasses, system.JSON;
 
 { record types used to return data from the RPC's.  Generally, the delimited strings returned
   by the RPC are mapped into the records defined below. }
@@ -200,6 +200,9 @@ function RestrictedPtRec(const DFN: string): Boolean;
 procedure SelectPatient(const DFN: string; var PtSelect: TPtSelect);
 function SimilarRecordsFound(const DFN: string; var AMsg: string): Boolean;
 function GetDFNFromICN(AnICN: string): string;
+
+function otherInformationPanel(const DFN: string): string;
+procedure otherInformationPanelDetails(const DFN: string; valueType: string; var details: TStrings);
 
 { Encounter specific calls }
 
@@ -1245,6 +1248,18 @@ begin
   Result := Piece(sCallV('VAFCTFU CONVERT ICN TO DFN', [AnICN]), U, 1);
 end;
 
+function otherInformationPanel(const DFN: string): string;
+begin
+//  result := sCallV('ORWPT2 COVID', [DFN]);
+  CallVistA('ORWPT2 COVID', [DFN], result);
+end;
+
+procedure otherInformationPanelDetails(const DFN: string; valueType: string; var details: TStrings);
+begin
+  CallVistA('ORWOTHER DETAIL', [dfn, valueType], details);
+//  FastAssign(RPCBrokerV.Results, details);
+end;
+
 { Encounter specific calls }
 
 function GetEncounterText(const DFN: string; Location: integer; Provider: Int64): TEncounterText;  //*DFN*
@@ -1392,6 +1407,19 @@ end;
 function GetDefaultPrinter(DUZ: Int64; Location: integer): string;
 begin
   Result := sCallV('ORWRP GET DEFAULT PRINTER', [DUZ, Location]) ;
+end;
+
+procedure getSysUserParameters(DUZ: Int64);
+var
+aReturn: string;
+begin
+  systemParameters := TsystemParameters.Create;
+  try
+  CallVistA('ORWU SYSPARAM', [DUZ], aReturn);
+  systemParameters.dataValues := TJSONObject.ParseJSONValue(aReturn);
+  finally
+  end;
+
 end;
 
 end.

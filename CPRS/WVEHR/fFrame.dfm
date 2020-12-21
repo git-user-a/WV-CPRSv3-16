@@ -525,8 +525,8 @@ inherited frmFrame: TfrmFrame
           object lblFlag: TLabel
             Left = 2
             Top = 2
-            Width = 85
-            Height = 15
+            Width = 25
+            Height = 13
             Align = alClient
             Alignment = taCenter
             Caption = 'Flag'
@@ -542,8 +542,6 @@ inherited frmFrame: TfrmFrame
             OnClick = pnlFlagClick
             OnMouseDown = pnlFlagMouseDown
             OnMouseUp = pnlFlagMouseUp
-            ExplicitWidth = 25
-            ExplicitHeight = 13
           end
         end
       end
@@ -598,7 +596,7 @@ inherited frmFrame: TfrmFrame
           object lblVistaWeb: TLabel
             Left = 2
             Top = 2
-            Width = 65
+            Width = 46
             Height = 13
             Align = alClient
             Alignment = taCenter
@@ -611,7 +609,6 @@ inherited frmFrame: TfrmFrame
             ParentFont = False
             Layout = tlCenter
             OnClick = pnlVistaWebClick
-            ExplicitWidth = 46
           end
         end
         object pnlCIRN: TKeyClickPanel
@@ -640,8 +637,8 @@ inherited frmFrame: TfrmFrame
           object lblCIRN: TLabel
             Left = 2
             Top = 2
-            Width = 65
-            Height = 14
+            Width = 62
+            Height = 13
             Align = alClient
             Alignment = taCenter
             Caption = 'E-Prescribing'
@@ -654,8 +651,6 @@ inherited frmFrame: TfrmFrame
             Transparent = False
             Layout = tlCenter
             OnClick = pnlCIRNClick
-            ExplicitWidth = 62
-            ExplicitHeight = 13
           end
         end
       end
@@ -708,9 +703,9 @@ inherited frmFrame: TfrmFrame
     end
     object pnlPage: TPanel
       Left = 1
-      Top = 42
+      Top = 83
       Width = 980
-      Height = 607
+      Height = 566
       Align = alClient
       BevelOuter = bvNone
       Font.Charset = DEFAULT_CHARSET
@@ -751,6 +746,25 @@ inherited frmFrame: TfrmFrame
         CheckBoxes = True
         CheckEntireLine = True
       end
+    end
+    object pnlOtherInfo: TKeyClickPanel
+      Left = 1
+      Top = 42
+      Width = 980
+      Height = 41
+      Align = alTop
+      Color = clYellow
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 4
+      OnClick = pnlOtherInfoClick
+      OnMouseDown = pnlOtherInfoMouseDown
+      OnMouseUp = pnlOtherInfoMouseUp
     end
   end
   inherited amgrMain: TVA508AccessibilityManager
@@ -860,6 +874,9 @@ inherited frmFrame: TfrmFrame
         'Status = stsDefault')
       (
         'Component = lblPtMHTC'
+        'Status = stsDefault')
+      (
+        'Component = pnlOtherInfo'
         'Status = stsDefault'))
   end
   object mnuFrame: TMainMenu
@@ -969,41 +986,42 @@ inherited frmFrame: TfrmFrame
       object Z4: TMenuItem
         Caption = '-'
       end
+      object Prefs1: TMenuItem
+        Caption = '&Fonts'
+        object mnu8pt: TMenuItem
+          Tag = 8
+          Caption = '8 pt'
+          RadioItem = True
+          OnClick = mnuFontSizeClick
+        end
+        object mnu10pt1: TMenuItem
+          Tag = 10
+          Caption = '10 pt'
+          RadioItem = True
+          OnClick = mnuFontSizeClick
+        end
+        object mnu12pt1: TMenuItem
+          Tag = 12
+          Caption = '12 pt'
+          RadioItem = True
+          OnClick = mnuFontSizeClick
+        end
+        object mnu14pt1: TMenuItem
+          Tag = 14
+          Caption = '14 pt'
+          RadioItem = True
+          OnClick = mnuFontSizeClick
+        end
+        object mnu18pt1: TMenuItem
+          Tag = 18
+          Caption = '18 pt'
+          RadioItem = True
+          OnClick = mnuFontSizeClick
+        end
+      end
       object mnuEditPref: TMenuItem
         Caption = 'P&references'
-        object Prefs1: TMenuItem
-          Caption = '&Fonts'
-          object mnu8pt: TMenuItem
-            Tag = 8
-            Caption = '8 pt'
-            RadioItem = True
-            OnClick = mnuFontSizeClick
-          end
-          object mnu10pt1: TMenuItem
-            Tag = 10
-            Caption = '10 pt'
-            RadioItem = True
-            OnClick = mnuFontSizeClick
-          end
-          object mnu12pt1: TMenuItem
-            Tag = 12
-            Caption = '12 pt'
-            RadioItem = True
-            OnClick = mnuFontSizeClick
-          end
-          object mnu14pt1: TMenuItem
-            Tag = 14
-            Caption = '14 pt'
-            RadioItem = True
-            OnClick = mnuFontSizeClick
-          end
-          object mnu18pt1: TMenuItem
-            Tag = 18
-            Caption = '18 pt'
-            RadioItem = True
-            OnClick = mnuFontSizeClick
-          end
-        end
+        Visible = False
       end
     end
     object mnuView: TMenuItem

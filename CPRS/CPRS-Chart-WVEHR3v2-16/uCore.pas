@@ -6,7 +6,7 @@ unit uCore;
 
 interface
 
-uses SysUtils, Windows, Classes, Forms, ORFn, ORNet, rCore, uConst, ORClasses, uCombatVet;
+uses SysUtils, Windows, Classes, Forms, ORFn, ORNet, rCore, uConst, ORClasses, uCombatVet, system.JSON;
 
 type
   TUser = class(TObject)
@@ -396,6 +396,19 @@ type
     HDR      : String;         //HDR is source of data if = 1
   end;
 
+  TSystemParameters = class(TObject)
+  private
+    fdataValues: TJsonValue;
+  public
+    function getJsonValueString(const name: string): String;
+    function getJsonValueStrings(const name: string): TStringList;
+    function getJsonValue(const name: string): TJsonValue;
+    property dataValues: TJsonValue read fdataValues write fdataValues;
+    Property JsonValue[const aName: String]: TJsonValue read getJsonValue;
+    Property StringValues[const aName: String]: TStringList read getJsonValueStrings;
+    Property StringValue[const aName: String]: String read getJsonValueString;
+  end;
+
 var
   User: TUser;
   Patient: TPatient;
@@ -426,6 +439,7 @@ var
   SavedEncounterReason: string; //used to store why it will be reverted to the saved value
   //TempOutEncounterLoc: Integer;
   //TempOutEncounterLocName: string;
+  systemParameters: TSystemParameters;
 
 procedure NotifyOtherApps(const AppEvent, AppData: string);
 procedure FlushNotifierBuffer;
@@ -1794,6 +1808,76 @@ begin
   begin
     if AnsiCompareText(FOrderGrp[i],oldGrpName)= 0 then
       FOrderGrp[i] := newGrpName;
+  end;
+end;
+
+{ TSystemParameters }
+
+function TSystemParameters.getJsonValue(const name: string): TJsonValue;
+var
+ jo: TJSONObject;
+ JSV: TJsonValue;
+begin
+ Result := nil;
+ jo := dataValues as TJSONObject;
+ if jo.TryGetValue(name, JSV) then
+ begin
+    Result := JSV;
+ end;
+
+end;
+
+function TSystemParameters.getJsonValueString(const name: string): String;
+var
+  aTmp: TStringlist;
+begin
+  Result := '';
+  aTmp := TStringlist.create;
+  try
+    aTmp := getJsonValueStrings(name);
+    if aTmp.count = 1 then
+      Result := aTmp[0];
+  finally
+    aTmp.free;
+  end;
+end;
+
+function TSystemParameters.getJsonValueStrings(const name: string): TStringList;
+var
+  i: integer;
+  arrayjson: TJSONArray;
+  jo: TJSONObject;
+  JSV, value: TJsonValue;
+  JP: TJSONPair;
+  S: String;
+begin
+  Result := TStringList.Create;
+
+  result.Clear;
+  jo := dataValues as TJSONObject;
+  if jo.TryGetValue(name, JSV) then
+  begin
+    if (JSV is TJSONArray) then
+    begin
+      arrayjson := JSV as TJSONArray;
+      for value in arrayjson do
+      begin
+        s := '';
+        for I := 0 to (value as TJSONObject).Count - 1 do
+        begin
+        JP := (value as TJSONObject).Pairs[i];
+        if s <> '' then
+          s := s + '^';
+        S := s + JP.JsonString.value + '=' + JP.JsonValue.value;
+        end;
+        result.Add(S);
+      end;
+    end
+    else
+    begin
+      JSV.TryGetValue(S);
+      result.Add(S);
+    end;
   end;
 end;
 

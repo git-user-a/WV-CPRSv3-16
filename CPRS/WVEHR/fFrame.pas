@@ -7,6 +7,7 @@ unit fFrame;
 {$WARN SYMBOL_PLATFORM OFF}
 {$DEFINE CCOWBROKER}
 
+{ $ DEFINE COVID19}
 
 interface
 
@@ -23,6 +24,7 @@ uses
 {$IFDEF WORLDVISTA}
   rVWEHR,
 {$ENDIF}
+  system.JSON,
    XUDsigS
   ;
 
@@ -151,6 +153,7 @@ type
     EPrescribing1: TMenuItem;
     lblPtMHTC: TStaticText;
     DigitalSigningSetup1: TMenuItem;
+    pnlOtherInfo: TKeyClickPanel;
     procedure EPrescribing1Click(Sender: TObject);
     procedure tabPageChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -263,6 +266,11 @@ type
     procedure tabPageMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure DigitalSigningSetup1Click(Sender: TObject);
+    procedure pnlOtherInfoClick(Sender: TObject);
+    procedure pnlOtherInfoMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure pnlOtherInfoMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private
     FProccessingNextClick : boolean;
     FJustEnteredApp : boolean;
@@ -303,6 +311,12 @@ type
     FOrderPrintForm: boolean;
     FReviewclick: boolean;
     FCtrlTabUsed: boolean;
+{$IFDEF COVID19}
+    fotherPanelUseColor: boolean;
+    fotherPanelType: string;
+    fotherPanelShowReportBox: boolean;
+{$ENDIF}
+
     procedure RefreshFixedStatusWidth;
     procedure FocusApplicationTopForm;
     procedure AppActivated(Sender: TObject);
@@ -332,6 +346,9 @@ type
     procedure SetupPatient(AFlaggedList : TStringList = nil);
     procedure RemindersChanged(Sender: TObject);
     procedure ReportsOnlyDisplay;
+{$IFDEF COVID19}
+    procedure setOtherInfoPanel;
+{$ENDIF}
     procedure UMInitiate(var Message: TMessage);   message UM_INITIATE;
     procedure UMNewOrder(var Message: TMessage);   message UM_NEWORDER;
     procedure UMStatusText(var Message: TMessage); message UM_STATUSTEXT;
@@ -771,6 +788,9 @@ procedure TfrmFrame.FormCreate(Sender: TObject);
 var
 //  sWar,
 //  ClientVer, ServerVer, ServerReq,
+{$IFDEF COVID19}
+  otherPanelControls: TJsonValue;
+{$ENDIF}
   SAN: string;
 begin
   FJustEnteredApp := false;
@@ -948,7 +968,63 @@ begin
     Close;
     Exit;
   end;
-
+{$IFDEF COVID19}
+(*
+  otherPanelControls := otherInformationPanelControls;
+  if Piece(otherPanelControls, U, 1) = '0' then
+    begin
+      pnlOtherInfo.Enabled := false;
+      pnlOtherInfo.Visible := false;
+    end
+  else
+    begin
+      fotherPanelUseColor := Piece(otherPanelControls, u, 2) = '1';
+      if fotherPanelUseColor then
+        begin
+          self.pnlOtherInfo.ParentBackground := false;
+          self.pnlOtherInfo.ParentColor := false;
+        end
+      else
+        begin
+          pnlOtherInfo.Color := get508CompliantColor(clYellow);
+          self.pnlOtherInfo.ParentBackground := true;
+          self.pnlOtherInfo.ParentColor := true;
+          self.pnlOtherInfo.Color := clBtnFace;
+          self.pnlOtherInfo.Repaint;
+        end;
+      fotherPanelShowReportBox := Piece(otherPanelControls, u, 3) = '1';
+      pnlOtherInfo.tabstop := screenReaderActive;
+    end;
+*)
+//  otherPanelControls := otherInformationPanelControls;
+  otherPanelControls := systemParameters.getJsonValue('otherInfromationPanel');
+  if TJSONObject(otherPanelControls).Values['turnedOn'].ToString = '0' then
+    begin
+      pnlOtherInfo.Enabled := false;
+      pnlOtherInfo.Visible := false;
+    end
+  else
+    begin
+      fotherPanelUseColor := TJSONObject(otherPanelControls).Values['useColor'].ToString = '1';
+      if fotherPanelUseColor then
+        begin
+          self.pnlOtherInfo.ParentBackground := false;
+          self.pnlOtherInfo.ParentColor := false;
+        end
+      else
+        begin
+          pnlOtherInfo.Color := get508CompliantColor(clYellow);
+          self.pnlOtherInfo.ParentBackground := true;
+          self.pnlOtherInfo.ParentColor := true;
+          self.pnlOtherInfo.Color := clBtnFace;
+          self.pnlOtherInfo.Repaint;
+        end;
+      fotherPanelShowReportBox := TJSONObject(otherPanelControls).Values['reportBoxOn'].ToString = '1';
+      pnlOtherInfo.tabstop := screenReaderActive;
+    end;
+{$ELSE}
+  pnlOtherInfo.Visible := False;
+{$ENDIF}
   // create creating core objects
   Patient := TPatient.Create;
   Encounter := TEncounter.Create;
@@ -1362,6 +1438,27 @@ begin
   mnuHelpSymbols.Visible := IsProgrammer;
   Z6.Visible             := IsProgrammer;
 end;
+{$IFDEF COVID19}
+procedure TfrmFrame.setOtherInfoPanel;
+var
+info: string;
+begin
+  pnlOtherInfo.Caption := '';
+
+  if Patient.DFN= '' then
+    exit;
+  info := otherInformationPanel(Patient.DFN);
+  pnlOtherInfo.Caption := Piece(info, u, 2);
+  fotherPanelType := Piece(info, u, 1);
+  if screenReaderActive then
+    begin
+      GetScreenReader.Speak(Piece(info, u, 2));
+
+    end;
+//  self.pnlOtherInfo.Refresh;
+end;
+
+{$ENDIF}
 
 { Updates posted to MainForm --------------------------------------------------------------- }
 
@@ -1444,6 +1541,9 @@ begin
     end;}
     mnuFrame.Merge(NewForm.Menu);
     NewForm.Show;
+    {$IFDEF COVID19}
+    FormResize(Self);
+    {$ENDIF}
   end;
   lstCIRNLocations.Visible := False;
   pnlCIRN.BevelOuter := bvRaised;
@@ -1609,6 +1709,9 @@ begin
     SetUpCIRN;
     DisplayEncounterText;
     SetShareNode(DFN, Handle);
+{$IFDEF COVID19}
+    setOtherInfoPanel;
+{$ENDIF}
     with Patient do
       NotifyOtherApps(NAE_NEWPT, SSN + U + FloatToStr(DOB) + U + Name);
     SelectMsg := '';
@@ -1889,6 +1992,9 @@ begin
     aDefault := '';
 
   PatientSelect(Sender,aDefault);
+{$IFDEF COVID19}
+  setOtherInfoPanel;
+{$ENDIF}
 end;
 
 procedure TfrmFrame.PatientSelect(aSender: TObject;Default: String = '');
@@ -1913,6 +2019,10 @@ begin
   PtSelCancelled := FALSE;
   if not FRefreshing then mnuFile.Tag := 0
   else mnuFile.Tag := 1;
+{$IFDEF COVID19}
+  pnlOtherInfo.Caption := '';
+  pnlOtherInfo.Repaint;
+{$ENDIF}
   DetermineNextTab;
 (*  if (FRefreshing or User.UseLastTab) and (not FFirstLoad) then
     NextTab := TabToPageID(tabPage.TabIndex)
@@ -2100,7 +2210,12 @@ begin
     end;
   finally
     if (not FRefreshing) and (Patient.DFN = SaveDFN) then
-      RemindersStarted := OldRemindersStarted;
+      begin
+        RemindersStarted := OldRemindersStarted;
+        {$IFDEF COVID19}
+        setOtherInfoPanel;
+        {$ENDIF}
+      end;
     FFirstLoad := False;
   end;
  {Begin BillingAware}
@@ -2688,6 +2803,10 @@ end;
 procedure TfrmFrame.FormResize(Sender: TObject);
 { need to resize tab forms specifically since they don't inherit resize event (because they
   are derived from TForm itself) }
+{$IFDEF COVID19}
+var
+  r: TRect;
+{$ENDIF}
 begin
   if FTerminate or FClosing then Exit;
   if csDestroying in ComponentState then Exit;
@@ -2716,6 +2835,21 @@ begin
     FNextButton.Left := FNextButtonL;
     FNextButton.Top := stsArea.Top;
   end;
+{$IFDEF COVID19}
+  if Self.WindowState <> wsMaximized then
+  begin
+    r := Screen.MonitorFromWindow(Self.Handle).WorkareaRect;
+
+    if height > r.Height then
+    begin
+      height := r.Height;
+      top := r.top;
+    end;
+    if (top+height) > r.Bottom then
+      top := r.Bottom-height;
+    if (top < r.Top) then top := r.Top;
+  end;
+{$ENDIF}
   Self.Repaint;
 end;
 
@@ -2778,7 +2912,7 @@ begin
            end;
          end;
       //end VAA
-
+      pnlOtherInfo.Font.Size := NewFontSize;
       RefreshFixedStatusWidth;
       FormResize( self );
     finally
@@ -3720,6 +3854,10 @@ begin
   tmpDFN := Patient.DFN;
   Patient.Clear;
   Patient.DFN := tmpDFN;
+{$IFDEF COVID19}
+  pnlOtherInfo.Caption := '';
+  pnlOtherInfo.Repaint;
+{$ENDIF}
   uCore.TempEncounterLoc := 0;  //hds7591  Clinic/Ward movement.
   uCore.TempEncounterLocName := ''; //hds7591  Clinic/Ward movement.
   uCore.TempEncounterText := '';
@@ -3790,6 +3928,9 @@ begin
   end;
   //if User.IsProvider then Encounter.Provider := ;
   DisplayEncounterText;
+{$IFDEF COVID19}
+  setOtherInfoPanel;
+{$ENDIF}
 end;
 
 procedure TfrmFrame.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -4509,6 +4650,43 @@ procedure TfrmFrame.pnlFlagMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
   pnlFlag.BevelOuter := bvRaised;
+end;
+
+procedure TfrmFrame.pnlOtherInfoClick(Sender: TObject);
+var
+  details: TSTrings;
+begin
+  inherited;
+{$IFDEF COVID19}
+  if not fotherPanelShowReportBox then exit;
+  details := TStringList.Create;
+  try
+    otherInformationPanelDetails(patient.DFN, fotherPanelType, details);
+    ReportBox(details, self.pnlOtherInfo.Caption, True);
+  finally
+    FreeAndNil(details);
+  end;
+{$ENDIF}
+end;
+
+procedure TfrmFrame.pnlOtherInfoMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  inherited;
+{$IFDEF COVID19}
+  if not fotherPanelShowReportBox then exit;
+  pnlOtherInfo.BevelOuter := bvLowered;
+{$ENDIF}
+end;
+
+procedure TfrmFrame.pnlOtherInfoMouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  inherited;
+{$IFDEF COVID19}
+  if not fotherPanelShowReportBox then exit;
+  pnlOtherInfo.BevelOuter := bvRaised;
+{$ENDIF}
 end;
 
 procedure TfrmFrame.pnlFlagClick(Sender: TObject);
