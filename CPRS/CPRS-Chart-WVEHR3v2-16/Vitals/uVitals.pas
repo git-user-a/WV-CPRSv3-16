@@ -629,14 +629,14 @@ var
 begin
   if VitalsDLLHandle = 0 then
   begin
-{$IFDEF WORLDVISTA}
+{ $ IFDEF WORLDVISTA}
     if FileExists(VitalsDLLName) then
       GMV_LibName := VitalsDllName
     else
       GMV_LibName := GetProgramFilesPath + SHARE_DIR + VitalsDLLName;
-{$ELSE}
-    GMV_LibName := GetProgramFilesPath + SHARE_DIR + VitalsDLLName;
-{$ENDIF}
+{ $ ELSE}
+//    GMV_LibName := GetProgramFilesPath + SHARE_DIR + VitalsDLLName;
+{ $ ENDIF}
     GMV_LibName := StringReplace(GMV_LibName, '\\','\',[rfReplaceAll]);
     if FileExists(GMV_LibName) then
       VitalsDLLHandle := LoadLibrary(PChar(GMV_LibName));

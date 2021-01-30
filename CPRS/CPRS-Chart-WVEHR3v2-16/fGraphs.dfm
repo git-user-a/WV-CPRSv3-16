@@ -3,19 +3,20 @@ inherited frmGraphs: TfrmGraphs
   Top = 279
   BorderIcons = []
   BorderStyle = bsNone
-  Caption = 'CPRS Graphing - CPRSpatient,One'
-  ClientHeight = 400
-  ClientWidth = 592
+  Caption = 'r '
+  ClientHeight = 587
+  ClientWidth = 780
   PopupMenu = mnuPopGraphStuff
   Position = poDesigned
-  ExplicitWidth = 592
-  ExplicitHeight = 400
+  OnResize = FormResize
+  ExplicitWidth = 780
+  ExplicitHeight = 587
   PixelsPerInch = 96
   TextHeight = 13
   object pnlHeader: TPanel [0]
     Left = 0
     Top = 0
-    Width = 592
+    Width = 780
     Height = 21
     Align = alTop
     BevelOuter = bvNone
@@ -25,13 +26,13 @@ inherited frmGraphs: TfrmGraphs
       Top = 0
       Width = 73
       Height = 17
-      TabOrder = 1
+      TabOrder = 0
       Visible = False
     end
     object pnlInfo: TORAutoPanel
       Left = 0
       Top = 0
-      Width = 592
+      Width = 780
       Height = 21
       Align = alClient
       BevelOuter = bvNone
@@ -43,53 +44,18 @@ inherited frmGraphs: TfrmGraphs
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
-      TabOrder = 2
-    end
-    object chartBase: TChart
-      Left = 146
-      Top = -2
-      Width = 105
-      Height = 17
-      AllowPanning = pmNone
-      BackWall.Brush.Style = bsClear
-      Gradient.EndColor = clPurple
-      Gradient.Visible = True
-      Legend.Alignment = laTop
-      Legend.LegendStyle = lsSeries
-      Legend.ResizeChart = False
-      Title.Text.Strings = (
-        'fsdfs dfs fsd')
-      Title.Visible = False
-      OnClickLegend = chartBaseClickLegend
-      OnClickSeries = chartBaseClickSeries
-      OnUndoZoom = ChartOnUndoZoom
-      OnZoom = ChartOnZoom
-      BottomAxis.Automatic = False
-      BottomAxis.AutomaticMaximum = False
-      BottomAxis.AutomaticMinimum = False
-      BottomAxis.Increment = 0.000694444444444444
-      BottomAxis.Maximum = 25.000000000000000000
-      BottomAxis.Visible = False
-      TopAxis.LabelsOnAxis = False
-      View3D = False
-      Zoom.Allow = False
-      Color = clRed
-      TabOrder = 0
-      Visible = False
-      OnDblClick = mnuPopGraphDetailsClick
-      OnMouseDown = chartBaseMouseDown
-      OnMouseUp = chartBaseMouseUp
-      DefaultCanvas = 'TGDIPlusCanvas'
-      ColorPaletteIndex = 13
+      TabOrder = 1
     end
   end
   object pnlFooter: TPanel [1]
     Left = 0
-    Top = 371
-    Width = 592
+    Top = 558
+    Width = 780
     Height = 29
     Align = alBottom
     BevelOuter = bvNone
+    Color = clSilver
+    ParentBackground = False
     TabOrder = 2
     object lblDateRange: TLabel
       Left = 3
@@ -97,15 +63,6 @@ inherited frmGraphs: TfrmGraphs
       Width = 61
       Height = 13
       Caption = 'Date Range:'
-    end
-    object btnClose: TButton
-      Left = 510
-      Top = 4
-      Width = 70
-      Height = 21
-      Caption = 'Close'
-      TabOrder = 4
-      OnClick = btnCloseClick
     end
     object btnChangeSettings: TButton
       Left = 380
@@ -130,12 +87,11 @@ inherited frmGraphs: TfrmGraphs
         'S^Date Range...'
         '1^Today'
         '2^One Week'
-        '3^Two Weeks'
-        '4^One Month'
-        '5^Six Months'
-        '6^One Year'
-        '7^Two Years'
-        '8^All Results')
+        '3^One Month'
+        '4^Six Months'
+        '5^One Year'
+        '6^Two Years'
+        '7^All Results')
       ItemHeight = 13
       ItemTipColor = clWindow
       ItemTipEnable = True
@@ -171,19 +127,46 @@ inherited frmGraphs: TfrmGraphs
       TabOrder = 2
       OnClick = btnGraphSelectionsClick
     end
+    object btnAxis: TButton
+      AlignWithMargins = True
+      Left = 638
+      Top = 3
+      Width = 63
+      Height = 23
+      Align = alRight
+      Caption = 'Adjust Axis'
+      TabOrder = 4
+      OnClick = btnAxisClick
+      ExplicitLeft = 569
+      ExplicitTop = 6
+    end
+    object btnClose: TButton
+      AlignWithMargins = True
+      Left = 707
+      Top = 3
+      Width = 70
+      Height = 23
+      Align = alRight
+      Caption = 'Close'
+      TabOrder = 5
+      OnClick = btnCloseClick
+      ExplicitTop = 24
+      ExplicitHeight = 531
+    end
   end
   object pnlMain: TPanel [2]
     Left = 0
     Top = 21
-    Width = 592
-    Height = 350
+    Width = 699
+    Height = 537
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 1
+    ExplicitWidth = 780
     object splGraphs: TSplitter
       Left = 0
-      Top = 249
-      Width = 592
+      Top = 436
+      Width = 699
       Height = 3
       Cursor = crVSplit
       Align = alBottom
@@ -192,21 +175,23 @@ inherited frmGraphs: TfrmGraphs
       ParentColor = False
       OnMoved = splGraphsMoved
       ExplicitTop = 261
+      ExplicitWidth = 592
     end
     object pnlTop: TPanel
       Tag = 1
       Left = 0
       Top = 0
-      Width = 592
-      Height = 249
+      Width = 699
+      Height = 436
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 0
+      ExplicitWidth = 780
       object splItemsTop: TSplitter
         Left = 148
         Top = 0
         Width = 2
-        Height = 249
+        Height = 436
         AutoSnap = False
         Beveled = True
         MinSize = 15
@@ -217,7 +202,7 @@ inherited frmGraphs: TfrmGraphs
         Left = 0
         Top = 0
         Width = 148
-        Height = 249
+        Height = 436
         Align = alLeft
         BevelOuter = bvNone
         TabOrder = 0
@@ -267,21 +252,17 @@ inherited frmGraphs: TfrmGraphs
           Left = 0
           Top = 22
           Width = 148
-          Height = 227
+          Height = 414
           ActivePage = tsTopItems
           Align = alClient
           TabOrder = 1
           object tsTopItems: TTabSheet
             Caption = 'Items'
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object lvwItemsTop: TListView
               Left = 0
               Top = 0
               Width = 140
-              Height = 199
+              Height = 386
               Align = alClient
               BevelInner = bvNone
               BevelOuter = bvNone
@@ -324,13 +305,9 @@ inherited frmGraphs: TfrmGraphs
           object tsTopViews: TTabSheet
             Caption = 'Views'
             ImageIndex = 1
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object splViewsTop: TSplitter
               Left = 0
-              Top = 196
+              Top = 383
               Width = 140
               Height = 2
               Cursor = crVSplit
@@ -342,7 +319,7 @@ inherited frmGraphs: TfrmGraphs
               Left = 0
               Top = 0
               Width = 140
-              Height = 196
+              Height = 383
               Align = alClient
               ItemHeight = 13
               ParentShowHint = False
@@ -358,7 +335,7 @@ inherited frmGraphs: TfrmGraphs
             end
             object memViewsTop: TRichEdit
               Left = 0
-              Top = 198
+              Top = 385
               Width = 140
               Height = 1
               Align = alBottom
@@ -383,48 +360,47 @@ inherited frmGraphs: TfrmGraphs
           object tsTopCustom: TTabSheet
             Caption = 'Custom'
             ImageIndex = 2
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
           end
         end
       end
       object pnlTopRightPad: TPanel
         Tag = 50
-        Left = 577
+        Left = 684
         Top = 0
         Width = 15
-        Height = 249
+        Height = 436
         Align = alRight
         BevelOuter = bvNone
         TabOrder = 1
+        ExplicitLeft = 765
       end
       object pnlScrollTopBase: TPanel
         Left = 150
         Top = 0
-        Width = 426
-        Height = 249
+        Width = 533
+        Height = 436
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 2
         OnResize = pnlScrollTopBaseResize
+        ExplicitWidth = 614
         object pnlBlankTop: TPanel
           Left = 0
           Top = 0
-          Width = 426
-          Height = 219
+          Width = 533
+          Height = 406
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 2
           Visible = False
+          ExplicitWidth = 614
         end
         object scrlTop: TScrollBox
           Tag = 5
           Left = 0
           Top = 0
-          Width = 426
-          Height = 219
+          Width = 533
+          Height = 406
           Align = alClient
           BevelInner = bvNone
           BevelOuter = bvNone
@@ -432,19 +408,22 @@ inherited frmGraphs: TfrmGraphs
           Color = clBtnFace
           ParentColor = False
           TabOrder = 0
+          ExplicitWidth = 614
         end
         object pnlDatelineTop: TPanel
           Left = 0
-          Top = 219
-          Width = 426
+          Top = 406
+          Width = 533
           Height = 30
           Align = alBottom
           BevelOuter = bvNone
+          ParentBackground = False
           TabOrder = 1
+          ExplicitWidth = 614
           object chartDatelineTop: TChart
             Left = 20
             Top = 0
-            Width = 406
+            Width = 513
             Height = 30
             AllowPanning = pmNone
             BackWall.Brush.Style = bsClear
@@ -498,10 +477,12 @@ inherited frmGraphs: TfrmGraphs
             View3DWalls = False
             Align = alClient
             BevelOuter = bvNone
+            ParentColor = True
             TabOrder = 0
             OnDblClick = mnuPopGraphDetailsClick
             OnMouseDown = chartBaseMouseDown
             OnMouseUp = chartBaseMouseUp
+            ExplicitWidth = 594
             DefaultCanvas = 'TGDIPlusCanvas'
             ColorPaletteIndex = 13
             object serDatelineTop: TGanttSeries
@@ -533,15 +514,17 @@ inherited frmGraphs: TfrmGraphs
             Height = 30
             Align = alLeft
             BevelOuter = bvNone
+            ParentBackground = False
+            ParentColor = True
             TabOrder = 1
           end
         end
       end
       object memTop: TMemo
-        Left = 576
+        Left = 683
         Top = 0
         Width = 1
-        Height = 249
+        Height = 436
         Align = alRight
         BevelInner = bvNone
         BevelOuter = bvNone
@@ -559,17 +542,19 @@ inherited frmGraphs: TfrmGraphs
         OnEnter = memTopEnter
         OnExit = memTopExit
         OnKeyDown = memTopKeyDown
+        ExplicitLeft = 764
       end
     end
     object pnlBottom: TPanel
       Tag = 1
       Left = 0
-      Top = 252
-      Width = 592
+      Top = 439
+      Width = 699
       Height = 98
       Align = alBottom
       BevelOuter = bvNone
       TabOrder = 1
+      ExplicitWidth = 780
       object splItemsBottom: TSplitter
         Left = 148
         Top = 0
@@ -637,10 +622,6 @@ inherited frmGraphs: TfrmGraphs
           TabOrder = 1
           object tsBottomItems: TTabSheet
             Caption = 'Items'
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object lvwItemsBottom: TListView
               Left = 0
               Top = 0
@@ -649,6 +630,7 @@ inherited frmGraphs: TfrmGraphs
               Align = alClient
               BevelInner = bvNone
               BevelOuter = bvNone
+              Color = clInfoBk
               Columns = <
                 item
                   Caption = 'Item'
@@ -688,10 +670,6 @@ inherited frmGraphs: TfrmGraphs
           object tsBottomViews: TTabSheet
             Caption = 'Views'
             ImageIndex = 1
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object splViewsBottom: TSplitter
               Left = 0
               Top = 45
@@ -746,53 +724,53 @@ inherited frmGraphs: TfrmGraphs
           object tsBottomCustom: TTabSheet
             Caption = 'Custom'
             ImageIndex = 2
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
           end
         end
       end
       object pnlBottomRightPad: TPanel
         Tag = 50
-        Left = 577
+        Left = 684
         Top = 0
         Width = 15
         Height = 98
         Align = alRight
         BevelOuter = bvNone
         TabOrder = 1
+        ExplicitLeft = 765
       end
       object pnlScrollBottomBase: TPanel
         Left = 150
         Top = 0
-        Width = 426
+        Width = 533
         Height = 98
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 2
+        ExplicitWidth = 614
         object pnlBlankBottom: TPanel
           Left = 0
           Top = 0
-          Width = 426
+          Width = 533
           Height = 68
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 2
           Visible = False
+          ExplicitWidth = 614
         end
         object pnlDatelineBottom: TPanel
           Left = 0
           Top = 68
-          Width = 426
+          Width = 533
           Height = 30
           Align = alBottom
           BevelOuter = bvNone
           TabOrder = 1
+          ExplicitWidth = 614
           object chartDatelineBottom: TChart
             Left = 20
             Top = 0
-            Width = 406
+            Width = 513
             Height = 30
             AllowPanning = pmNone
             BackWall.Brush.Style = bsClear
@@ -816,7 +794,8 @@ inherited frmGraphs: TfrmGraphs
             BottomAxis.AutomaticMinimum = False
             BottomAxis.DateTimeFormat = 'M/d/yyyy'
             BottomAxis.Increment = 0.000694444444444444
-            BottomAxis.Maximum = 25.000000000000000000
+            BottomAxis.Maximum = 44255.000000000000000000
+            BottomAxis.Minimum = 44209.000000000000000000
             Frame.Visible = False
             LeftAxis.Automatic = False
             LeftAxis.AutomaticMaximum = False
@@ -848,6 +827,7 @@ inherited frmGraphs: TfrmGraphs
             OnDblClick = mnuPopGraphDetailsClick
             OnMouseDown = chartBaseMouseDown
             OnMouseUp = chartBaseMouseUp
+            ExplicitWidth = 594
             DefaultCanvas = 'TGDIPlusCanvas'
             ColorPaletteIndex = 13
             object serDatelineBottom: TGanttSeries
@@ -886,7 +866,7 @@ inherited frmGraphs: TfrmGraphs
           Tag = 5
           Left = 0
           Top = 0
-          Width = 426
+          Width = 533
           Height = 68
           Align = alClient
           BevelInner = bvNone
@@ -894,10 +874,11 @@ inherited frmGraphs: TfrmGraphs
           Color = clBtnFace
           ParentColor = False
           TabOrder = 0
+          ExplicitWidth = 614
         end
       end
       object memBottom: TMemo
-        Left = 576
+        Left = 683
         Top = 0
         Width = 1
         Height = 98
@@ -918,10 +899,52 @@ inherited frmGraphs: TfrmGraphs
         OnEnter = memBottomEnter
         OnExit = memBottomExit
         OnKeyDown = memBottomKeyDown
+        ExplicitLeft = 764
       end
     end
   end
+  object chartBase: TChart [3]
+    Left = 699
+    Top = 21
+    Width = 81
+    Height = 537
+    AllowPanning = pmNone
+    BackWall.Brush.Style = bsClear
+    Gradient.EndColor = clPurple
+    Gradient.Visible = True
+    Legend.Alignment = laTop
+    Legend.LegendStyle = lsSeries
+    Legend.ResizeChart = False
+    Title.Text.Strings = (
+      'fsdfs dfs fsd')
+    Title.Visible = False
+    OnClickLegend = chartBaseClickLegend
+    OnClickSeries = chartBaseClickSeries
+    OnUndoZoom = ChartOnUndoZoom
+    OnZoom = ChartOnZoom
+    BottomAxis.Automatic = False
+    BottomAxis.AutomaticMaximum = False
+    BottomAxis.AutomaticMinimum = False
+    BottomAxis.Increment = 0.000694444444444444
+    BottomAxis.Maximum = 25.000000000000000000
+    BottomAxis.Visible = False
+    TopAxis.LabelsOnAxis = False
+    View3D = False
+    Zoom.Allow = False
+    Align = alRight
+    Color = clRed
+    TabOrder = 3
+    Visible = False
+    OnDblClick = mnuPopGraphDetailsClick
+    OnMouseDown = chartBaseMouseDown
+    OnMouseUp = chartBaseMouseUp
+    ExplicitLeft = 0
+    DefaultCanvas = 'TGDIPlusCanvas'
+    ColorPaletteIndex = 13
+  end
   inherited amgrMain: TVA508AccessibilityManager
+    Left = 208
+    Top = 120
     Data = (
       (
         'Component = pnlHeader'
@@ -1073,11 +1096,15 @@ inherited frmGraphs: TfrmGraphs
         'Status = stsDefault')
       (
         'Component = memViewsBottom'
+        'Status = stsDefault')
+      (
+        'Component = btnAxis'
         'Status = stsDefault'))
   end
   object mnuPopGraphStuff: TPopupMenu
     OnPopup = mnuPopGraphStuffPopup
-    Left = 30
+    Left = 262
+    Top = 120
     object mnuPopGraphDetails: TMenuItem
       Caption = 'Details...'
       Enabled = False
@@ -1282,18 +1309,21 @@ inherited frmGraphs: TfrmGraphs
     LabelStop = 'End Date'
     RequireTime = False
     Format = 'mmm d,yy@hh:nn'
-    Left = 59
+    Left = 355
+    Top = 120
   end
   object dlgDate: TORDateTimeDlg
     FMDateTime = 3040806.000000000000000000
     DateOnly = True
     RequireTime = False
-    Left = 88
+    Left = 440
+    Top = 112
   end
   object timHintPause: TTimer
     Enabled = False
     Interval = 100
     OnTimer = timHintPauseTimer
-    Left = 117
+    Left = 501
+    Top = 112
   end
 end

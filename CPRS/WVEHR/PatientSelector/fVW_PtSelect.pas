@@ -74,6 +74,8 @@ type
     procedure ShowDemog(ItemID: string);
     function DupLastSSN(var DFN: string): Boolean;
     procedure setFontSize(aSize: Integer);
+
+    procedure setSelectedDFN(aValue: String);
   end;
 
 var
@@ -324,12 +326,13 @@ end;
 procedure TfrmVW_PtSelect.cboPatientClick(Sender: TObject);
 { check access to selected patient, process selection if allowed }
 { AA: validation moved to CanClose }
-var
-  NewDFN: String;
+//var
+//  NewDFN: String;
 begin
   inherited;
   ShowDemog(cboPatient.ItemID);
-  NewDFN := cboPatient.ItemID;
+//  NewDFN := cboPatient.ItemID;
+  SelectedDFN := cboPatient.ItemID;
 end;
 
 procedure TfrmVW_PtSelect.cboPatientDblClick(Sender: TObject);
@@ -401,7 +404,8 @@ procedure TfrmVW_PtSelect.FormClose(Sender: TObject; var Action: TCloseAction);
 { hides istead of closing - to avoid re-creation the next time the dialog is needed }
 begin
   inherited;
-  hide;
+//  hide;
+  Close;
 end;
 
 procedure TfrmVW_PtSelect.FormCloseQuery(Sender: TObject;
@@ -418,11 +422,13 @@ begin
   else
   begin
     CanClose := false;
-    if Length(cboPatient.ItemID) <= 0 then // *DFN*
+//    if Length(cboPatient.ItemID) <= 0 then // *DFN*
+    if StrToIntDef(SelectedDFN,-1) < 0 then
+
       InfoBox('A patient has not been selected.', 'No Patient Selected', MB_OK)
     else
     begin
-      NewDFN := cboPatient.ItemID; // *DFN*
+      NewDFN := SelectedDFN;
       { AA: commented out until verified HasActiveFlag is required -------------------
         if FLastPt <> cboPatient.ItemID then
         begin
@@ -444,7 +450,6 @@ begin
         MB_YESNO or MB_DEFBUTTON2) = ID_NO) then
         exit;
 
-      SelectedDFN := NewDFN;
       CanClose := True;
     end;
   end;
@@ -461,6 +466,8 @@ procedure TfrmVW_PtSelect.FormCreate(Sender: TObject);
     begin
       setFormParented(_Alerts, pnlAlerts);
       _Alerts.AlertList;
+      _Alerts.ParentForm := self;
+      _Alerts.onSelectRecord := setSelectedDFN;
     end;
   end;
 
@@ -700,6 +707,11 @@ begin
 
   self.Invalidate;
   Application.ProcessMessages;
+end;
+
+procedure TfrmVW_PtSelect.setSelectedDFN(aValue: String);
+begin
+  SelectedDFN := aValue;
 end;
 
 end.

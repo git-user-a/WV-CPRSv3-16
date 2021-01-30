@@ -693,10 +693,14 @@ procedure TfrmDrawers.tvTemplatesGetSelectedIndex(Sender: TObject;
   Node: TTreeNode);
 begin
   //vw mod for template callup. Checks in test
+  sbTemplates.Caption := 'Templates '
+{$IFDEF DEBUG}
+    + 'Node=' + IntToStr(Node.Index) + ' VertScrollPos=' +
+    IntToStr(tvTemplates.VertScrollPos);
+{$ENDIF}
+    ;
+  // end vw mod
 
-   //Application.MessageBox(PChar('Node='+IntToStr(Node.Index)+' tvtemplates.VertScrollPos='+IntToStr(tvTemplates.VertScrollPos)),PChar(Application.Title),MB_ICONINFORMATION);
-   sbTemplates.Caption := 'Templates '+ 'Node='+IntToStr(Node.Index)+' VertScrollPos='+IntToStr(tvTemplates.VertScrollPos) ;
-  //end vw mod
   Node.SelectedIndex := dmodShared.ImgIdx(Node);
 end;
 
@@ -723,11 +727,14 @@ begin
       if(FInternalHiddenExpand) then AllowExpansion := FALSE;
     end;
   end;
-    //vw mod for template callup. Checks in test
-
-   //Application.MessageBox(PChar('Node='+IntToStr(Node.Index)+' tvtemplates.VertScrollPos='+IntToStr(tvTemplates.VertScrollPos)),PChar(Application.Title),MB_ICONINFORMATION);
-    sbTemplates.Caption := 'Templates '+ 'Node='+IntToStr(Node.Index)+' VertScrollPos='+IntToStr(tvTemplates.VertScrollPos) ;
-  //end vw mod
+  //vw mod for template callup. Checks in test
+  sbTemplates.Caption := 'Templates '
+{$IFDEF DEBUG}
+    + 'Node=' + IntToStr(Node.Index) + ' VertScrollPos=' +
+    IntToStr(tvTemplates.VertScrollPos);
+{$ENDIF}
+    ;
+  // end vw mod
 end;
 
 procedure TfrmDrawers.CheckAsk;
@@ -784,11 +791,15 @@ begin
     if(AllowCollapse) then
       FClickOccurred := FALSE;
   end;
-    //vw mod for template callup. Checks in test
+  //vw mod for template callup. Checks in test
+  sbTemplates.Caption := 'Templates '
+{$IFDEF DEBUG}
+    + 'Node=' + IntToStr(Node.Index) + ' VertScrollPos=' +
+    IntToStr(tvTemplates.VertScrollPos);
+{$ENDIF}
+    ;
+  // end vw mod
 
-   //Application.MessageBox(PChar('Node='+IntToStr(Node.Index)+' tvtemplates.VertScrollPos='+IntToStr(tvTemplates.VertScrollPos)),PChar(Application.Title),MB_ICONINFORMATION);
-    sbTemplates.Caption := 'Templates '+ 'Node='+IntToStr(Node.Index)+' VertScrollPos='+IntToStr(tvTemplates.VertScrollPos) ;
-  //end vw mod
 end;
 
 procedure TfrmDrawers.tvTemplatesKeyDown(Sender: TObject; var Key: Word;
@@ -1409,7 +1420,7 @@ begin
   if NodeID <> UserTempDefNode then
     SetUserTemplateDefaults(tvTemplates.GetNodeID(TORTreeNode(tvTemplates.Selected), 1, ';'),
                           FDefTempPiece)
-  else SetUserTemplateDefaults('', FDefTempPiece);                      
+  else SetUserTemplateDefaults('', FDefTempPiece);
 end;
 
 procedure TfrmDrawers.OpenToNode(Path: string = '');
@@ -1581,4 +1592,3 @@ initialization
   SpecifyFormIsNotADialog(TfrmDrawers);
 
 end.
-

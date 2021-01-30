@@ -11,7 +11,8 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, ORCtrls, ExtCtrls, ORFn, ORNet, ORDtTmRng, Gauges, Menus, ComCtrls,
-  UBAGlobals, UBACore, fBase508Form, VA508AccessibilityManager, uConst;
+  UBAGlobals, UBACore, fBase508Form, VA508AccessibilityManager, uConst,
+  Vcl.Buttons;
 
 type
   TfrmPtSel = class(TfrmBase508Form)
@@ -44,6 +45,8 @@ type
     txtCmdRemove: TVA508StaticText;
     txtCmdForward: TVA508StaticText;
     txtCmdProcess: TVA508StaticText;
+    pnlButtons: TPanel;
+    bbInquiryDemographics: TBitBtn;
     procedure cmdOKClick(Sender: TObject);
     procedure cmdCancelClick(Sender: TObject);
     procedure cboPatientChange(Sender: TObject);
@@ -92,6 +95,7 @@ type
     function IsOther(itemindex:Integer):Boolean;
 
     procedure onclick1(Sender: TObject);
+    procedure bbInquiryDemographicsClick(Sender: TObject);
 
   private
     FsortCol: integer;
@@ -494,6 +498,7 @@ begin
         if cboPatient.itemindex > j then
           ListPtByTimson(sltemp, cboPatient.Text)
         else
+        if cboPatient.ItemID <> '' then // AA
         begin
           sTarget := cboPatient.Text + #9 + '!' + IntToStr(cboPatient.ItemID);
           // mimics the format required by ListPtByTimson procedure
@@ -1005,8 +1010,8 @@ procedure TfrmPtSel.Loaded;
 begin
 //  inherited;
   //vwpt enhancements
-  CmdOK.parent := pnlPtSel;
-  CmdCancel.parent  :=  pnlPtSel;
+//  CmdOK.parent := pnlPtSel;
+//  CmdCancel.parent  :=  pnlPtSel;
   //end vwpt
   SetupDemographicsForm;
 
@@ -1229,6 +1234,29 @@ begin
      //                                    Remove w/o process   SubItems[7]
      //                                    Forwarding comments  SubItems[8]
      end;
+end;
+
+procedure TfrmPtSel.bbInquiryDemographicsClick(Sender: TObject);
+var
+  sl: TStringList;
+
+  procedure LoadDemographics(Dest: TStrings; const PtDFN: string);
+  // copy from rCover.pas
+  begin
+    CallVistA('ORWPT PTINQ', [PtDFN], Dest);
+  end;
+
+begin
+  if cboPatient.ItemID <> '' then
+  begin
+    sl := TStringList.Create;
+    try
+      LoadDemographics(sl, IntToStr(cboPatient.ItemID));
+      ReportBox(sl, 'Patient Inquiry', True);
+    finally
+      sl.Free;
+    end;
+  end;
 end;
 
 procedure TfrmPtSel.lstvAlertsColumnClick(Sender: TObject; Column: TListColumn);

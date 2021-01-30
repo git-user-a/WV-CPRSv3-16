@@ -43,6 +43,7 @@ type
     IsDelayOrder: boolean;
     IsControlledSubstance: boolean;
     IsDetox       : boolean;
+    doNotAddToChangeLog: boolean;//CRH AGP 1-18-21 auto release order to service
     procedure Assign(Source: TOrder);
     procedure Clear;
   end;
@@ -415,6 +416,7 @@ begin
   LinkObject   := Source.LinkObject;
   IsControlledSubstance   := Source.IsControlledSubstance;
   IsDetox   := Source.IsDetox;
+  doNotAddToChangeLog := source.doNotAddToChangeLog;//CRH AGP 1-18-21 auto release order to service
 end;
 
 procedure TOrder.Clear;
@@ -636,6 +638,8 @@ begin
     else IsControlledSubstance := False;
     if Piece(x,u,24) = '1' then IsDetox := True
     else IsDetox := False;
+     // 20210126
+    doNotAddToChangeLog := Piece(x,u,40) = '1';//CRH AGP 1-18-21 auto release order to service
   end;
 end;
 

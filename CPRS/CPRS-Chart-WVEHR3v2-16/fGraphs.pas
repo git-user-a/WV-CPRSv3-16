@@ -125,6 +125,7 @@ type
     tsTopCustom: TTabSheet;
     tsTopItems: TTabSheet;
     tsTopViews: TTabSheet;
+    btnAxis: TButton;
 
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -250,6 +251,8 @@ type
     procedure mnuMHasNumeric1Click(Sender: TObject);
     procedure mnuPopGraphViewDefinitionClick(Sender: TObject);
     procedure splViewsTopMoved(Sender: TObject);
+    procedure btnAxisClick(Sender: TObject);
+    procedure FormResize(Sender: TObject);
 
   private
     FBSortAscending: boolean;
@@ -483,6 +486,7 @@ begin
     Close;
     Exit;
   end;
+
   SetupFields(settings);
   settings1 := Piece(settings, '|', 1);
   pnlInfo.Caption := TXT_INFO;
@@ -718,9 +722,9 @@ begin
   ChangeStyle;
   StayOnTop;
   mnuPopGraphResetClick(self);
-  if pnlFooter.Tag = 1 then  // do not show footer controls on reports tab
+  if pnlFooter.Tag  = 1 then  // do not show footer controls on reports tab
   begin
-    pnlFooter.Visible := false;
+//AA    pnlFooter.Visible := false;
     if FCreate then
     begin
       FGraphType := GRAPH_REPORT;
@@ -740,7 +744,7 @@ begin
     end;
   end;
   if length(pnlFooter.Hint) > 1 then      // if context use all results
-    cboDateRange.ItemIndex := 8
+    cboDateRange.ItemIndex := 7
   else
     DateDefaults;
   cboDateRangeChange(self);
@@ -951,14 +955,21 @@ begin
   Close;
 end;
 
+procedure TfrmGraphs.btnAxisClick(Sender: TObject);
+begin
+  inherited;
+  BottomAxis(scrlTop);
+  BottomAxis(scrlBottom);
+end;
+
 procedure TfrmGraphs.btnChangeSettingsClick(Sender: TObject);
 var
   needtoupdate, okbutton: boolean;
-  conv, i, preconv: integer;
-  PreMaxGraphs: integer;
-  PreMaxSelect: integer;
-  PreMinGraphHeight: integer;
-  PreSortColumn: integer;
+  conv, i, preconv: Integer;
+  PreMaxGraphs: Integer;
+  PreMaxSelect: Integer;
+  PreMinGraphHeight: Integer;
+  PreSortColumn: Integer;
   PreFixedDateRange: boolean;
   PreMergeLabs: boolean;
   aSettings, filetype, sourcetype: string;
@@ -980,9 +991,12 @@ begin
   end;
   PreSources := TStringList.Create;
   FastAssign(FSources, PreSources);
-  DialogGraphSettings(Font.Size, okbutton, FGraphSetting, FSources, conv, aSettings);
-  if not okbutton then exit;
-  if length(aSettings) > 0 then SetCurrentSetting(aSettings);
+  DialogGraphSettings(Font.Size, okbutton, FGraphSetting, FSources, conv,
+    aSettings);
+  if not okbutton then
+    Exit;
+  if length(aSettings) > 0 then
+    SetCurrentSetting(aSettings);
   btnChangeSettings.Tag := conv;
   pnlInfo.Font.Size := chkItemsTop.Font.Size;
   SetFontSize(chkItemsTop.Font.Size);
@@ -995,7 +1009,7 @@ begin
   for i := 0 to FSources.Count - 1 do
   begin
     sourcetype := FSources[i];
-    if Copy(sourcetype, 1, 1) = '*' then
+    if copy(sourcetype, 1, 1) = '*' then
     begin
       FSources[i] := Pieces(sourcetype, '^', 2, 4);
       if not FFastItems then
@@ -1012,19 +1026,19 @@ begin
         needtoupdate := not TypeIsDisplayed(Piece(sourcetype, '^', 1));
   end;
   if not needtoupdate then
-  with FGraphSetting do
-    if MaxGraphs <> PreMaxGraphs then
-      needtoupdate := true
-    else if MaxSelect <> PreMaxSelect then
-      needtoupdate := true
-    else if MinGraphHeight <> PreMinGraphHeight then
-      needtoupdate := true
-    else if SortColumn <> PreSortColumn then
-      needtoupdate := true
-    else if MergeLabs <> PreMergeLabs then
-      needtoupdate := true
-    else if FixedDateRange <> PreFixedDateRange then
-      needtoupdate := true;
+    with FGraphSetting do
+      if MaxGraphs <> PreMaxGraphs then
+        needtoupdate := true
+      else if MaxSelect <> PreMaxSelect then
+        needtoupdate := true
+      else if MinGraphHeight <> PreMinGraphHeight then
+        needtoupdate := true
+      else if SortColumn <> PreSortColumn then
+        needtoupdate := true
+      else if MergeLabs <> PreMergeLabs then
+        needtoupdate := true
+      else if FixedDateRange <> PreFixedDateRange then
+        needtoupdate := true;
   if needtoupdate then
   begin
     cboDateRangeChange(self);
@@ -1121,7 +1135,7 @@ begin
   lvwItemsBottom.Items.Clear;
   lvwItemsTop.SortType := stNone; // if Sorting during load then potential error
   lvwItemsBottom.SortType := stNone; // if Sorting during load then potential error
-  if (cboDateRange.ItemIndex > 0) and (cboDateRange.ItemIndex < 9) then
+  if (cboDateRange.ItemIndex > 0) and (cboDateRange.ItemIndex < 8) then
   begin
     if TypeIsDisplayed('405') then
       DateRangeItems(oldestdate, newestdate, '405');  // does not matter for all results ******************
@@ -1153,7 +1167,7 @@ begin
       end;
     end;
   end
-  else if (cboDateRange.ItemIndex = 0) or (cboDateRange.ItemIndex > 8) then
+  else if (cboDateRange.ItemIndex = 0) or (cboDateRange.ItemIndex > 7) then
   begin     // manual date range selection
     for i := 0 to GtslAllTypes.Count - 1 do
     begin
@@ -1222,6 +1236,7 @@ var
   filename, iteminfo, itemnum, oldtempiteminfo, tempiteminfo, tempitemnum: string;
 begin
   FastAssign(rpcDateItem(oldestdate, newestdate, filenum, Patient.DFN), GtslScratchTemp);
+
   filename := FileNameX(filenum);
   lvwItemsTop.Items.BeginUpdate;
   oldtempiteminfo := '';
@@ -1717,6 +1732,8 @@ begin
   else
     MakeTogetherMaybe(aScrollBox, aListView, aRightPad, aSection);
   DisplayDataInfo(aScrollBox, aMemo);
+
+  BottomAxis(aScrollBox); //AA forcing graph date range
 end;
 
 procedure TfrmGraphs.DisplayDataInfo(aScrollBox: TScrollBox; aMemo: TMemo);
@@ -1780,7 +1797,6 @@ begin
   end;
 end;
 
-
 procedure TfrmGraphs.chkItemsTopClick(Sender: TObject);
 begin
   Screen.Cursor := crHourGlass;
@@ -1819,8 +1835,11 @@ begin
     begin
       Automatic := false;
       Minimum := 0;
-      Maximum := chartDatelineTop.BottomAxis.Maximum;
-      Minimum := chartDatelineTop.BottomAxis.Minimum;
+//AA testing: v31b (lines 1841,1842) vs WV (1843, 1844)
+//      Maximum := chartDatelineTop.BottomAxis.Maximum;
+//      Minimum := chartDatelineTop.BottomAxis.Minimum;
+      Maximum := FMDateTimeToDateTime(FGraphSetting.FMStopDate);
+      Minimum := FMDateTimeToDateTime(FGraphSetting.FMStartDate);
     end;
   end;
 end;
@@ -1830,10 +1849,16 @@ begin
   with FGraphSetting do
   begin
     if HighTime = 0 then exit;  // no data to chart clear form ???
+
+    chartDatelineTop.BottomAxis.Maximum := chartDatelineTop.BottomAxis.Minimum + HighTime;
+
     chartDatelineTop.BottomAxis.Minimum := 0;  // avoid possible error
     chartDatelineTop.BottomAxis.Maximum := HighTime;
     if LowTime < HighTime then
       chartDatelineTop.BottomAxis.Minimum := LowTime;
+
+    chartDatelineBottom.BottomAxis.Maximum := chartDatelineBottom.BottomAxis.Minimum + HighTime;
+
     chartDatelineBottom.BottomAxis.Minimum := 0;  // avoid possible error
     chartDatelineBottom.BottomAxis.Maximum := HighTime;
     if HighTime > FMDateTimeToDateTime(FMStopDate) then
@@ -2553,6 +2578,7 @@ begin
     View3D := false;
     Chart3DPercent := 10;
     AllowPanning := pmNone;
+    Zoom.Pen.Color := chartBase.Zoom.Pen.Color;
     Gradient.EndColor := clGradientActiveCaption;
     Gradient.StartColor := clWindow;
     Legend.LegendStyle := lsSeries;
@@ -3485,7 +3511,7 @@ begin
   AddRow(worksheet, '1', 'Type', 'Item', 'Date1', 'Date2', 'Value', 'Other');
   cnt := 1;
   FillData(lvwItemsTop, worksheet, cnt);
-  if lvwItemsBottom.Items.Count > 0 then 
+  if lvwItemsBottom.Items.Count > 0 then
   begin
     cnt := cnt + 1;
     linestring := inttostr(cnt);
@@ -3564,6 +3590,7 @@ procedure TfrmGraphs.ChartStyle(aChart: TChart);
 var
   j: integer;
 begin
+
   with aChart do
   begin
     View3D := FGraphSetting.View3D;
@@ -3573,6 +3600,7 @@ begin
     Legend.Visible := FGraphSetting.Legend;
     HideDates(aChart);
     pnlHeader.Visible := pnlInfo.Visible;
+
     if FGraphSetting.ClearBackground then
     begin
       Color := clWindow;
@@ -3587,6 +3615,7 @@ begin
       pnlBlankTop.Color := clBtnFace;
       pnlBlankBottom.Color := clBtnFace;
     end;
+
     for j := 0 to SeriesCount - 1 do
     begin
       if Series[j] is TLineSeries then
@@ -4336,7 +4365,7 @@ begin
   mnuPopGraphReset.Enabled := mnuPopGraphSwap.Enabled;
   mnuPopGraphCopy.Enabled := mnuPopGraphSwap.Enabled;
   mnuPopGraphPrint.Enabled := mnuPopGraphSwap.Enabled;
-  
+
   with pnlMain.Parent do
   if BorderWidth <> 1 then            // only do on float Graph
     mnuPopGraphStayOnTop.Enabled :=false
@@ -4738,6 +4767,7 @@ begin
   uDateStart := FGraphSetting.FMStartDate;
   uDateStop  := FGraphSetting.FMStopDate;
   FilterListView(FGraphSetting.FMStartDate, FGraphSetting.FMStopDate);
+
   SelReset(GtslSelCopyTop, lvwItemsTop);
   SelReset(GtslSelCopyBottom, lvwItemsBottom);
   DisplayData('top');
@@ -4745,6 +4775,10 @@ begin
   if lstViewsTop.ItemIndex > 1 then lstViewsTopChange(self);
   if lstViewsBottom.ItemIndex > 1 then lstViewsBottomChange(self);
   HideGraphs(false);
+
+  //AA -- resetting bottom axis of the graphs
+  BottomAxis(scrlTop);
+  BottomAxis(scrlBottom);
 end;
 
 procedure TfrmGraphs.DateSteps(dateranges: string);
@@ -4759,7 +4793,7 @@ begin
   with FGraphSetting do
   case datetag of
   0:  begin
-        if cboDateRange.ItemIndex > 8 then    // selected date range
+        if cboDateRange.ItemIndex > 7 then    // selected date range
         begin
           if dateranges = '' then dateranges := cboDateRange.Items[cboDateRange.ItemIndex];
           manualstart := Piece(dateranges, '^' , 6);
@@ -4778,12 +4812,11 @@ begin
       end;
   1:  FMStartDate := FMToday;
   2:  FMStartDate := FMDateTimeOffsetBy(FMToday, -7);
-  3:  FMStartDate := FMDateTimeOffsetBy(FMToday, -14);
-  4:  FMStartDate := FMDateTimeOffsetBy(FMToday, -30);
-  5:  FMStartDate := FMDateTimeOffsetBy(FMToday, -183);
-  6:  FMStartDate := FMDateTimeOffsetBy(FMToday, -365);
-  7:  FMStartDate := FMDateTimeOffsetBy(FMToday, -730);
-  8:  FMStartDate := FM_START_DATE;   // earliest recorded values
+  3:  FMStartDate := FMDateTimeOffsetBy(FMToday, -30);
+  4:  FMStartDate := FMDateTimeOffsetBy(FMToday, -183);
+  5:  FMStartDate := FMDateTimeOffsetBy(FMToday, -365);
+  6:  FMStartDate := FMDateTimeOffsetBy(FMToday, -730);
+  7:  FMStartDate := FM_START_DATE;   // earliest recorded values
   else
       begin
         if dateranges = '' then dateranges := cboDateRange.Items[cboDateRange.ItemIndex];
@@ -4995,6 +5028,8 @@ begin    // uses lvwItems... Tag as index for view selection
       lstViewsTopChange(lstViewsTop);
     end;
   end;
+  BottomAxis(scrlTop);   //AA
+  BottomAxis(scrlBottom);//AA
 end;
 
 // when using Reports graph and Float graph, multispec lab tests need to update correctly
@@ -5710,7 +5745,7 @@ begin
       newtest := Piece(newline, '^', 2) + '.0';
       SetPiece(newline, '^', 2, newtest);
       GtslScratchLab[i] := newline;
-    end;  
+    end;
     FastAddStrings(GtslScratchLab, GtslData);    //&&&&&
     SpecRefSet(aItemType, aItemName);
     filename := FileNameX('63');
@@ -6200,6 +6235,10 @@ procedure TfrmGraphs.BaseResize(aScrollBox: TScrollBox);
 var
   displayheight, displaynum, i: integer;
 begin
+
+  if not assigned(FGraphSetting) then //AA - fixing crash on early resize
+    exit;
+
   ChartOnZoom(chartDatelineTop);
   with aScrollBox do
   begin
@@ -7597,6 +7636,13 @@ end;
 procedure TfrmGraphs.FormDestroy(Sender: TObject);
 begin
   SetSize;
+end;
+
+procedure TfrmGraphs.FormResize(Sender: TObject);
+begin
+  inherited;
+  BottomAxis(scrlTop);
+  BottomAxis(scrlBottom);
 end;
 
 procedure TfrmGraphs.SetFontSize(FontSize: integer);

@@ -170,6 +170,19 @@ begin
 end;
 
 procedure TfrmOrdersTS.cmdOKClick(Sender: TObject);   
+{=========================================================================================}
+{  RetrieveValueFromIndex - Acts like old ValueFromIndex                                  }
+{-----------------------------------------------------------------------------------------}
+{  XE3 changed the Value From Index to include calculating with the delimiter character.  }
+{  This routine uses the old method for calculating ValueFromIndex from D2006             }
+{=========================================================================================}
+function RetrieveValueFromIndex(s: TStrings; Index: integer): string;
+begin
+  if Index >= 0 then
+  Result := Copy(s[Index], Length(s.Names[Index]) + 2, MaxInt) else
+  Result := '';
+end;
+
 var
   tempStr: String;
 begin
@@ -184,8 +197,9 @@ begin
     InfoBox('A release event must be selected.', 'No Selection Made', MB_OK);
     Exit;
   end;
-  
-  tempStr := fraEvntDelayList.mlstEvents.Items.ValueFromIndex[fraEvntDelayList.mlstEvents.ItemIndex];
+
+ // tempStr := fraEvntDelayList.mlstEvents.Items.ValueFromIndex[fraEvntDelayList.mlstEvents.ItemIndex];
+  tempStr := RetrieveValueFromIndex(fraEvntDelayList.mlstEvents.Items, fraEvntDelayList.mlstEvents.ItemIndex);  // CQ 21556
 
   if(fraEvntDelayList.mlstEvents.ItemIndex >= 0) and (Length(Piece(tempStr,'^',2))<1)then
   begin

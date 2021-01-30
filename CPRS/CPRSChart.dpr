@@ -1,4 +1,5 @@
 program CPRSChart;
+
 uses
   ShareMem,
   Forms,
@@ -320,7 +321,7 @@ uses
   fPtSelMsg in 'CPRS-Chart-WVEHR3v2-16\fPtSelMsg.pas' {frmPtSelMsg},
 
   fPtDemo in 'CPRS-Chart-WVEHR3v2-16\fPtDemo.pas' {frmPtDemo}
-  {$IFDEF WORLDVISTA}
+  {$IFDEF WORLDVISTA_PT}
   ,
   fVW_PtSelDemog in 'WVEHR\PatientSelector\fVW_PtSelDemog.pas' {frmVW_PtDemog},
   fVW_PtSelect in 'WVEHR\PatientSelector\fVW_PtSelect.pas' {frmVW_PtSelect},

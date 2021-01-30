@@ -7,8 +7,6 @@ unit fFrame;
 {$WARN SYMBOL_PLATFORM OFF}
 {$DEFINE CCOWBROKER}
 
-{ $ DEFINE COVID19}
-
 interface
 
 uses
@@ -441,7 +439,8 @@ implementation
 uses
   System.UITypes,
   ORNet, rCore, fPtSelMsg,
-{$IFDEF WORLDVISTA}
+{$IFDEF WORLDVISTA_PT}
+  uVW_PtSelect,
 {$ELSE}
   fPtSel, fPtSelOptns,
 {$ENDIF}
@@ -471,7 +470,7 @@ uses
   // eRx  9/4/12
   fPrintLocation, fTemplateEditor, fTemplateDialog, fCombatVet, uVersionCompare
 {$IFDEF WORLDVISTA}
-    , frmEPrescribe, uVW_PtSelect, System.Contnrs
+    , frmEPrescribe, System.Contnrs
 {$ENDIF}
     ;
 
@@ -876,7 +875,13 @@ begin
   // create initial core objects
   FCreateProgress := FCP_OBJECTS;
   User := TUser.Create;
-
+  try
+//  commented out until RPC is available <ORWU SYSPARAM>
+//    getSysUserParameters(User.DUZ);
+  except
+    on E: Exception do
+      ShowMessage(E.Message);
+  end;
   // agp wv begin changes
   if GetUserParam('VW HIDE PATIENT SSN') = '1' then
     hidePtSSN := True;
@@ -997,7 +1002,9 @@ begin
     end;
 *)
 //  otherPanelControls := otherInformationPanelControls;
-  otherPanelControls := systemParameters.getJsonValue('otherInfromationPanel');
+
+(*****
+  otherPanelControls := systemParametersgraph.getJsonValue('otherInfromationPanel');
   if TJSONObject(otherPanelControls).Values['turnedOn'].ToString = '0' then
     begin
       pnlOtherInfo.Enabled := false;
@@ -1022,6 +1029,18 @@ begin
       fotherPanelShowReportBox := TJSONObject(otherPanelControls).Values['reportBoxOn'].ToString = '1';
       pnlOtherInfo.tabstop := screenReaderActive;
     end;
+****)
+// temporary code - until JSON parameters are set correctly
+        begin
+//          pnlOtherInfo.Color := get508CompliantColor(clYellow);
+//          self.pnlOtherInfo.ParentBackground := true;
+//          self.pnlOtherInfo.ParentColor := true;
+//          self.pnlOtherInfo.Color := clBtnFace;
+          self.pnlOtherInfo.Repaint;
+        end;
+      fotherPanelShowReportBox := true;
+      pnlOtherInfo.tabstop := screenReaderActive;
+///////////////////
 {$ELSE}
   pnlOtherInfo.Visible := False;
 {$ENDIF}
@@ -1037,7 +1056,8 @@ begin
   HasFlag  := False;
   FlagList := TStringList.Create;
   // set up structures specific to the user
-  Caption := TX_IN_USE + MixedCase(User.Name) + '  (' + RPCBrokerV.Server + ')';
+  Caption := TX_IN_USE + MixedCase(User.Name) +
+    '  (' + RPCBrokerV.Server + ':'+ IntToStr(RPCBrokerV.ListenerPort) +')';
   SetDebugMenu;
   if InteractiveRemindersActive then
     NotifyWhenRemindersChange(RemindersChanged);
@@ -1438,26 +1458,24 @@ begin
   mnuHelpSymbols.Visible := IsProgrammer;
   Z6.Visible             := IsProgrammer;
 end;
+
 {$IFDEF COVID19}
 procedure TfrmFrame.setOtherInfoPanel;
 var
-info: string;
+  info: string;
 begin
   pnlOtherInfo.Caption := '';
 
-  if Patient.DFN= '' then
+  if Patient.DFN = '' then
     exit;
+
   info := otherInformationPanel(Patient.DFN);
   pnlOtherInfo.Caption := Piece(info, u, 2);
   fotherPanelType := Piece(info, u, 1);
   if screenReaderActive then
-    begin
-      GetScreenReader.Speak(Piece(info, u, 2));
-
-    end;
-//  self.pnlOtherInfo.Refresh;
+    GetScreenReader.Speak(Piece(info, u, 2));
+  // self.pnlOtherInfo.Refresh;
 end;
-
 {$ENDIF}
 
 { Updates posted to MainForm --------------------------------------------------------------- }
@@ -1749,20 +1767,21 @@ var
 {$ENDIF}
   AccessStatus: integer;
 
-    procedure UpdatePatientInfoForAlert;
+  procedure UpdatePatientInfoForAlert;
+  begin
+    if Patient.Inpatient then
     begin
-      if Patient.Inpatient then
-      begin
-        Encounter.Inpatient := True;
-        Encounter.Location := Patient.Location;
-        Encounter.DateTime := Patient.AdmitTime;
-        Encounter.VisitCategory := 'H';
-      end;
-      if User.IsProvider then Encounter.Provider := User.DUZ;
-      SetupPatient(FlaggedPTList);
-      if (FlaggedPTList.IndexOf(Patient.DFN) < 0) then
-        FlaggedPTList.Add(Patient.DFN);
+      Encounter.Inpatient := True;
+      Encounter.Location := Patient.Location;
+      Encounter.DateTime := Patient.AdmitTime;
+      Encounter.VisitCategory := 'H';
     end;
+    if User.IsProvider then
+      Encounter.Provider := User.DUZ;
+    SetupPatient(FlaggedPTList);
+    if (FlaggedPTList.IndexOf(Patient.DFN) < 0) then
+      FlaggedPTList.Add(Patient.DFN);
+  end;
 
 begin
   DoNotChangeEncWindow := False;
@@ -2103,7 +2122,7 @@ begin
             imgCCOW.Picture.BitMap.LoadFromResourceName(hInstance, FCCOWIconName);
           end;
 {$ENDIF}
-{$IFDEF WORLDVISTA}
+{$IFDEF WORLDVISTA_PT}
           if Default <> '' then
             WV_UpdatePatient(Default)
           else
@@ -2111,7 +2130,7 @@ begin
               if WV_SelectPatient <> mrOK then
               begin
                 pnlPatient.Enabled := True;
-//                exit;
+                exit;
               end;
           end;
 {$ELSE}
@@ -2155,7 +2174,7 @@ begin
       else
       begin
         Notifications.Clear;
-{$IFDEF WORLDVISTA}
+{$IFDEF WORLDVISTA_PT}
         if WV_SelectPatient <> mrOK then
           exit;
 {$ELSE}
@@ -4661,6 +4680,7 @@ begin
   if not fotherPanelShowReportBox then exit;
   details := TStringList.Create;
   try
+/// RPC "'ORWOTHER DETAIL'" required
     otherInformationPanelDetails(patient.DFN, fotherPanelType, details);
     ReportBox(details, self.pnlOtherInfo.Caption, True);
   finally

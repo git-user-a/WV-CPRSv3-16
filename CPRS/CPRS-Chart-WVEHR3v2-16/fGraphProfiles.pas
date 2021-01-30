@@ -12,7 +12,6 @@ type
     btnAdd: TButton;
     btnAddAll: TButton;
     btnClear: TButton;
-    btnClose: TButton;
     btnDelete: TButton;
     btnRemoveAll: TButton;
     btnRemoveOne: TButton;
@@ -62,6 +61,8 @@ type
     lblOtherViews: TLabel;
     lblSelectOthers: TLabel;
     splViews: TSplitter;
+    pnlBottom: TPanel;
+    btnClose: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);

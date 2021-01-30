@@ -7,11 +7,9 @@ inherited frmTemplateFieldEditor: TfrmTemplateFieldEditor
   ClientWidth = 788
   Position = poScreenCenter
   OnCloseQuery = FormCloseQuery
-  OnCreate = FormCreate
-  OnDestroy = FormDestroy
   OnResize = FormResize
-  ExplicitWidth = 796
-  ExplicitHeight = 454
+  ExplicitWidth = 804
+  ExplicitHeight = 459
   PixelsPerInch = 96
   TextHeight = 13
   object splLeft: TSplitter [0]
@@ -137,6 +135,7 @@ inherited frmTemplateFieldEditor: TfrmTemplateFieldEditor
       SynonymChars = '<Inactive>'
       TabPositions = '50,60,70,80,90'
       TabOrder = 0
+      Text = ''
       OnChange = cbxObjsChange
       OnKeyDown = cbxObjsKeyDown
       OnNeedData = cbxObjsNeedData
@@ -173,11 +172,10 @@ inherited frmTemplateFieldEditor: TfrmTemplateFieldEditor
       object lblNotes: TLabel
         Left = 1
         Top = 1
-        Width = 352
+        Width = 31
         Height = 13
         Align = alTop
         Caption = 'Notes:'
-        ExplicitWidth = 31
       end
       object reNotes: TRichEdit
         Left = 1
@@ -195,6 +193,7 @@ inherited frmTemplateFieldEditor: TfrmTemplateFieldEditor
         ScrollBars = ssBoth
         TabOrder = 0
         WantTabs = True
+        Zoom = 100
         OnChange = reNotesChange
         OnEnter = edtpopControlEnter
         OnKeyUp = reNotesKeyUp
@@ -365,6 +364,7 @@ inherited frmTemplateFieldEditor: TfrmTemplateFieldEditor
         Sorted = False
         SynonymChars = '<>'
         TabOrder = 1
+        Text = ''
         OnChange = cbxTypeChange
         CharsNeedMatch = 1
       end
@@ -566,6 +566,7 @@ inherited frmTemplateFieldEditor: TfrmTemplateFieldEditor
           ScrollBars = ssBoth
           TabOrder = 5
           WantTabs = True
+          Zoom = 100
           OnChange = reItemsChange
           OnEnter = edtpopControlEnter
           OnExit = ControlExit
@@ -601,6 +602,7 @@ inherited frmTemplateFieldEditor: TfrmTemplateFieldEditor
           SynonymChars = '<>'
           TabOrder = 1
           TabStop = True
+          Text = ''
           OnChange = cbxDefaultChange
           CharsNeedMatch = 1
         end
@@ -665,6 +667,7 @@ inherited frmTemplateFieldEditor: TfrmTemplateFieldEditor
             Sorted = False
             SynonymChars = '<>'
             TabOrder = 1
+            Text = ''
             OnChange = cbxDateTypeChange
             CharsNeedMatch = 1
           end
@@ -823,8 +826,8 @@ inherited frmTemplateFieldEditor: TfrmTemplateFieldEditor
       Height = 25
       Align = alLeft
       AutoSize = True
-      ButtonHeight = 21
-      ButtonWidth = 43
+      ButtonHeight = 0
+      ButtonWidth = 0
       Caption = 'MenuBar1'
       Menu = mnuMain
       ShowCaptions = True

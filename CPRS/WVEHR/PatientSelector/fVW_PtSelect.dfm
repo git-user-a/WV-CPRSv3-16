@@ -1,26 +1,27 @@
 inherited frmVW_PtSelect: TfrmVW_PtSelect
   Caption = 'Patient Selector'
   ClientHeight = 656
-  ClientWidth = 936
+  ClientWidth = 810
   Position = poMainFormCenter
   OnCloseQuery = FormCloseQuery
-  ExplicitWidth = 952
+  ExplicitWidth = 826
   ExplicitHeight = 695
   PixelsPerInch = 96
   TextHeight = 13
   object pnlCanvas: TPanel [0]
     Left = 0
     Top = 0
-    Width = 936
+    Width = 810
     Height = 656
     Align = alClient
     Caption = 'pnlCanvas'
     ShowCaption = False
     TabOrder = 0
+    ExplicitWidth = 936
     object splAlerts: TSplitter
       Left = 1
       Top = 398
-      Width = 934
+      Width = 808
       Height = 4
       Cursor = crVSplit
       Align = alBottom
@@ -32,7 +33,7 @@ inherited frmVW_PtSelect: TfrmVW_PtSelect
     object pnlButtons: TPanel
       Left = 1
       Top = 1
-      Width = 934
+      Width = 808
       Height = 32
       Align = alTop
       BevelOuter = bvNone
@@ -41,9 +42,10 @@ inherited frmVW_PtSelect: TfrmVW_PtSelect
       ParentBackground = False
       ShowCaption = False
       TabOrder = 0
+      ExplicitWidth = 934
       object cmdOK: TButton
         AlignWithMargins = True
-        Left = 737
+        Left = 611
         Top = 3
         Width = 102
         Height = 26
@@ -52,10 +54,11 @@ inherited frmVW_PtSelect: TfrmVW_PtSelect
         Default = True
         ModalResult = 1
         TabOrder = 3
+        ExplicitLeft = 737
       end
       object cmdCancel: TButton
         AlignWithMargins = True
-        Left = 845
+        Left = 719
         Top = 3
         Width = 86
         Height = 26
@@ -64,6 +67,7 @@ inherited frmVW_PtSelect: TfrmVW_PtSelect
         Caption = '&Cancel'
         ModalResult = 2
         TabOrder = 4
+        ExplicitLeft = 845
       end
       object bbInquiryDemographics: TBitBtn
         AlignWithMargins = True
@@ -107,29 +111,27 @@ inherited frmVW_PtSelect: TfrmVW_PtSelect
       AlignWithMargins = True
       Left = 4
       Top = 405
-      Width = 928
+      Width = 802
       Height = 247
       Align = alBottom
       BevelOuter = bvNone
       Caption = 'pnlALerts - parent of  TfrmWV_Alerts'
       TabOrder = 2
-      ExplicitLeft = 1
-      ExplicitTop = 408
-      ExplicitWidth = 934
+      ExplicitWidth = 928
     end
     object pnlTop: TPanel
       Left = 1
       Top = 33
-      Width = 934
+      Width = 808
       Height = 365
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitHeight = 371
+      ExplicitWidth = 934
       object bvlTool: TBevel
         Left = 0
         Top = 0
-        Width = 934
+        Width = 808
         Height = 2
         Align = alTop
         Shape = bsTopLine
@@ -137,7 +139,7 @@ inherited frmVW_PtSelect: TfrmVW_PtSelect
       end
       object pnlRight: TPanel
         AlignWithMargins = True
-        Left = 725
+        Left = 599
         Top = 5
         Width = 209
         Height = 357
@@ -146,7 +148,7 @@ inherited frmVW_PtSelect: TfrmVW_PtSelect
         Align = alRight
         BevelOuter = bvNone
         TabOrder = 2
-        ExplicitHeight = 363
+        ExplicitLeft = 725
         object pnlDemographics: TPanel
           Left = 0
           Top = 28
@@ -157,7 +159,6 @@ inherited frmVW_PtSelect: TfrmVW_PtSelect
           Caption = 'pnlDemographics - parent of TfrmWV_PtSelDemog'
           Constraints.MinHeight = 100
           TabOrder = 0
-          ExplicitHeight = 300
         end
         object pnlDemographicHeader: TPanel
           AlignWithMargins = True
@@ -196,7 +197,6 @@ inherited frmVW_PtSelect: TfrmVW_PtSelect
           ParentColor = True
           TabOrder = 2
           Visible = False
-          ExplicitTop = 331
           object BitBtn2: TBitBtn
             AlignWithMargins = True
             Left = 3
@@ -227,17 +227,17 @@ inherited frmVW_PtSelect: TfrmVW_PtSelect
         AlignWithMargins = True
         Left = 211
         Top = 5
-        Width = 511
+        Width = 385
         Height = 357
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 1
-        ExplicitHeight = 363
+        ExplicitWidth = 511
         object cboPatient: TORComboBox
           AlignWithMargins = True
           Left = 3
           Top = 31
-          Width = 505
+          Width = 379
           Height = 326
           Hint = 'Enter name or use "Last 4" (x1234) format'
           Margins.Bottom = 0
@@ -276,13 +276,13 @@ inherited frmVW_PtSelect: TfrmVW_PtSelect
           OnKeyDown = cboPatientKeyDown
           OnNeedData = cboPatientNeedData
           CharsNeedMatch = 1
-          ExplicitHeight = 332
+          ExplicitWidth = 505
         end
         object pnlPatientHeader: TPanel
           AlignWithMargins = True
           Left = 3
           Top = 3
-          Width = 505
+          Width = 379
           Height = 22
           Align = alTop
           Alignment = taLeftJustify
@@ -290,6 +290,7 @@ inherited frmVW_PtSelect: TfrmVW_PtSelect
           ParentBackground = False
           ParentColor = True
           TabOrder = 0
+          ExplicitWidth = 505
           object lblPatient: TLabel
             AlignWithMargins = True
             Left = 3
@@ -313,7 +314,6 @@ inherited frmVW_PtSelect: TfrmVW_PtSelect
         BevelOuter = bvNone
         Caption = 'pnlOptions - parent of TfrmWV_PtSelOptns'
         TabOrder = 0
-        ExplicitHeight = 363
         object pnlOptionsHeader: TPanel
           AlignWithMargins = True
           Left = 3

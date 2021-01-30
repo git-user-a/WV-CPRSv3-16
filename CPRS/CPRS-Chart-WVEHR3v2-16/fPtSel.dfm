@@ -14,22 +14,25 @@ inherited frmPtSel: TfrmPtSel
   TextHeight = 13
   object sptVert: TSplitter [0]
     Left = 0
-    Top = 290
+    Top = 322
     Width = 785
     Height = 4
     Cursor = crVSplit
     Align = alTop
+    Beveled = True
+    ExplicitTop = 290
   end
   object pnlDivide: TORAutoPanel [1]
     Left = 0
-    Top = 294
+    Top = 326
     Width = 785
     Height = 17
     Align = alTop
     BevelOuter = bvNone
     BevelWidth = 2
-    TabOrder = 0
+    TabOrder = 1
     Visible = False
+    ExplicitTop = 294
     object lblNotifications: TLabel
       Left = 4
       Top = 4
@@ -58,13 +61,15 @@ inherited frmPtSel: TfrmPtSel
   end
   object pnlPtSel: TORAutoPanel [2]
     Left = 0
-    Top = 0
+    Top = 32
     Width = 785
     Height = 290
     Align = alTop
+    BevelOuter = bvNone
     BevelWidth = 2
-    TabOrder = 3
+    TabOrder = 4
     OnResize = pnlPtSelResize
+    ExplicitTop = 0
     object lblPatient: TLabel
       Left = 216
       Top = 4
@@ -111,25 +116,6 @@ inherited frmPtSel: TfrmPtSel
       CharsNeedMatch = 1
       UniqueAutoComplete = True
     end
-    object cmdOK: TButton
-      Left = 682
-      Top = 3
-      Width = 78
-      Height = 21
-      Caption = 'OK'
-      TabOrder = 2
-      OnClick = cmdOKClick
-    end
-    object cmdCancel: TButton
-      Left = 682
-      Top = 24
-      Width = 78
-      Height = 21
-      Cancel = True
-      Caption = 'Cancel'
-      TabOrder = 3
-      OnClick = cmdCancelClick
-    end
     object cmdSaveList: TButton
       Left = 494
       Top = 252
@@ -150,18 +136,18 @@ inherited frmPtSel: TfrmPtSel
         '&None of the below'
         '&PHONE NUMBER [RESIDENCE]'
         '&DATE OF BIRTH')
-      TabOrder = 4
+      TabOrder = 2
       OnClick = onclick1
     end
   end
   object pnlNotifications: TORAutoPanel [3]
     Left = 0
-    Top = 520
+    Top = 526
     Width = 785
-    Height = 35
+    Height = 29
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 2
+    TabOrder = 3
     Visible = False
     object txtCmdComments: TVA508StaticText
       Name = 'txtCmdComments'
@@ -212,69 +198,99 @@ inherited frmPtSel: TfrmPtSel
       ShowAccelChar = True
     end
     object cmdRemove: TButton
-      Left = 577
-      Top = 10
+      AlignWithMargins = True
+      Left = 687
+      Top = 3
       Width = 95
-      Height = 21
+      Height = 23
+      Align = alRight
       Caption = 'Remove'
       Enabled = False
       TabOrder = 8
       OnClick = cmdRemoveClick
+      ExplicitLeft = 577
+      ExplicitTop = 10
+      ExplicitHeight = 21
     end
     object cmdComments: TButton
-      Left = 441
-      Top = 10
+      AlignWithMargins = True
+      Left = 407
+      Top = 3
       Width = 95
-      Height = 21
+      Height = 23
+      Align = alLeft
       Caption = 'Show Comments'
       Enabled = False
       TabOrder = 6
       OnClick = cmdCommentsClick
+      ExplicitLeft = 441
+      ExplicitTop = 10
+      ExplicitHeight = 21
     end
     object cmdForward: TButton
-      Left = 335
-      Top = 10
+      AlignWithMargins = True
+      Left = 306
+      Top = 3
       Width = 95
-      Height = 21
+      Height = 23
+      Align = alLeft
       Caption = 'Forward'
       Enabled = False
       TabOrder = 4
       OnClick = cmdForwardClick
+      ExplicitLeft = 335
+      ExplicitTop = 10
+      ExplicitHeight = 21
     end
     object cmdProcess: TButton
-      Left = 229
-      Top = 10
+      AlignWithMargins = True
+      Left = 205
+      Top = 3
       Width = 95
-      Height = 21
+      Height = 23
+      Align = alLeft
       Caption = 'Process'
       Enabled = False
       TabOrder = 2
       OnClick = cmdProcessClick
+      ExplicitLeft = 229
+      ExplicitTop = 10
+      ExplicitHeight = 21
     end
     object cmdProcessAll: TButton
-      Left = 120
-      Top = 10
+      AlignWithMargins = True
+      Left = 104
+      Top = 3
       Width = 95
-      Height = 21
+      Height = 23
+      Align = alLeft
       Caption = 'Process All'
       TabOrder = 1
       OnClick = cmdProcessAllClick
+      ExplicitLeft = 120
+      ExplicitTop = 10
+      ExplicitHeight = 21
     end
     object cmdProcessInfo: TButton
-      Left = 11
-      Top = 10
+      AlignWithMargins = True
+      Left = 3
+      Top = 3
       Width = 95
-      Height = 21
+      Height = 23
+      Align = alLeft
       Caption = 'Process Info'
       TabOrder = 0
       OnClick = cmdProcessInfoClick
+      ExplicitLeft = 11
+      ExplicitTop = 10
+      ExplicitHeight = 21
     end
   end
   object lstvAlerts: TCaptionListView [4]
     Left = 0
-    Top = 311
+    Top = 343
     Width = 785
-    Height = 209
+    Height = 183
     Align = alClient
     Columns = <
       item
@@ -321,7 +337,7 @@ inherited frmPtSel: TfrmPtSel
     PopupMenu = popNotifications
     ShowWorkAreas = True
     ShowHint = True
-    TabOrder = 1
+    TabOrder = 2
     ViewStyle = vsReport
     OnColumnClick = lstvAlertsColumnClick
     OnCompare = lstvAlertsCompare
@@ -332,8 +348,70 @@ inherited frmPtSel: TfrmPtSel
     OnSelectItem = lstvAlertsSelectItem
     AutoSize = False
     Caption = 'Notifications'
+    HideTinyColumns = False
+    ExplicitTop = 311
+    ExplicitHeight = 209
+  end
+  object pnlButtons: TPanel [5]
+    Left = 0
+    Top = 0
+    Width = 785
+    Height = 32
+    Align = alTop
+    BevelOuter = bvNone
+    Caption = 'pnlButtons'
+    Color = clSilver
+    ParentBackground = False
+    ShowCaption = False
+    TabOrder = 0
+    ExplicitLeft = -8
+    ExplicitTop = -14
+    object bbInquiryDemographics: TBitBtn
+      AlignWithMargins = True
+      Left = 3
+      Top = 3
+      Width = 94
+      Height = 26
+      Align = alLeft
+      Caption = '&Inquiry'
+      NumGlyphs = 2
+      TabOrder = 0
+      OnClick = bbInquiryDemographicsClick
+      ExplicitLeft = 111
+    end
+    object cmdOK: TButton
+      AlignWithMargins = True
+      Left = 620
+      Top = 3
+      Width = 78
+      Height = 26
+      Align = alRight
+      Caption = 'OK'
+      TabOrder = 1
+      OnClick = cmdOKClick
+      ExplicitLeft = 577
+      ExplicitTop = 5
+      ExplicitHeight = 21
+    end
+    object cmdCancel: TButton
+      AlignWithMargins = True
+      Left = 704
+      Top = 3
+      Width = 78
+      Height = 26
+      Align = alRight
+      Cancel = True
+      Caption = 'Cancel'
+      TabOrder = 2
+      OnClick = cmdCancelClick
+      ExplicitLeft = 682
+      ExplicitTop = 11
+      ExplicitHeight = 21
+    end
   end
   inherited amgrMain: TVA508AccessibilityManager
+    Left = 72
+    Top = 88
     Data = (
       (
         'Component = pnlDivide'
@@ -391,6 +469,12 @@ inherited frmPtSel: TfrmPtSel
         'Status = stsDefault')
       (
         'Component = txtCmdProcess'
+        'Status = stsDefault')
+      (
+        'Component = pnlButtons'
+        'Status = stsDefault')
+      (
+        'Component = bbInquiryDemographics'
         'Status = stsDefault'))
   end
   object popNotifications: TPopupMenu

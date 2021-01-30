@@ -6,8 +6,6 @@ inherited frmDrawers: TfrmDrawers
   ClientHeight = 365
   ClientWidth = 189
   OnCanResize = FormCanResize
-  OnCreate = FormCreate
-  OnDestroy = FormDestroy
   OnResize = FormResize
   ExplicitWidth = 189
   ExplicitHeight = 365

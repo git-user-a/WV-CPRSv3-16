@@ -2,6 +2,9 @@ unit uVW_Utils;
 
 interface
 
+type
+  TOnPatientSelect = procedure(aValue: String) of object;
+
 function IsLast5(x: string): Boolean;
 function IsFullSSN(x: string): boolean;
 

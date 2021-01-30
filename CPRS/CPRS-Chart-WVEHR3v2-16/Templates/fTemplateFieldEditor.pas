@@ -469,7 +469,8 @@ begin
   ChangeSizes := FALSE;
   FUpdating := TRUE;
   try
-    QuickCopy(reItems, cbxDefault);
+//    QuickCopy(reItems, cbxDefault);       // - generates AV
+    cbxDefault.Items.Assign(reItems.Lines); // - replaces prev line
     idx := -1;
     if(assigned(FFld)) and reItems.Visible and cbxDefault.Visible then
     begin

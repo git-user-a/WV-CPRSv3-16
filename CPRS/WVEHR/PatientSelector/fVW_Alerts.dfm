@@ -53,10 +53,9 @@ inherited frmVW_Alerts: TfrmVW_Alerts
         Left = 3
         Top = 3
         Width = 59
-        Height = 14
+        Height = 13
         Align = alLeft
         Caption = 'Notifications'
-        ExplicitHeight = 13
       end
     end
     object pnlTools: TPanel
@@ -65,6 +64,7 @@ inherited frmVW_Alerts: TfrmVW_Alerts
       Width = 774
       Height = 32
       Align = alBottom
+      BevelOuter = bvNone
       Caption = 'pnlTools'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -77,63 +77,81 @@ inherited frmVW_Alerts: TfrmVW_Alerts
       OnDblClick = Panel2DblClick
       object cmdComments: TButton
         AlignWithMargins = True
-        Left = 408
-        Top = 4
+        Left = 407
+        Top = 3
         Width = 95
-        Height = 24
+        Height = 26
         Action = acShowComments
         Align = alLeft
         TabOrder = 4
+        ExplicitLeft = 408
+        ExplicitTop = 4
+        ExplicitHeight = 24
       end
       object cmdForward: TButton
         AlignWithMargins = True
-        Left = 307
-        Top = 4
+        Left = 306
+        Top = 3
         Width = 95
-        Height = 24
+        Height = 26
         Action = acForward
         Align = alLeft
         TabOrder = 3
+        ExplicitLeft = 307
+        ExplicitTop = 4
+        ExplicitHeight = 24
       end
       object cmdProcess: TButton
         AlignWithMargins = True
-        Left = 206
-        Top = 4
+        Left = 205
+        Top = 3
         Width = 95
-        Height = 24
+        Height = 26
         Action = acProcess
         Align = alLeft
         TabOrder = 2
+        ExplicitLeft = 206
+        ExplicitTop = 4
+        ExplicitHeight = 24
       end
       object cmdProcessAll: TButton
         AlignWithMargins = True
-        Left = 105
-        Top = 4
+        Left = 104
+        Top = 3
         Width = 95
-        Height = 24
+        Height = 26
         Action = acProcessAll
         Align = alLeft
         TabOrder = 1
+        ExplicitLeft = 105
+        ExplicitTop = 4
+        ExplicitHeight = 24
       end
       object cmdProcessInfo: TButton
         AlignWithMargins = True
-        Left = 4
-        Top = 4
+        Left = 3
+        Top = 3
         Width = 95
-        Height = 24
+        Height = 26
         Action = acProcessInfo
         Align = alLeft
         TabOrder = 0
+        ExplicitLeft = 4
+        ExplicitTop = 4
+        ExplicitHeight = 24
       end
       object cmdRemove: TButton
         AlignWithMargins = True
-        Left = 684
-        Top = 4
+        Left = 685
+        Top = 3
         Width = 86
-        Height = 24
+        Height = 26
         Action = acRemove
         Align = alRight
         TabOrder = 5
+        ExplicitLeft = 684
+        ExplicitTop = 4
+        ExplicitHeight = 24
       end
       object txtCmdComments: TVA508StaticText
         Name = 'txtCmdComments'
@@ -253,8 +271,11 @@ inherited frmVW_Alerts: TfrmVW_Alerts
       ViewStyle = vsReport
       OnColumnClick = lstvAlertsColumnClick
       OnCompare = lstvAlertsCompare
+      OnDblClick = lstvAlertsDblClick
+      OnSelectItem = lstvAlertsSelectItem
       AutoSize = False
       Caption = 'Notifications'
+      HideTinyColumns = False
     end
   end
   object Panel2: TPanel [1]
@@ -408,8 +429,8 @@ inherited frmVW_Alerts: TfrmVW_Alerts
         'Status = stsDefault'))
   end
   object alAlerts: TActionList
-    Left = 136
-    Top = 96
+    Left = 104
+    Top = 64
     object acProcessInfo: TAction
       Caption = 'Process Info'
       OnExecute = acProcessInfoExecute

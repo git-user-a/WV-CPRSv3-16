@@ -1824,7 +1824,6 @@ begin
  begin
     Result := JSV;
  end;
-
 end;
 
 function TSystemParameters.getJsonValueString(const name: string): String;

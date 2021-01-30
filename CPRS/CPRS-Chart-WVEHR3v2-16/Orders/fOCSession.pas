@@ -13,14 +13,15 @@ type
     lblJustify: TLabel;
     txtJustify: TCaptionEdit;
     cmdCancelOrder: TButton;
-    cmdContinue: TButton;
-    btnReturn: TButton;
     memNote: TMemo;
-    cmdMonograph: TButton;
     grdchecks: TCaptionStringGrid;
     lblInstr: TVA508StaticText;
     pnlTop: TORAutoPanel;
     lblHover: TLabel;
+    pnlButtons: TPanel;
+    cmdMonograph: TButton;
+    cmdContinue: TButton;
+    btnReturn: TButton;
     procedure cmdCancelOrderClick(Sender: TObject);
     procedure cmdContinueClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);

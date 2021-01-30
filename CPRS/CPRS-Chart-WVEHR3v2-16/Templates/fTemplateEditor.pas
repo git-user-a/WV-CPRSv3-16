@@ -673,7 +673,10 @@ begin
 end;
 
 procedure TfrmTemplateEditor.FormCreate(Sender: TObject);
+var
+  sl: TStrings;
 begin
+  inherited;
   SetFormPosition(Self);
   ResizeAnchoredFormToFont(self);
   //Now fix everything the resize messed up
@@ -688,13 +691,17 @@ begin
   Application.HintHidePause := FSavePause * 2;
   if InteractiveRemindersActive then
   begin
-    QuickCopy(GetTemplateAllowedReminderDialogs, cbxRemDlgs.Items);
+    sl := GetTemplateAllowedReminderDialogs;
+    cbxRemDlgs.Items.Assign(sl);
+//    QuickCopy(GetTemplateAllowedReminderDialogs, cbxRemDlgs.Items);
     FCanDoReminders := (cbxRemDlgs.Items.Count > 0);
   end
   else
     FCanDoReminders := FALSE;
 
-  QuickCopy(GetAllActiveCOMObjects, cbxCOMObj.Items);
+    sl := GetAllActiveCOMObjects;
+    cbxCOMObj.Items.Assign(sl);
+//  QuickCopy(GetAllActiveCOMObjects, cbxCOMObj.Items);
   FCanDoCOMObjects := (cbxCOMObj.Items.Count > 0);
 
   FUpdating := TRUE;

@@ -4,14 +4,11 @@ inherited frmGraphProfiles: TfrmGraphProfiles
   BorderIcons = [biSystemMenu, biHelp]
   BorderStyle = bsDialog
   Caption = 'Select Items and Define Views'
-  ClientHeight = 386
-  ClientWidth = 477
+  ClientHeight = 443
+  ClientWidth = 536
   Position = poMainFormCenter
-  OnClose = FormClose
-  OnCreate = FormCreate
-  OnShow = FormShow
-  ExplicitWidth = 483
-  ExplicitHeight = 411
+  ExplicitWidth = 542
+  ExplicitHeight = 472
   PixelsPerInch = 96
   TextHeight = 13
   object lblSelection: TLabel [0]
@@ -59,14 +56,19 @@ inherited frmGraphProfiles: TfrmGraphProfiles
     ShowHint = False
   end
   object lblSelectandDefine: TLabel [5]
-    Left = 8
-    Top = 350
-    Width = 359
+    AlignWithMargins = True
+    Left = 3
+    Top = 349
+    Width = 530
     Height = 13
+    Align = alBottom
     Caption = 
       'Use Select/Define button or Right-click on graphs to select item' +
       's for display.'
     WordWrap = True
+    ExplicitLeft = 0
+    ExplicitTop = 409
+    ExplicitWidth = 359
   end
   object lblEditInfo1: TLabel [6]
     Left = 142
@@ -85,7 +87,71 @@ inherited frmGraphProfiles: TfrmGraphProfiles
     ShowHint = False
     WordWrap = True
   end
-  object btnClear: TButton [8]
+  object pnlTempData: TPanel [8]
+    Left = 0
+    Top = 290
+    Width = 536
+    Height = 56
+    Align = alBottom
+    Color = 10930928
+    ParentBackground = False
+    TabOrder = 18
+    Visible = False
+    ExplicitTop = 353
+    ExplicitWidth = 518
+    object lblSave: TLabel
+      Left = 184
+      Top = 16
+      Width = 3
+      Height = 13
+      Visible = False
+    end
+    object lblClose: TLabel
+      Left = 192
+      Top = 0
+      Width = 3
+      Height = 13
+      Visible = False
+    end
+    object lstActualItems: TORListBox
+      Left = 8
+      Top = 5
+      Width = 97
+      Height = 41
+      ItemHeight = 13
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 0
+      Caption = ''
+      ItemTipColor = clWindow
+      LongList = False
+    end
+    object lstDrugClass: TListBox
+      Left = 112
+      Top = 5
+      Width = 97
+      Height = 41
+      ItemHeight = 13
+      TabOrder = 1
+    end
+    object lstScratch: TListBox
+      Left = 216
+      Top = 5
+      Width = 97
+      Height = 41
+      ItemHeight = 13
+      TabOrder = 2
+    end
+    object lstTests: TListBox
+      Left = 320
+      Top = 5
+      Width = 97
+      Height = 41
+      ItemHeight = 13
+      TabOrder = 3
+    end
+  end
+  object btnClear: TButton [9]
     Left = 8
     Top = 312
     Width = 85
@@ -97,7 +163,7 @@ inherited frmGraphProfiles: TfrmGraphProfiles
     TabOrder = 7
     OnClick = btnClearClick
   end
-  object btnSave: TButton [9]
+  object btnSave: TButton [10]
     Left = 286
     Top = 312
     Width = 85
@@ -109,7 +175,7 @@ inherited frmGraphProfiles: TfrmGraphProfiles
     TabOrder = 11
     OnClick = btnSaveClick
   end
-  object btnDelete: TButton [10]
+  object btnDelete: TButton [11]
     Left = 100
     Top = 313
     Width = 85
@@ -121,7 +187,7 @@ inherited frmGraphProfiles: TfrmGraphProfiles
     TabOrder = 8
     OnClick = btnDeleteClick
   end
-  object btnRemoveOne: TButton [11]
+  object btnRemoveOne: TButton [12]
     Left = 280
     Top = 173
     Width = 21
@@ -133,7 +199,7 @@ inherited frmGraphProfiles: TfrmGraphProfiles
     TabOrder = 5
     OnClick = btnRemoveOneClick
   end
-  object btnRemoveAll: TButton [12]
+  object btnRemoveAll: TButton [13]
     Left = 280
     Top = 205
     Width = 21
@@ -145,7 +211,7 @@ inherited frmGraphProfiles: TfrmGraphProfiles
     TabOrder = 6
     OnClick = btnRemoveAllClick
   end
-  object lstItemsDisplayed: TORListBox [13]
+  object lstItemsDisplayed: TORListBox [14]
     Left = 312
     Top = 44
     Width = 150
@@ -156,12 +222,13 @@ inherited frmGraphProfiles: TfrmGraphProfiles
     Sorted = True
     TabOrder = 2
     OnDblClick = lstItemsDisplayedDblClick
+    Caption = ''
     ItemTipColor = clWindow
     LongList = False
     Pieces = '3'
     OnChange = lstItemsDisplayedChange
   end
-  object pnlSource: TPanel [14]
+  object pnlSource: TPanel [15]
     Left = 247
     Top = -2
     Width = 190
@@ -193,7 +260,7 @@ inherited frmGraphProfiles: TfrmGraphProfiles
       OnClick = radSourceAllClick
     end
   end
-  object lstItemsSelection: TORListBox [15]
+  object lstItemsSelection: TORListBox [16]
     Left = 142
     Top = 44
     Width = 124
@@ -205,26 +272,32 @@ inherited frmGraphProfiles: TfrmGraphProfiles
     TabOrder = 1
     Visible = False
     OnDblClick = cboAllItemsClick
+    Caption = ''
     ItemTipColor = clWindow
     LongList = False
     Pieces = '3'
     OnChange = cboAllItemsChange
   end
-  object pnlApply: TPanel [16]
+  object pnlApply: TPanel [17]
     Left = 0
-    Top = 344
-    Width = 366
-    Height = 36
+    Top = 365
+    Width = 536
+    Height = 43
+    Align = alBottom
     BevelOuter = bvNone
     ParentShowHint = False
     ShowHint = False
-    TabOrder = 14
+    TabOrder = 13
+    ExplicitTop = 422
+    ExplicitWidth = 518
     object lblApply: TLabel
-      Left = 8
-      Top = 2
-      Width = 138
+      Left = 0
+      Top = 0
+      Width = 536
       Height = 13
+      Align = alTop
       Caption = 'Display Items for Graphing to:'
+      ExplicitWidth = 138
     end
     object radTop: TRadioButton
       Left = 8
@@ -261,7 +334,7 @@ inherited frmGraphProfiles: TfrmGraphProfiles
       TabOrder = 3
     end
   end
-  object btnAdd: TButton [17]
+  object btnAdd: TButton [18]
     Left = 280
     Top = 125
     Width = 21
@@ -273,7 +346,7 @@ inherited frmGraphProfiles: TfrmGraphProfiles
     TabOrder = 4
     OnClick = cboAllItemsClick
   end
-  object btnAddAll: TButton [18]
+  object btnAddAll: TButton [19]
     Left = 280
     Top = 93
     Width = 21
@@ -285,7 +358,7 @@ inherited frmGraphProfiles: TfrmGraphProfiles
     TabOrder = 3
     OnClick = cboAllItemsClick
   end
-  object btnRename: TButton [19]
+  object btnRename: TButton [20]
     Left = 195
     Top = 312
     Width = 85
@@ -297,7 +370,7 @@ inherited frmGraphProfiles: TfrmGraphProfiles
     TabOrder = 9
     OnClick = btnRenameClick
   end
-  object btnSavePublic: TButton [20]
+  object btnSavePublic: TButton [21]
     Left = 379
     Top = 312
     Width = 85
@@ -309,13 +382,14 @@ inherited frmGraphProfiles: TfrmGraphProfiles
     TabOrder = 12
     OnClick = btnSaveClick
   end
-  object cboAllItems: TORComboBox [21]
+  object cboAllItems: TORComboBox [22]
     Left = 142
     Top = 44
     Width = 124
     Height = 228
     Style = orcsSimple
     AutoSelect = True
+    Caption = ''
     Color = clWindow
     DropDownCount = 8
     ItemHeight = 13
@@ -331,22 +405,11 @@ inherited frmGraphProfiles: TfrmGraphProfiles
     Sorted = False
     SynonymChars = '<>'
     TabOrder = 0
+    Text = ''
     OnChange = cboAllItemsChange
     OnDblClick = cboAllItemsClick
     OnNeedData = cboAllItemsNeedData
     CharsNeedMatch = 1
-  end
-  object btnClose: TButton [22]
-    Left = 370
-    Top = 353
-    Width = 95
-    Height = 21
-    Cancel = True
-    Caption = 'Close'
-    ParentShowHint = False
-    ShowHint = False
-    TabOrder = 15
-    OnClick = btnCloseClick
   end
   object pnlAllSources: TPanel [23]
     Left = 8
@@ -356,7 +419,7 @@ inherited frmGraphProfiles: TfrmGraphProfiles
     BevelOuter = bvNone
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 16
+    TabOrder = 14
     object splViews: TSplitter
       Left = 0
       Top = 122
@@ -400,6 +463,7 @@ inherited frmGraphProfiles: TfrmGraphProfiles
         OnDblClick = lstSourcesDblClick
         OnEnter = lstSourcesEnter
         OnExit = lstSourcesExit
+        Caption = ''
         ItemTipColor = clWindow
         LongList = False
         Pieces = '2'
@@ -441,6 +505,7 @@ inherited frmGraphProfiles: TfrmGraphProfiles
           Style = orcsDropDown
           Align = alBottom
           AutoSelect = True
+          Caption = ''
           Color = clWindow
           DropDownCount = 6
           Items.Strings = (
@@ -457,6 +522,7 @@ inherited frmGraphProfiles: TfrmGraphProfiles
           SynonymChars = '<>'
           TabOrder = 0
           TabStop = True
+          Text = ''
           OnClick = cboUserClick
           OnNeedData = cboUserNeedData
           CharsNeedMatch = 1
@@ -485,6 +551,7 @@ inherited frmGraphProfiles: TfrmGraphProfiles
           OnDblClick = lstSourcesDblClick
           OnEnter = lstOtherSourcesEnter
           OnExit = lstOtherSourcesExit
+          Caption = ''
           ItemTipColor = clWindow
           LongList = False
           Pieces = '2'
@@ -528,69 +595,11 @@ inherited frmGraphProfiles: TfrmGraphProfiles
     Caption = 'Show Other Views'
     ParentShowHint = False
     ShowHint = False
-    TabOrder = 17
+    TabOrder = 15
     Visible = False
     OnClick = btnViewsClick
   end
-  object pnlTempData: TPanel [25]
-    Left = 264
-    Top = 232
-    Width = 425
-    Height = 49
-    TabOrder = 13
-    Visible = False
-    object lblSave: TLabel
-      Left = 184
-      Top = 16
-      Width = 3
-      Height = 13
-      Visible = False
-    end
-    object lblClose: TLabel
-      Left = 192
-      Top = 0
-      Width = 3
-      Height = 13
-      Visible = False
-    end
-    object lstActualItems: TORListBox
-      Left = 8
-      Top = 5
-      Width = 97
-      Height = 41
-      ItemHeight = 13
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 0
-      ItemTipColor = clWindow
-      LongList = False
-    end
-    object lstDrugClass: TListBox
-      Left = 112
-      Top = 5
-      Width = 97
-      Height = 41
-      ItemHeight = 13
-      TabOrder = 1
-    end
-    object lstScratch: TListBox
-      Left = 216
-      Top = 5
-      Width = 97
-      Height = 41
-      ItemHeight = 13
-      TabOrder = 2
-    end
-    object lstTests: TListBox
-      Left = 320
-      Top = 5
-      Width = 97
-      Height = 41
-      ItemHeight = 13
-      TabOrder = 3
-    end
-  end
-  object btnDefinitions: TButton [26]
+  object btnDefinitions: TButton [25]
     Left = 8
     Top = 281
     Width = 120
@@ -598,12 +607,42 @@ inherited frmGraphProfiles: TfrmGraphProfiles
     Caption = 'View Definitions...'
     ParentShowHint = False
     ShowHint = False
-    TabOrder = 18
+    TabOrder = 16
     OnClick = btnDefinitionsClick
   end
+  object pnlBottom: TPanel [26]
+    Left = 0
+    Top = 408
+    Width = 536
+    Height = 35
+    Align = alBottom
+    BevelOuter = bvNone
+    Caption = 'pnlBottom'
+    Color = clSilver
+    ParentBackground = False
+    ShowCaption = False
+    TabOrder = 17
+    ExplicitTop = 465
+    ExplicitWidth = 518
+    object btnClose: TButton
+      AlignWithMargins = True
+      Left = 438
+      Top = 3
+      Width = 95
+      Height = 29
+      Align = alRight
+      Cancel = True
+      Caption = 'Close'
+      ParentShowHint = False
+      ShowHint = False
+      TabOrder = 0
+      OnClick = btnCloseClick
+      ExplicitLeft = 420
+    end
+  end
   inherited amgrMain: TVA508AccessibilityManager
-    Left = 448
-    Top = 280
+    Left = 48
+    Top = 64
     Data = (
       (
         'Component = btnClear'
@@ -681,9 +720,6 @@ inherited frmGraphProfiles: TfrmGraphProfiles
         'Component = cboAllItems'
         'Status = stsDefault')
       (
-        'Component = btnClose'
-        'Status = stsDefault')
-      (
         'Component = frmGraphProfiles'
         'Status = stsDefault')
       (
@@ -718,6 +754,12 @@ inherited frmGraphProfiles: TfrmGraphProfiles
         'Status = stsDefault')
       (
         'Component = pnlOtherViews'
+        'Status = stsDefault')
+      (
+        'Component = pnlBottom'
+        'Status = stsDefault')
+      (
+        'Component = btnClose'
         'Status = stsDefault'))
   end
 end

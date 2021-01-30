@@ -124,6 +124,7 @@ procedure GetUserListParam(Dest: TStrings; const AParamName: string);
 function HasSecurityKey(const KeyName: string): Boolean;
 function HasMenuOptionAccess(const OptionName: string): Boolean;
 function ValidESCode(const ACode: string): Boolean;
+procedure getSysUserParameters(DUZ: Int64);
 
 { Notifications calls }
 
@@ -1251,7 +1252,11 @@ end;
 function otherInformationPanel(const DFN: string): string;
 begin
 //  result := sCallV('ORWPT2 COVID', [DFN]);
-  CallVistA('ORWPT2 COVID', [DFN], result);
+  try
+    CallVistA('ORWPT2 COVID', [DFN], result);
+  except
+    Result := 'Error executing RPC <ORWPT2 COVID>';
+  end;
 end;
 
 procedure otherInformationPanelDetails(const DFN: string; valueType: string; var details: TStrings);
@@ -1411,15 +1416,14 @@ end;
 
 procedure getSysUserParameters(DUZ: Int64);
 var
-aReturn: string;
+  aReturn: string;
 begin
   systemParameters := TsystemParameters.Create;
   try
-  CallVistA('ORWU SYSPARAM', [DUZ], aReturn);
-  systemParameters.dataValues := TJSONObject.ParseJSONValue(aReturn);
-  finally
+    if CallVistA('ORWU SYSPARAM', [DUZ], aReturn) then
+      systemParameters.dataValues := TJSONObject.ParseJSONValue(aReturn);
+  except
   end;
-
 end;
 
 end.

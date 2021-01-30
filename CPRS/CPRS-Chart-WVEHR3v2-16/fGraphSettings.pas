@@ -9,44 +9,56 @@ uses
 
 type
   TfrmGraphSettings = class(TfrmBase508Form)
-    brnClear: TButton;
-    btnAll: TButton;
+    pnlBottom: TPanel;
     btnClose: TButton;
+    gpMain: TGridPanel;
+    pnlSources: TPanel;
+    pnlOptions: TPanel;
+    pnlDetails: TPanel;
+    pnlShowDefaults: TPanel;
+    pnlSaveDefaults: TPanel;
+    pnlSettings: TPanel;
+    lblSources: TLabel;
+    lstSourcesCopy: TListBox;
+    Panel1: TPanel;
+    btnAll: TButton;
+    brnClear: TButton;
+    lstSources: TCheckListBox;
+    lblOptions: TLabel;
+    lstATypes: TListBox;
+    chklstOptions: TCheckListBox;
+    lblMaxGraphs: TLabel;
+    Panel2: TPanel;
+    spnMaxGraphs: TUpDown;
+    lblMaxGraphsRef: TLabel;
+    txtMaxGraphs: TEdit;
+    lblMinGraphHeight: TLabel;
+    Panel3: TPanel;
+    txtMinGraphHeight: TEdit;
+    spnMinGraphHeight: TUpDown;
+    lblMinGraphHeightRef: TLabel;
+    lblMaxSelect: TLabel;
+    Panel4: TPanel;
+    txtMaxSelect: TEdit;
+    spnMaxSelect: TUpDown;
+    lblMaxSelectRef: TLabel;
+    lblOutpatient: TLabel;
+    cboDateRangeOutpatient: TORComboBox;
+    lblInpatient: TLabel;
+    cboDateRangeInpatient: TORComboBox;
+    bvlDefaults: TBevel;
+    lblShow: TLabel;
     btnPersonal: TButton;
-    btnPersonalSave: TButton;
     btnPublic: TButton;
+    lblSave: TLabel;
+    btnPersonalSave: TButton;
     btnPublicSave: TButton;
     bvlBase: TBevel;
-    bvlDefaults: TBevel;
-    bvlMid: TBevel;
-    cboConversions: TORComboBox;
-    cboDateRangeInpatient: TORComboBox;
-    cboDateRangeOutpatient: TORComboBox;
-    chklstOptions: TCheckListBox;
     lblConversions: TLabel;
-    lblInpatient: TLabel;
-    lblMaxGraphs: TLabel;
-    lblMaxGraphsRef: TLabel;
-    lblMaxSelect: TLabel;
-    lblMaxSelectRef: TLabel;
-    lblMinGraphHeight: TLabel;
-    lblMinGraphHeightRef: TLabel;
-    lblOptions: TLabel;
+    bvlMid: TBevel;
     lblOptionsInfo: TLabel;
-    lblOutpatient: TLabel;
-    lblSave: TLabel;
-    lblShow: TLabel;
-    lblSources: TLabel;
-    lstATypes: TListBox;
+    cboConversions: TORComboBox;
     lstOptions: TListBox;
-    lstSources: TCheckListBox;
-    lstSourcesCopy: TListBox;
-    spnMaxGraphs: TUpDown;
-    spnMaxSelect: TUpDown;
-    spnMinGraphHeight: TUpDown;
-    txtMaxGraphs: TEdit;
-    txtMaxSelect: TEdit;
-    txtMinGraphHeight: TEdit;
 
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -515,6 +527,7 @@ begin
     settings := FPublicSettings
   else
     settings := FPersonalSettings;
+
   settings1 := Piece(settings, '|', 1);
   settings2 := Piece(settings, '|', 2);  //piece 3 not used
   spnMaxGraphs.Position := strtointdef(Piece(settings, '|', 4), 5);

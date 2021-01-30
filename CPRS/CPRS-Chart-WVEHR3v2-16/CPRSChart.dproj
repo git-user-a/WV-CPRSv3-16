@@ -132,10 +132,8 @@
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
-        <VerInfo_Release>0</VerInfo_Release>
-        <VerInfo_Build>0</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
-        <Debugger_RunParams>S=ehr1.opensourcevista.net  P=9309 ccow=disable SHOWRPCS CCOW=DISABLE</Debugger_RunParams>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.30.16;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+        <Debugger_RunParams>S=ehr1.opensourcevista.net  P=9302 ccow=disable SHOWRPCS CCOW=DISABLE AV=vistais#1;@#1isvista</Debugger_RunParams>
     </PropertyGroup>
     <ProjectExtensions>
         <Borland.Personality>Delphi.Personality.12</Borland.Personality>
@@ -178,9 +176,7 @@
                 <Source>
                     <Source Name="MainSource">CPRSChart.dpr</Source>
                 </Source>
-                <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\vclhie260.bpl">Internet Explorer Hosting Support Package</Excluded_Packages>
-                </Excluded_Packages>
+                <Excluded_Packages/>
                 <TypeLibOptions>
                     <TypeLibOptions Name="AutoRegisterTLB">False</TypeLibOptions>
                     <TypeLibOptions Name="AutoGenImportAssembly">False</TypeLibOptions>

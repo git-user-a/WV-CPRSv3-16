@@ -1574,7 +1574,8 @@ begin
       if NewOrder.Signature = OSS_NOT_REQUIRE then CanSign := CH_SIGN_NA;
       if (NewOrder.EventPtr <> '') and (GetEventDefaultDlg(responses.FEventIFN) <> InttoStr(Responses.QuickOrder)) then
           IsDelayOrder := True;
-      Changes.Add(CH_ORD, NewOrder.ID, NewOrder.Text, Responses.FViewName, CanSign,'',0, NewOrder.DGroupName, False, IsDelayOrder);
+      if not NewOrder.doNotAddToChangeLog then // 20210126
+        Changes.Add(CH_ORD, NewOrder.ID, NewOrder.Text, Responses.FViewName, CanSign,'',0, NewOrder.DGroupName, False, IsDelayOrder);
 
     UBAGlobals.TargetOrderID := NewOrder.ID;
 
