@@ -69,7 +69,7 @@ end ;
 
 function EditLoad(ProblemIFN: string; ProviderID: int64; ptVAMC: string): TStrings ;
 begin
-   CallV('ORQQPL EDIT LOAD',[ProblemIFN, ProviderID, ptVAMC]);
+   CallV('ORQQPL EDIT LOAD',[ProblemIFN{, ProviderID, ptVAMC}]); // AA - removing extra parameters
    Result := RPCBrokerV.Results ;
 end ;
 
