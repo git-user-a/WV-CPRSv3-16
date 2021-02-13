@@ -3227,6 +3227,10 @@ begin
      AnOrder := TOrder(Items[idx]);
      if (AnOrder.OrderTime <= 0) then
          Continue;
+     //CRH AGP 1-27-21 begin auto release order to service
+     if (AnOrder.doNotAddToChangeLog) then
+      continue;
+      //CRH AGP 1-27-21 end auto release order to service
      i := lstOrders.Items.AddObject(AnOrder.ID, AnOrder);
      lstOrders.Items[i] := GetPlainText(AnOrder,i);
    end;
