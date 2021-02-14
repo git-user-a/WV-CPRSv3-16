@@ -1,6 +1,7 @@
 inherited frmFrame: TfrmFrame
   Left = 193
   Top = 395
+  AlphaBlend = True
   Caption = ']='
   ClientHeight = 693
   ClientWidth = 982
@@ -525,8 +526,8 @@ inherited frmFrame: TfrmFrame
           object lblFlag: TLabel
             Left = 2
             Top = 2
-            Width = 25
-            Height = 13
+            Width = 85
+            Height = 15
             Align = alClient
             Alignment = taCenter
             Caption = 'Flag'
@@ -542,6 +543,8 @@ inherited frmFrame: TfrmFrame
             OnClick = pnlFlagClick
             OnMouseDown = pnlFlagMouseDown
             OnMouseUp = pnlFlagMouseUp
+            ExplicitWidth = 25
+            ExplicitHeight = 13
           end
         end
       end
@@ -596,7 +599,7 @@ inherited frmFrame: TfrmFrame
           object lblVistaWeb: TLabel
             Left = 2
             Top = 2
-            Width = 46
+            Width = 65
             Height = 13
             Align = alClient
             Alignment = taCenter
@@ -609,6 +612,7 @@ inherited frmFrame: TfrmFrame
             ParentFont = False
             Layout = tlCenter
             OnClick = pnlVistaWebClick
+            ExplicitWidth = 46
           end
         end
         object pnlCIRN: TKeyClickPanel
@@ -637,8 +641,8 @@ inherited frmFrame: TfrmFrame
           object lblCIRN: TLabel
             Left = 2
             Top = 2
-            Width = 62
-            Height = 13
+            Width = 65
+            Height = 14
             Align = alClient
             Alignment = taCenter
             Caption = 'E-Prescribing'
@@ -651,6 +655,8 @@ inherited frmFrame: TfrmFrame
             Transparent = False
             Layout = tlCenter
             OnClick = pnlCIRNClick
+            ExplicitWidth = 62
+            ExplicitHeight = 13
           end
         end
       end
