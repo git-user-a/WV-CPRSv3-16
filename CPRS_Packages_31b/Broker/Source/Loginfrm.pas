@@ -43,7 +43,7 @@
 ************************************************** }
 unit Loginfrm;
 
-interface          
+interface
 
 uses
   {System}

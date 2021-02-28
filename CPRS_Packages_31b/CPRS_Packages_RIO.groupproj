@@ -27,6 +27,9 @@
         <Projects Include="OR\ORCtrls_330.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="FilemanComponents\FMDC_330.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -107,14 +110,23 @@
     <Target Name="ORCtrls_330:Make">
         <MSBuild Projects="OR\ORCtrls_330.dproj" Targets="Make"/>
     </Target>
+    <Target Name="FMDC_330">
+        <MSBuild Projects="FilemanComponents\FMDC_330.dproj"/>
+    </Target>
+    <Target Name="FMDC_330:Clean">
+        <MSBuild Projects="FilemanComponents\FMDC_330.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FMDC_330:Make">
+        <MSBuild Projects="FilemanComponents\FMDC_330.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="VAShared_330;XWB_R330;PKI_330;ExceptionLogger_330;XWB_D330;VA508Access_330;Borland_330;ORCtrls_330"/>
+        <CallTarget Targets="VAShared_330;XWB_R330;PKI_330;ExceptionLogger_330;XWB_D330;VA508Access_330;Borland_330;ORCtrls_330;FMDC_330"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="VAShared_330:Clean;XWB_R330:Clean;PKI_330:Clean;ExceptionLogger_330:Clean;XWB_D330:Clean;VA508Access_330:Clean;Borland_330:Clean;ORCtrls_330:Clean"/>
+        <CallTarget Targets="VAShared_330:Clean;XWB_R330:Clean;PKI_330:Clean;ExceptionLogger_330:Clean;XWB_D330:Clean;VA508Access_330:Clean;Borland_330:Clean;ORCtrls_330:Clean;FMDC_330:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="VAShared_330:Make;XWB_R330:Make;PKI_330:Make;ExceptionLogger_330:Make;XWB_D330:Make;VA508Access_330:Make;Borland_330:Make;ORCtrls_330:Make"/>
+        <CallTarget Targets="VAShared_330:Make;XWB_R330:Make;PKI_330:Make;ExceptionLogger_330:Make;XWB_D330:Make;VA508Access_330:Make;Borland_330:Make;ORCtrls_330:Make;FMDC_330:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

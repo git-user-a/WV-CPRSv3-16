@@ -1,4 +1,4 @@
-package FMDC_DXE8;
+package FMDC_330;
 
 {$R *.res}
 {$R 'Source\Fmcntrls.dcr'}
@@ -33,7 +33,7 @@ package FMDC_DXE8;
 
 requires
   vcl,
-  XWB_RXE8;
+  XWB_R330;
 
 contains
   Fmcntrls in 'Source\Fmcntrls.pas',

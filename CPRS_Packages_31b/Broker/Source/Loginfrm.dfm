@@ -46,33 +46,42 @@ object frmSignon: TfrmSignon
       Width = 749
       Height = 397
       Align = alClient
+      Color = clInfoBk
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
       Font.Name = 'Courier New'
       Font.Style = []
       Lines.Strings = (
-        ''
-        ''
-        ''
-        ''
-        ''
-        ''
-        ''
-        ''
-        ''
-        ''
-        ''
-        ''
-        ''
-        ''
-        ''
-        ''
-        ''
-        ''
-        ''
-        ''
-        '')
+        #13
+        #13
+        #13
+        #13
+        #13
+        #13
+        #13
+        #13
+        #13
+        #13
+        #13
+        #13
+        #13
+        #13
+        #13
+        #13
+        #13
+        #13
+        #13
+        #13
+        #13
+        #13
+        #13
+        #13
+        #13
+        #13
+        'Signon;'#13
+        '  intDeviceLock: integer;'#13
+        '  LoginfrmSignOn'#13)
       ParentFont = False
       ReadOnly = True
       ScrollBars = ssVertical
@@ -92,7 +101,7 @@ object frmSignon: TfrmSignon
       144)
     object Image1: TImage
       Left = 8
-      Top = 8
+      Top = 10
       Width = 117
       Height = 78
       AutoSize = True
@@ -463,7 +472,7 @@ object frmSignon: TfrmSignon
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        PasswordChar = '*'
+        PasswordChar = '#'
         TabOrder = 0
       end
       object btnOk: TBitBtn

@@ -25,7 +25,7 @@ package ExceptionLogger_330;
 {$IMAGEBASE $400000}
 {$DEFINE RELEASE}
 {$ENDIF IMPLICITBUILDING}
-{$DESCRIPTION 'Exception Logger - XE8'}
+{$DESCRIPTION 'Exception Logger - 330'}
 {$RUNONLY}
 {$IMPLICITBUILD ON}
 
