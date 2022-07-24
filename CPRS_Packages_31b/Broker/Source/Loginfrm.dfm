@@ -40,53 +40,6 @@ object frmSignon: TfrmSignon
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    object introText: TXWBRichEdit
-      Left = 6
-      Top = 6
-      Width = 749
-      Height = 397
-      Align = alClient
-      Color = clInfoBk
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Courier New'
-      Font.Style = []
-      Lines.Strings = (
-        #13
-        #13
-        #13
-        #13
-        #13
-        #13
-        #13
-        #13
-        #13
-        #13
-        #13
-        #13
-        #13
-        #13
-        #13
-        #13
-        #13
-        #13
-        #13
-        #13
-        #13
-        #13
-        #13
-        #13
-        #13
-        #13
-        'Signon;'#13
-        '  intDeviceLock: integer;'#13
-        '  LoginfrmSignOn'#13)
-      ParentFont = False
-      ReadOnly = True
-      ScrollBars = ssVertical
-      TabOrder = 0
-    end
   end
   object Panel7: TPanel
     Left = 0
@@ -101,7 +54,7 @@ object frmSignon: TfrmSignon
       144)
     object Image1: TImage
       Left = 8
-      Top = 10
+      Top = 8
       Width = 117
       Height = 78
       AutoSize = True
@@ -258,6 +211,7 @@ object frmSignon: TfrmSignon
         8888888888888888888888888888888888888888888888888888888888888888
         88888888888888888000}
       Stretch = True
+      OnClick = Image1Click
     end
     object Bevel1: TBevel
       Left = 0
@@ -405,18 +359,18 @@ object frmSignon: TfrmSignon
       ParentFont = False
     end
     object Panel8: TPanel
-      Left = 422
+      Left = 304
       Top = 0
-      Width = 349
+      Width = 467
       Height = 118
       Align = alRight
       BevelOuter = bvNone
       TabOrder = 0
       DesignSize = (
-        349
+        467
         118)
       object Label1: TLabel
-        Left = 24
+        Left = 8
         Top = 16
         Width = 97
         Height = 16
@@ -430,7 +384,7 @@ object frmSignon: TfrmSignon
         ParentFont = False
       end
       object Label2: TLabel
-        Left = 35
+        Left = 19
         Top = 56
         Width = 86
         Height = 16
@@ -446,7 +400,7 @@ object frmSignon: TfrmSignon
       object verifyCode: TEdit
         Left = 128
         Top = 56
-        Width = 97
+        Width = 238
         Height = 25
         AutoSize = False
         CharCase = ecUpperCase
@@ -462,7 +416,7 @@ object frmSignon: TfrmSignon
       object accessCode: TEdit
         Left = 128
         Top = 16
-        Width = 97
+        Width = 238
         Height = 25
         AutoSize = False
         CharCase = ecUpperCase
@@ -472,11 +426,12 @@ object frmSignon: TfrmSignon
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        PasswordChar = '#'
+        PasswordChar = '*'
         TabOrder = 0
+        OnDblClick = accessCodeDblClick
       end
       object btnOk: TBitBtn
-        Left = 252
+        Left = 372
         Top = 16
         Width = 85
         Height = 26
@@ -552,7 +507,7 @@ object frmSignon: TfrmSignon
         IsControl = True
       end
       object btnCancel: TBitBtn
-        Left = 252
+        Left = 372
         Top = 56
         Width = 85
         Height = 26
@@ -605,20 +560,5 @@ object frmSignon: TfrmSignon
         TabOrder = 4
       end
     end
-  end
-  object RpcbiBroker: TRPCBroker
-    ClearParameters = True
-    ClearResults = True
-    Connected = False
-    ListenerPort = 9300
-    RpcVersion = '0'
-    Server = 'BROKERSERVER'
-    KernelLogIn = True
-    LogIn.Mode = lmAVCodes
-    LogIn.PromptDivision = False
-    UseSecureConnection = secureNone
-    SSHHide = False
-    Left = 168
-    Top = 75
   end
 end

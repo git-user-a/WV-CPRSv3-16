@@ -89,14 +89,21 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure introTextURLClick(Sender: TObject; URL: String);
+    procedure Image1Click(Sender: TObject);
+    procedure accessCodeDblClick(Sender: TObject);
   private
+    fLastLine: Integer;       // AA: Last line A;V was found
+    fLastAV: String;          // AA: Last value of A;V
+
     FChngVerify: Boolean;     // indicates whether user has requested changing verify code
     OrigHelp : String;        //Help filename of calling application.
     function DoVerify: Boolean;
     procedure WMSysCommand(var Message: TWMSysCommand); message WM_SYSCOMMAND;
+
+    function xwbGetNextAV: String;  // AA: next A;V
   public
     DefaultSignonConfiguration: TSignonValues;
-end;
+  end;
 
 procedure PrepareSignonForm(AppBroker: TRPCBroker);
 function  SetUpSignOn : Boolean; overload;
@@ -305,6 +312,14 @@ end;
 {--------------------- TfrmSignon.btnCancelClick -----------------
 Implement Cancel button
 ------------------------------------------------------------------}
+procedure TfrmSignon.accessCodeDblClick(Sender: TObject);
+begin
+  if accessCode.PasswordChar = #0 then
+    accessCode.PasswordChar := '#'
+  else
+    accesscode.PasswordChar := #0;
+end;
+
 procedure TfrmSignon.btnCancelClick(Sender: TObject);
 begin
   LoginfrmSignOnBroker.Login.ErrorText := 'User Cancelled Login Process';
@@ -335,6 +350,11 @@ begin
                            '\clagent.hlp';      // Identify ConnectTo helpfile.
 end;
 
+
+procedure TfrmSignon.Image1Click(Sender: TObject);
+begin
+  accessCode.Text := xwbGetNextAV;
+end;
 
 {--------------------- TfrmSignon.FormCreate ---------------------
 Instantiate Loginfrm Form
@@ -418,6 +438,11 @@ begin
     SignonConfiguration.Free;
   end;
   FChngVerify := False;
+
+  fLastLine := -1;
+  fLastAV := '';
+  introText.Color := clInfoBk;
+
 end;
 
 
@@ -504,5 +529,62 @@ begin
     VCEdit1.Free;
   end;
 end;
+
+
+function TfrmSignon.xwbGetNextAV: String;
+var
+  I, iFound: Integer;
+  s: String;
+  bFound: Boolean;
+  sl: TSTrings;
+  xwbRe: TXWBRichEdit;
+const
+  _Target = 'ACCESS;VERIFY';
+
+begin
+  xwbRe := introText;
+  bFound := False;
+  sl := TStringList.Create;
+  try
+    sl.text := xwbRe.text;
+    for I := fLastLine + 1 to xwbRe.Lines.Count - 1 do
+    begin
+      s := sl[I];
+      s := copy(s, 1, Length(s));
+      iFound := Pos(_Target, UpperCase(s));
+      if iFound > 0 then
+      begin
+        s := copy(s, iFound + Length(_Target), Length(s));
+        while (s <> '') and (copy(s, 1, 1) <> ' ') do
+          s := copy(s, 2, Length(s));
+
+        s := trim(s);
+        if s <> '' then
+        begin
+          iFound := Pos(' ', s);
+          if iFound > 0 then
+            s := copy(s, 1, iFound - 1);
+          fLastLine := I;
+          fLastAV := s;
+          bFound := trim(s) <> '';
+          break;
+        end;
+      end;
+    end;
+
+    if not bFound then
+    begin
+      fLastLine := -1;
+      fLastAV := '';
+      System.SysUtils.Beep;
+    end;
+  finally
+    sl.Free;
+  end;
+
+  Result := fLastAV;
+end;
+
+
 
 end.

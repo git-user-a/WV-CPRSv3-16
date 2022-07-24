@@ -193,9 +193,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <VersionInfoKeys Name="ProductVersion">1.1.40.0</VersionInfoKeys>
                     <VersionInfoKeys Name="Comments"/>
                 </VersionInfoKeys>
-                <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\vclhie260.bpl">Internet Explorer Hosting Support Package</Excluded_Packages>
-                </Excluded_Packages>
+                <Excluded_Packages/>
             </Delphi.Personality>
             <Platforms>
                 <Platform value="Win32">True</Platform>

@@ -178,7 +178,9 @@ $(PreBuildEvent)]]></PreBuildEvent>
                     <VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
                     <VersionInfoKeys Name="Comments"/>
                 </VersionInfoKeys>
-                <Excluded_Packages/>
+                <Excluded_Packages>
+                    <Excluded_Packages Name="d:\WorldVistA\CPRS_Lib_31b\VA508Access_330.bpl">File d:\WorldVistA\CPRS_Lib_31b\VA508Access_330.bpl not found</Excluded_Packages>
+                </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>
                 <Platform value="Win32">True</Platform>
